@@ -1,15 +1,27 @@
 public class Nickname implements Comparable<Nickname>{
     private String nickname;
+    private int nicknameLength;
 
     public String getNickname() {
         return nickname;
     }
 
-    public void setNickname(String nickname) {
+    public Nickname setNickname(String nickname) {
         this.nickname = nickname;
+        nicknameLength = this.nickname.length();
+        return this;
     }
 
-    public int compareTo(Nickname nickname) {
-        return this.nickname.compareTo(String.valueOf(nickname));
+    public int compareTo(Nickname object) {
+        return this.nickname.compareTo(object.nickname);
+    }
+
+    @Override
+    public String toString() {
+        return nickname;
+    }
+
+    public int getNicknameLength() {
+        return nicknameLength;
     }
 }

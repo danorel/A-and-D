@@ -3,9 +3,9 @@ public class App {
         // Integer array
         Integer []ints = {5, 4, -5, 15, -1, 0};
         Sorter<Integer> sorter = new Sorter<Integer>();
-        sorter.setArray(ints);
-        sorter.insertionSort();
-        sorter.showArray();
+        sorter.setArray(ints).brushSort().showArray();
+
+        System.out.println();
 
         // Album array
         Album []albums = new Album[3];
@@ -16,8 +16,6 @@ public class App {
         albums[2] = new Album();
         albums[2].setTitle("My dear").setDirector("Olia Perch").setPrice(999.99);
         Sorter<Album> albumSorter = new Sorter<Album>();
-        albumSorter.setArray(albums);
-        albumSorter.insertionSort();
-        albumSorter.showArray();
+        albumSorter.setArray(albums).insertionSort().showArray();
     }
 }

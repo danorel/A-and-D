@@ -1,11 +1,12 @@
 public class Sorter<T extends Comparable> implements SorterGenerator {
     private T []Array;
 
-    public void setArray(T[] array) {
+    public Sorter setArray(T[] array) {
         Array = array;
+        return this;
     }
 
-    public void insertionSort(){
+    public Sorter insertionSort(){
         for(int index = 1; index < Array.length; index++){
             int iteration = index;
             for(int counter = index - 1; counter > -1; counter--){
@@ -17,9 +18,10 @@ public class Sorter<T extends Comparable> implements SorterGenerator {
                 }
             }
         }
+        return this;
     }
 
-    public void brushSort(){
+    public Sorter brushSort(){
         double distance = 0;
         double coefficient = 1.247330950103979;
         distance = (int) (Array.length / coefficient);
@@ -31,9 +33,10 @@ public class Sorter<T extends Comparable> implements SorterGenerator {
             }
             distance = (distance / coefficient);
         } while(distance > 1);
+        return this;
     }
 
-    public void ShellSort(){
+    public Sorter ShellSort(){
         int outerIndex, innerIndex;
         int distance = Array.length / 2;
         while(distance > 0){
@@ -50,12 +53,14 @@ public class Sorter<T extends Comparable> implements SorterGenerator {
             }
             distance = getShellSortCoefficient(distance);
         }
+        return this;
     }
 
-    public void showArray(){
+    public Sorter showArray(){
         for(int index = 0; index < Array.length; index++){
             System.out.print(Array[index] + " ");
         }
+        return this;
     }
 
     private int getShellSortCoefficient(int coefficient){
