@@ -1,4 +1,4 @@
-public class Sorter<T extends Number> implements SorterGenerator {
+public class Sorter<T extends Comparable> implements SorterGenerator {
     private T []Array;
 
     public void setArray(T[] array) {
@@ -9,10 +9,8 @@ public class Sorter<T extends Number> implements SorterGenerator {
         for(int index = 1; index < Array.length; index++){
             int iteration = index;
             for(int counter = index - 1; counter > -1; counter--){
-                if(Array[iteration].doubleValue() < Array[counter].doubleValue()){
-                    T temp = Array[iteration];
-                    Array[iteration] = Array[counter];
-                    Array[counter] = temp;
+                if(isLess(Array[iteration], (Array[counter]))){
+                    exchange(Array, iteration, counter);
                     iteration--;
                 } else {
                     break;
@@ -27,10 +25,8 @@ public class Sorter<T extends Number> implements SorterGenerator {
         distance = (int) (Array.length / coefficient);
         do{
             for(int innerIndex = 0; innerIndex + distance < Array.length; innerIndex++) {
-                if(Array[innerIndex + (int)distance].doubleValue() < Array[innerIndex].doubleValue()){
-                    T temp = Array[innerIndex];
-                    Array[innerIndex] = Array[innerIndex + (int)distance];
-                    Array[innerIndex + (int)distance] = temp;
+                if(isLess(Array[innerIndex + (int)distance], Array[innerIndex])){
+                    exchange(Array, innerIndex, innerIndex + (int)distance);
                 }
             }
             distance = (distance / coefficient);
@@ -44,7 +40,7 @@ public class Sorter<T extends Number> implements SorterGenerator {
             for(outerIndex = distance; outerIndex < Array.length; outerIndex++){
                 T temp = Array[outerIndex];
                 for(innerIndex = outerIndex; innerIndex >= distance; innerIndex -= distance){
-                    if(temp.doubleValue() < Array[innerIndex - distance].doubleValue()){
+                    if(isLess(temp, Array[innerIndex - distance])){
                         Array[innerIndex] = Array[innerIndex - distance];
                     } else {
                         break;
@@ -56,14 +52,24 @@ public class Sorter<T extends Number> implements SorterGenerator {
         }
     }
 
+    public void showArray(){
+        for(int index = 0; index < Array.length; index++){
+            System.out.print(Array[index] + " ");
+        }
+    }
+
     private int getShellSortCoefficient(int coefficient){
         return coefficient / 2;
     }
 
-    public void showArray(){
-        for(int index = 0; index < Array.length; index++){
-            System.out.print(Array[index].doubleValue() + " ");
-        }
+    private boolean isLess(Comparable first, Comparable second){
+        return first.compareTo(second) < 0;
+    }
+
+    private void exchange(Comparable []Array, int fPos, int sPos){
+        Comparable temp = Array[fPos];
+        Array[fPos] = Array[sPos];
+        Array[sPos] = temp;
     }
 }
 
