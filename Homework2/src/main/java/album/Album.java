@@ -1,3 +1,5 @@
+package album;
+
 public class Album implements Comparable<Album>{
     private double price;
     private String title;
@@ -36,6 +38,8 @@ public class Album implements Comparable<Album>{
 
     @Override
     public String toString() {
-        return Double.toString(price);
+        return String.format(
+                "%s[%s, %s, %s$]", Album.class.getSimpleName(), getTitle(), getDirector(), getPrice()
+        );
     }
 }

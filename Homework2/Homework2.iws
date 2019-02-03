@@ -2,18 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="823bca8a-f7ac-4c19-8faa-d3d34fcc3ca6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Practice2/src/main/java/SorterGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/album/comparators/AlbumDirectorComparator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/album/comparators/AlbumPriceComparator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/album/comparators/AlbumTitleComparator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Practice2/src/main/java/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Homework2.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/Homework2.ipr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Homework2.iws" beforeDir="false" afterPath="$PROJECT_DIR$/Homework2.iws" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Album.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/album/Album.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Sorter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Sorter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SorterGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SorterGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Sorter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorters/Sorter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SorterGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sorters/SorterGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Album.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Sorter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SorterGenerator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Practice2/Practice2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Practice2/Practice2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Practice2/Practice2.ipr" beforeDir="false" afterPath="$PROJECT_DIR$/../Practice2/Practice2.ipr" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Practice2/Practice2.iws" beforeDir="false" afterPath="$PROJECT_DIR$/../Practice2/Practice2.iws" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Practice2/src/main/java/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Practice2/src/main/java/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Practice2/src/main/java/Nickname.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Practice2/src/main/java/Nickname.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Practice2/src/main/java/Sorter.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Practice2/src/main/java/Sorter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Practice2/target/classes/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Practice2/target/classes/App.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Practice2/target/classes/Nickname.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Practice2/target/classes/Nickname.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Practice2/target/classes/Sorter.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Practice2/target/classes/Sorter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Practice2/target/classes/SorterGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/../Practice2/target/classes/SorterGenerator.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -55,86 +66,90 @@
     <session id="637789211">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.open.time.1" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.1" value="2" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="816" />
+          <entry key="java" value="1565" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="816" />
+          <entry key="JAVA" value="1565" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="2" />
+          <entry key="java" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="2" />
+          <entry key="JAVA" value="8" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/App.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="4" column="30" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
+            <state relative-caret-position="25">
+              <caret line="1" column="49" selection-start-line="1" selection-start-column="49" selection-end-line="1" selection-end-column="49" />
               <folding>
-                <element signature="e#155#164#0" expanded="true" />
-                <element signature="e#653#660#0" expanded="true" />
+                <element signature="e#525#532#0" expanded="true" />
+                <element signature="e#929#938#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Album.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/album/Album.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="875">
-              <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
+            <state relative-caret-position="800">
+              <caret line="36" column="5" lean-forward="true" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
               <folding>
-                <element signature="e#135#136#0" expanded="true" />
-                <element signature="e#166#167#0" expanded="true" />
-                <element signature="e#286#287#0" expanded="true" />
-                <element signature="e#314#315#0" expanded="true" />
-                <element signature="e#422#423#0" expanded="true" />
-                <element signature="e#450#451#0" expanded="true" />
-                <element signature="e#651#652#0" expanded="true" />
-                <element signature="e#675#676#0" expanded="true" />
-                <element signature="e#762#763#0" expanded="true" />
-                <element signature="e#801#802#0" expanded="true" />
+                <element signature="e#185#186#0" expanded="true" />
+                <element signature="e#216#217#0" expanded="true" />
+                <element signature="e#677#678#0" expanded="true" />
+                <element signature="e#732#733#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/Sorter.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/sorters/Sorter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="125">
-              <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
+            <state relative-caret-position="2450">
+              <caret line="92" column="1" selection-start-line="92" selection-start-column="1" selection-end-line="92" selection-end-column="1" />
               <folding>
-                <element signature="e#2447#2448#0" expanded="true" />
-                <element signature="e#2497#2498#0" expanded="true" />
+                <element signature="e#2206#2207#0" expanded="true" />
+                <element signature="e#2244#2245#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/SorterGenerator.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/album/comparators/AlbumTitleComparator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="50">
-              <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+            <state relative-caret-position="75">
+              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/sorters/SorterGenerator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -164,8 +179,15 @@
       <list>
         <option value="$PROJECT_DIR$/src/main/java/Album.java" />
         <option value="$PROJECT_DIR$/src/main/java/SorterGenerator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/AlbumComparator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/AlbumTitleComparator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/AlbumPriceComparator.java" />
         <option value="$PROJECT_DIR$/src/main/java/Sorter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/album/Album.java" />
+        <option value="$PROJECT_DIR$/src/main/java/album/comparators/AlbumDirectorComparator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sorters/Sorter.java" />
         <option value="$PROJECT_DIR$/src/main/java/App.java" />
+        <option value="$PROJECT_DIR$/src/main/java/sorters/SorterGenerator.java" />
       </list>
     </option>
   </component>
@@ -187,6 +209,7 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -212,18 +235,42 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Homework2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Homework2" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="album" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Homework2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Homework2" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="album" type="462c0819:PsiDirectoryNode" />
+              <item name="comparators" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Homework2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Homework2" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="sorters" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1548840881106" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549194418473" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -267,18 +314,19 @@
       <option name="presentableId" value="Default" />
       <updated>1548782900744</updated>
       <workItem from="1548782903746" duration="9081000" />
-      <workItem from="1548834968275" duration="3703000" />
+      <workItem from="1548834968275" duration="3854000" />
+      <workItem from="1549186330230" duration="3353000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12784000" />
+    <option name="totallyTimeSpent" value="16288000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="45" y="0" width="1235" height="800" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25398156" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25817266" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -286,7 +334,7 @@
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32909605" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32909605" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997175" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -323,51 +371,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Album.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/album/comparators/AlbumPriceComparator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="875">
-          <caret line="35" lean-forward="true" selection-start-line="35" selection-end-line="35" />
-          <folding>
-            <element signature="e#135#136#0" expanded="true" />
-            <element signature="e#166#167#0" expanded="true" />
-            <element signature="e#286#287#0" expanded="true" />
-            <element signature="e#314#315#0" expanded="true" />
-            <element signature="e#422#423#0" expanded="true" />
-            <element signature="e#450#451#0" expanded="true" />
-            <element signature="e#651#652#0" expanded="true" />
-            <element signature="e#675#676#0" expanded="true" />
-            <element signature="e#762#763#0" expanded="true" />
-            <element signature="e#801#802#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="100">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/SorterGenerator.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/album/comparators/AlbumDirectorComparator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Sorter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
-          <folding>
-            <element signature="e#2447#2448#0" expanded="true" />
-            <element signature="e#2497#2498#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="100">
+          <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/App.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="4" column="30" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
+        <state relative-caret-position="25">
+          <caret line="1" column="49" selection-start-line="1" selection-start-column="49" selection-end-line="1" selection-end-column="49" />
           <folding>
-            <element signature="e#155#164#0" expanded="true" />
-            <element signature="e#653#660#0" expanded="true" />
+            <element signature="e#525#532#0" expanded="true" />
+            <element signature="e#929#938#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/album/Album.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="800">
+          <caret line="36" column="5" lean-forward="true" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
+          <folding>
+            <element signature="e#185#186#0" expanded="true" />
+            <element signature="e#216#217#0" expanded="true" />
+            <element signature="e#677#678#0" expanded="true" />
+            <element signature="e#732#733#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sorters/Sorter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2450">
+          <caret line="92" column="1" selection-start-line="92" selection-start-column="1" selection-end-line="92" selection-end-column="1" />
+          <folding>
+            <element signature="e#2206#2207#0" expanded="true" />
+            <element signature="e#2244#2245#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/album/comparators/AlbumTitleComparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/sorters/SorterGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
         </state>
       </provider>
     </entry>

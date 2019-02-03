@@ -13,7 +13,7 @@ public class Nickname implements Comparable<Nickname>{
     }
 
     public int compareTo(Nickname object) {
-        return this.nickname.compareTo(object.nickname);
+        return nickname.compareTo(object.nickname);
     }
 
     @Override
