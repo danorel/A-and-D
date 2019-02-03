@@ -1,3 +1,5 @@
+package persons;
+
 public class Person implements Comparable<Person> {
     private int age;
     private String name;
@@ -31,16 +33,11 @@ public class Person implements Comparable<Person> {
     }
 
     @Override
-    public String toString() {
-        try {
-            return String.format(
-                    "%s[%s:%s, %s:%s, %s:%s]\n",
-                    Person.class.getName(), Person.class.getDeclaredField("name"), getName(), Person.class.getDeclaredField("surname"), getSurname(), Person.class.getDeclaredField("age"), getAge()
-            );
-        } catch (NoSuchFieldException exception) {
-            exception.printStackTrace();
-        }
-        return "";
+        public String toString() {
+        return String.format(
+                "%s[%s, %s, %s]",
+                Person.class.getSimpleName(), getName(), getSurname(), getAge()
+        );
     }
 
     public int compareTo(Person object) {

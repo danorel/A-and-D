@@ -1,3 +1,5 @@
+package nicknames;
+
 public class Nickname implements Comparable<Nickname>{
     private String nickname;
     private int nicknameLength;
@@ -18,7 +20,9 @@ public class Nickname implements Comparable<Nickname>{
 
     @Override
     public String toString() {
-        return nickname;
+        return String.format(
+                "%s: %s", getNickname(), getNicknameLength()
+        );
     }
 
     public int getNicknameLength() {

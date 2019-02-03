@@ -1,5 +1,15 @@
+package sorter;
+
+import java.util.Comparator;
+
 public class Sorter<T extends Comparable> implements SorterGenerator {
     private T[] Array;
+    private Comparator comparator;
+
+    public Sorter setComparator(Comparator comparator){
+        this.comparator = comparator;
+        return this;
+    }
 
     public Sorter bubbleSort(){
         for(int iIndex = 0; iIndex < Array.length; iIndex++){
@@ -36,8 +46,8 @@ public class Sorter<T extends Comparable> implements SorterGenerator {
     }
 
     public Sorter showArray(){
-        for(int index = 0; index < Array.length; index++){
-            System.out.print(this.Array[index] + " ");
+        for(T element : Array){
+            System.out.println(element);
         }
         return this;
     }
@@ -48,7 +58,11 @@ public class Sorter<T extends Comparable> implements SorterGenerator {
     }
 
     private boolean isLess(Comparable first, Comparable second){
-        return first.compareTo(second) < 0;
+        if(comparator == null){
+            return first.compareTo(second) < 0;
+        } else {
+            return comparator.compare(first, second) < 0;
+        }
     }
 
     private void exchange(Comparable []Array, int fPos, int sPos){
