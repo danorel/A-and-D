@@ -66,27 +66,4 @@ public class ShellSort implements Sort {
     private int getShellSortCoefficient(int coefficient){
         return coefficient / 2;
     }
-
-    private boolean isLess(Comparable first, Comparable second, Comparator comparator, String order){
-        if(order.equals("ASC")) {
-            if (comparator == null) {
-                return first.compareTo(second) < 0;
-            } else {
-                return comparator.compare(first, second) < 0;
-            }
-        } else if(order.equals("DESC")){
-            if (comparator == null) {
-                return first.compareTo(second) > 0;
-            } else {
-                return comparator.compare(first, second) > 0;
-            }
-        }
-        return false;
-    }
-
-    private void exchange(Comparable []Array, int firstPosition, int secondPosition){
-        Comparable temp = Array[firstPosition];
-        Array[firstPosition] = Array[secondPosition];
-        Array[secondPosition] = temp;
-    }
 }
