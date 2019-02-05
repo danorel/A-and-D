@@ -6,12 +6,38 @@ public class Sorter<T extends Comparable> implements SorterGenerator {
     private T[] Array;
     private Comparator comparator = null;
 
-    public SorterGenerator heapSort() {
+    public Sorter heapSort() {
+        for(int index = (Array.length / 2) - 1; index >= 0; index--){
+            heapify(Array.length, index);
+        }
+        for(int index = Array.length - 1; index >= 0; index--){
+            exchange(index, 0);
+            heapify(index, 0);
+        }
         return this;
     }
 
+    private void heapify(int size, int root) {
+        int largest = root;
+        int leftPosition = 2 * root + 1;
+        int rightPosition = 2 * root + 2;
+
+        if(leftPosition < size && isLess(Array[largest], Array[leftPosition])){
+            largest = leftPosition;
+        }
+
+        if(rightPosition < size && isLess(Array[largest], Array[rightPosition])){
+            largest = rightPosition;
+        }
+
+        if(largest != root){
+            exchange(largest, root);
+            heapify(size, largest);
+        }
+    }
+
     public Sorter quickSort(int leftPosition, int rightPosition) {
-        if(rightPosition < leftPosition){
+        if(rightPosition > leftPosition){
             int pi = generatePartition(leftPosition, rightPosition);
             quickSort(leftPosition, pi - 1);
             quickSort(pi + 1, rightPosition);
@@ -54,7 +80,7 @@ public class Sorter<T extends Comparable> implements SorterGenerator {
         }
 
         int leftIndex = 0, rightIndex = 0;
-        int index = leftIndex;
+        int index = leftPosition;
         while(leftIndex < (middlePosition + 1 - leftPosition) && rightIndex < (rightPosition - middlePosition)){
             if(isLess(leftArray[leftIndex], rightArray[rightIndex])){
                 Array[index++] = (T) leftArray[leftIndex++];
