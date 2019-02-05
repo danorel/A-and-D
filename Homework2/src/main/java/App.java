@@ -19,6 +19,6 @@ public class App {
         System.out.println();
         Integer ints[] = new Integer[]{-1, 20, 50, -4, 5};
         Sorter<Integer> integerSorter = new Sorter<Integer>();
-        integerSorter.setArray(ints).ShellSort().showArray();
+        integerSorter.setArray(ints).brushSort().showArray();
     }
 }

@@ -16,10 +16,9 @@ public class App {
         nicknames[2].setNickname("Olia");
         nicknames[3] = new Nickname();
         nicknames[3].setNickname("Pencils");
-        sorter.Sorter<nicknames.Nickname> sorter = new sorter.Sorter<>();
+        sorter.Sorter<nicknames.Nickname> sorter = new sorter.Sorter<Nickname>();
         sorter.setComparator(new NicknameComparator()).setArray(nicknames).selectionSort().showArray();
         System.out.println();
-
 
         // Person sorting example
         Person[] people = new Person[4];
@@ -31,9 +30,13 @@ public class App {
         people[2].setName("Mark").setAge(24).setSurname("Orel");
         people[3] = new Person();
         people[3].setName("Olia").setAge(18).setSurname("Perch");
-        Sorter<Person> personSorter = new Sorter<>();
+        Sorter<Person> personSorter = new Sorter<Person>();
         personSorter.setComparator(new PersonSurnameComparator()).setArray(people).bubbleSort().showArray();
+
+        // Integer sorting example
+        System.out.println();
+        Integer []integers = {51, 43, 0, Integer.MAX_VALUE, 9, -4, 104};
+        Sorter<Integer> integerSorter = new Sorter<Integer>();
+        integerSorter.setArray(integers).bubbleSort().showArray();
     }
-
-
 }

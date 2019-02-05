@@ -32,9 +32,8 @@ public class Sorter<T extends Comparable> implements SorterGenerator {
     }
 
     public Sorter brushSort(){
-        double distance = 0;
         double coefficient = 1.247330950103979;
-        distance = (int) (Array.length / coefficient);
+        double distance = (int) (Array.length / coefficient);
         do{
             for(int innerIndex = 0; innerIndex + distance < Array.length; innerIndex++) {
                 if(isLess(Array[innerIndex + (int)distance], Array[innerIndex]) < 0){

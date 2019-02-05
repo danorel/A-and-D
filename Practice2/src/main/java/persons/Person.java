@@ -40,7 +40,7 @@ public class Person implements Comparable<Person> {
         );
     }
 
-    public int compareTo(Person object) {
-        return age - object.age;
+    public int compareTo(Person person) {
+        return age - person.age;
     }
 }
