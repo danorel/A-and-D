@@ -29,4 +29,5 @@ public interface Sort<T extends Comparable>{
         Array[firstPosition] = Array[secondPosition];
         Array[secondPosition] = temp;
     }
+
 }

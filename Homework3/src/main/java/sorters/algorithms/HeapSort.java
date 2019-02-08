@@ -7,23 +7,11 @@ import java.util.Comparator;
 public class HeapSort implements Sort {
 
     public void sort(Comparable[] Array) {
-        for(int index = (Array.length / 2) - 1; index >= 0; index--){
-            heapify(Array, Array.length, index, null, "ASC");
-        }
-        for(int index = Array.length - 1; index >= 0; index--){
-            exchange(Array, index, 0);
-            heapify(Array, index, 0, null, "ASC");
-        }
+        sort(Array, null, "ASC");
     }
 
     public void sort(Comparable[] Array, Comparator comparator) {
-        for(int index = (Array.length / 2) - 1; index >= 0; index--){
-            heapify(Array, Array.length, index, comparator, "ASC");
-        }
-        for(int index = Array.length - 1; index >= 0; index--){
-            exchange(Array, index, 0);
-            heapify(Array, index, 0, comparator, "ASC");
-        }
+        sort(Array, comparator, "ASC");
     }
 
     public void sort(Comparable[] Array, Comparator comparator, String order) {
