@@ -5,9 +5,10 @@ import strategy.Strategy;
 public class App {
     public static void main(String[] args) {
         FileManager.createFile("data/data.txt");
+        FileManager.createFile("data/results.txt");
         final Integer []Array = DataGenerator.generate(1024);
         Strategy<Integer> strategy = new Strategy<>();
-        strategy.testAlgorithms(Array, "data/data.txt");
-        strategy.getResults("data/data.txt").forEach(System.out::println);
+        FileManager.writeFile("data/data.txt", strategy.getAlgorithmsRuntimeData(Array));
+        FileManager.writeFile("data/results.txt", strategy.getAlgorithmsRuntimeTable(Array));
     }
 }

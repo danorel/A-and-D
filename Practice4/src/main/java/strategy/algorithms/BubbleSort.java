@@ -3,8 +3,6 @@ package strategy.algorithms;
 import strategy.Sort;
 import timer.Timer;
 
-import java.util.Comparator;
-
 public class BubbleSort implements Sort {
 
     private double time;

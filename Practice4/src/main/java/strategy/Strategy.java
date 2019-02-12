@@ -1,6 +1,5 @@
 package strategy;
 
-import file.FileManager;
 import strategy.algorithms.*;
 
 import java.util.*;
@@ -8,7 +7,6 @@ import java.util.*;
 public class Strategy<T extends Comparable>{
     private ArrayList<Sort> sortContainer;
     private Sort sortStrategy;
-    private T[] Array;
     private String content = "";
 
     public Strategy(){
@@ -23,15 +21,15 @@ public class Strategy<T extends Comparable>{
         sortContainer.add(new ShellSort());
     }
 
-    public void testAlgorithms(T []Array, String src){
-        this.Array = Array;
+    public String getAlgorithmsRuntimeData(T []Array){
+        StringBuilder result = new StringBuilder();
         for(Sort sort : sortContainer){
-            setSortStrategy(sort).sort().writeResults(sort.toString(), src);
-            this.Array = Array;
+            result.append(setSortStrategy(sort).sort(Array).writeResults(Array, sort.toString()));
         }
+        return result.toString();
     }
 
-    public Strategy sort(){
+    public Strategy sort(T []Array){
         sortStrategy.sort(Array);
         return this;
     }
@@ -41,7 +39,7 @@ public class Strategy<T extends Comparable>{
         return this;
     }
 
-    private void writeResults(String sortName, String src){
+    private String writeResults(T []Array, String sortName){
         StringBuilder builder = new StringBuilder();
         builder.append(sortName);
         Arrays.asList(Array)
@@ -50,26 +48,30 @@ public class Strategy<T extends Comparable>{
                 });
         builder.append(":");
         content += builder.toString();
-        FileManager.writeFile(src, content);
+        return content;
     }
 
-    public List<Map.Entry<String, Double>> getResults(String src){
-        String content = FileManager.readFile(src);
-        List<String> parts = Arrays.asList(content.split("\\:"));
-        ArrayList<String> results = new ArrayList<>();
-        for(int index = 0; index < parts.size(); index++){
+    public String getAlgorithmsRuntimeTable(T []Array){
+        String content = getAlgorithmsRuntimeData(Array);
+        List<String> tokens = Arrays.asList(content.split("\\:"));
+        ArrayList<String> sortResults = new ArrayList<>();
+        for(int index = 0; index < tokens.size(); index++){
             if(index % 2 == 0){
-                results.add(parts.get(index));
+                sortResults.add(tokens.get(index));
             }
         }
-        List<Map.Entry<String, Double>> list = new ArrayList<>(sortResults(results).entrySet());
-        return list;
+        List<Map.Entry<String, Double>> list = new ArrayList<>(sortResults(sortResults).entrySet());
+        StringBuilder result = new StringBuilder();
+        for(Map.Entry<String, Double> entry : list){
+            result.append(entry.getKey() + ": " + entry.getValue()).append("\n");
+        }
+        return result.toString();
     }
 
-    private HashMap<String, Double> sortResults(ArrayList<String> results){
+    private HashMap<String, Double> sortResults(ArrayList<String> sortResults){
         HashMap<String, Double> times = new HashMap<>();
-        for (int index = 0; index < results.size() - 1; index++) {
-            String []parts = results.get(index).split("\\|");
+        for (int index = 0; index < sortResults.size() - 1; index++) {
+            String []parts = sortResults.get(index).split("\\|");
             times.put(parts[0], Double.valueOf(parts[1]));
         }
         List<Map.Entry<String, Double>> list = new ArrayList<>(times.entrySet());
