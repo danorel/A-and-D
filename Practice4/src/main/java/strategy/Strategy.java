@@ -54,32 +54,33 @@ public class Strategy<T extends Comparable>{
     public String getAlgorithmsRuntimeTable(T []Array){
         String content = getAlgorithmsRuntimeData(Array);
         List<String> tokens = Arrays.asList(content.split("\\:"));
-        ArrayList<String> sortResults = new ArrayList<>();
+        ArrayList<String> results = new ArrayList<>();
         for(int index = 0; index < tokens.size(); index++){
             if(index % 2 == 0){
-                sortResults.add(tokens.get(index));
+                results.add(tokens.get(index));
             }
         }
-        List<Map.Entry<String, Double>> list = new ArrayList<>(sortResults(sortResults).entrySet());
+        List<Map.Entry<String, Double>> list = new ArrayList<>(getSortedResults(results).entrySet());
         StringBuilder result = new StringBuilder();
         for(Map.Entry<String, Double> entry : list){
-            result.append(entry.getKey() + ": " + entry.getValue()).append("\n");
+            result.append(entry.getKey()).append(": ").append(entry.getValue()).append("\n");
         }
         return result.toString();
     }
 
-    private HashMap<String, Double> sortResults(ArrayList<String> sortResults){
-        HashMap<String, Double> times = new HashMap<>();
-        for (int index = 0; index < sortResults.size() - 1; index++) {
-            String []parts = sortResults.get(index).split("\\|");
-            times.put(parts[0], Double.valueOf(parts[1]));
+    private HashMap<String, Double> getSortedResults(ArrayList<String> sortResults){
+        sortResults.remove(sortResults.size() - 1);
+        HashMap<String, Double> sortData = new HashMap<>();
+        for (int index = 0; index < sortResults.size(); index++) {
+            String []tokens = sortResults.get(index).split("\\|");
+            sortData.put(tokens[0], Double.valueOf(tokens[1]));
         }
-        List<Map.Entry<String, Double>> list = new ArrayList<>(times.entrySet());
+        List<Map.Entry<String, Double>> list = new ArrayList<>(sortData.entrySet());
         list.sort(Map.Entry.comparingByValue());
-        Map<String, Double> result = new LinkedHashMap<>();
+        HashMap<String, Double> result = new LinkedHashMap<>();
         for (Map.Entry<String, Double> entry : list) {
             result.put(entry.getKey(), entry.getValue());
         }
-        return (HashMap<String, Double>) result;
+        return result;
     }
 }

@@ -1,10 +1,26 @@
 package data;
 
 public class DataGenerator {
-    static public Integer[] generate(Integer amount){
+    static public Integer[] generateRandomData(Integer amount){
         Integer []Array = new Integer[amount];
         for(int index = 0; index < amount; index++){
             Array[index] = (int)(Math.random() * Integer.MAX_VALUE);
+        }
+        return Array;
+    }
+
+    static public Integer[] generateSortedData(Integer amount){
+        Integer []Array = new Integer[amount];
+        for(int index = 0; index < amount; index++){
+            Array[index] = index;
+        }
+        return Array;
+    }
+
+    static public Integer[] generateUnsortedData(Integer amount){
+        Integer []Array = new Integer[amount];
+        for(int index = 0, value = amount; index < amount; index++, value--){
+            Array[index] = value;
         }
         return Array;
     }
