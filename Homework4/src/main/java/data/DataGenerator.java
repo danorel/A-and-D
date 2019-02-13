@@ -24,12 +24,4 @@ public class DataGenerator {
         }
         return Array;
     }
-
-    static public Integer[] generateSameData(Integer amount){
-        Integer []Array = new Integer[amount];
-        for (int index = 0; index < amount; index++){
-            Array[index] = 0;
-        }
-        return Array;
-    }
 }

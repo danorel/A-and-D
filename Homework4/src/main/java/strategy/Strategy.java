@@ -7,7 +7,7 @@ import java.util.*;
 public class Strategy<T extends Comparable>{
     private ArrayList<Sort> sortContainer;
     private Sort sortStrategy;
-    private StringBuilder content = new StringBuilder();
+    private String content = "";
 
     public Strategy(){
         sortContainer = new ArrayList<>();
@@ -47,8 +47,8 @@ public class Strategy<T extends Comparable>{
                     builder.append(element).append(" ");
                 });
         builder.append(":");
-        content.append(builder.toString());
-        return content.toString();
+        content += builder.toString();
+        return content;
     }
 
     public String getAlgorithmsRuntimeTable(T []Array){

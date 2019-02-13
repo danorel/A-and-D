@@ -1,20 +1,20 @@
 package file;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public interface FileManager {
-    
-    static String readFile(String src) {
+
+    static String readFile(String src){
         StringBuilder result = new StringBuilder();
         try {
             BufferedReader reader = new BufferedReader(new FileReader(src));
-            String line;
+            String line = null;
             while((line = reader.readLine()) != null){
                 result.append(line).append("\n");
             }
-            reader.close();
         } catch (IOException exception) {
             exception.printStackTrace();
         }

@@ -1,8 +1,0 @@
-HeapSort : 194.431
-ShellSort : 809.626
-MergeSort : 2833.845
-InsertionSort : 3213.54
-SelectionSort : 3943.07
-CombSort : 6288.35
-QuickSort : 7883.904
-BubbleSort : 15952.351
