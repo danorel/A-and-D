@@ -8,11 +8,11 @@ public class App {
         // Book sorting
         Book[] library = new Book[4];
         library[0] = new Book("Forever", "Daniel", 174, 99.99);
-        library[1] = new Book("Blue", "Herald", 984, 999.99);
+        library[1] = new Book("Blue", "Herald", 50, 999.99);
         library[2] = new Book("True", "Jimmy", 64, 43.99);
         library[3] = new Book("Sincerely", "Kerness", 84 , 75.55);
-        Sorter<Book> sorter = new Sorter<Book>();
-        sorter.setCurrentSortStrategy(new InsertionSort()).setArray(library).sort(new BookPriceComparator(), "DESC").showArray();
+        Sorter<Book> sorter = new Sorter<>();
+        sorter.setCurrentSortStrategy(new QuickSort()).setArray(library).sort().showArray();
 
         System.out.println();
 

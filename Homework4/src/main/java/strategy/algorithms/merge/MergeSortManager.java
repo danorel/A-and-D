@@ -1,19 +1,7 @@
-package strategy.algorithms;
+package strategy.algorithms.merge;
 
-import strategy.Sort;
-import timer.Timer;
-
-public class MergeSort implements Sort {
-
-    private double time;
-
-    public void sort(Comparable[] Array) {
-        Timer timer = new Timer();
-        mergeSort(Array, 0, Array.length - 1);
-        time = Timer.calculate();
-    }
-
-    public void mergeSort(Comparable []Array, int leftPosition, int rightPosition) {
+public interface MergeSortManager {
+    default void mergeSort(Comparable []Array, int leftPosition, int rightPosition) {
         if(rightPosition > leftPosition){
             int middlePosition = ((leftPosition + rightPosition) / 2);
             mergeSort(Array, leftPosition, middlePosition);
@@ -22,7 +10,7 @@ public class MergeSort implements Sort {
         }
     }
 
-    private void merge(Comparable []Array, int leftPosition, int middlePosition, int rightPosition){
+    default void merge(Comparable []Array, int leftPosition, int middlePosition, int rightPosition){
         Comparable []leftArray = new Comparable[(middlePosition + 1) - leftPosition];
         Comparable []rightArray = new Comparable[rightPosition - middlePosition];
         for(int index = 0; index < (middlePosition + 1) - leftPosition; index++){
@@ -52,8 +40,7 @@ public class MergeSort implements Sort {
         }
     }
 
-    @Override
-    public String toString() {
-        return "MergeSort |" + time + "|: ";
+    default boolean isLess(Comparable first, Comparable second){
+        return first.compareTo(second) < 0;
     }
 }

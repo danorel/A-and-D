@@ -1,6 +1,13 @@
 package strategy;
 
-import strategy.algorithms.*;
+import strategy.algorithms.merge.ComparedMergeSort;
+import strategy.algorithms.merge.DefaultMergeSort;
+import strategy.algorithms.merge.InsertionMergeSort;
+import strategy.algorithms.merge.MixedMergeSort;
+import strategy.algorithms.quick.DefaultQuickSort;
+import strategy.algorithms.quick.DijkstraQuickSort;
+import strategy.algorithms.quick.InsertionQuickSort;
+import strategy.algorithms.quick.MixedQuickSort;
 
 import java.util.*;
 
@@ -11,14 +18,14 @@ public class Strategy<T extends Comparable>{
 
     public Strategy(){
         sortContainer = new ArrayList<>();
-        sortContainer.add(new BubbleSort());
-        sortContainer.add(new CombSort());
-        sortContainer.add(new HeapSort());
-        sortContainer.add(new InsertionSort());
-        sortContainer.add(new MergeSort());
-        sortContainer.add(new QuickSort());
-        sortContainer.add(new SelectionSort());
-        sortContainer.add(new ShellSort());
+        sortContainer.add(new DefaultMergeSort());
+        sortContainer.add(new ComparedMergeSort());
+        sortContainer.add(new InsertionMergeSort());
+        sortContainer.add(new MixedMergeSort());
+        sortContainer.add(new DefaultQuickSort());
+        sortContainer.add(new InsertionQuickSort());
+        sortContainer.add(new DijkstraQuickSort());
+        sortContainer.add(new MixedQuickSort());
     }
 
     public String getAlgorithmsRuntimeData(T []Array){

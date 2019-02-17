@@ -1,11 +1,11 @@
 import data.DataGenerator;
-import file.FileManager;
 import strategy.Strategy;
+import file.FileManager;
 
 public class App {
     public static void main(String[] args) {
         /*
-            Randomly generated data (used class DataGenerator)
+            Randomly generated data (used class data.DataGenerator)
          */
         // Testing the array with 32768 elements
         FileManager.createFile("random/data-32768.txt");
@@ -50,37 +50,37 @@ public class App {
         // Testing the array with 32768 elements
         FileManager.createFile("sorted/data-32768.txt");
         FileManager.createFile("sorted/results-32768.txt");
-        final Integer []SortedArray32768 = DataGenerator.generateRandomData(32768);
+        final Integer []SortedArray32768 = DataGenerator.generateSortedData(32768);
         FileManager.writeFile("sorted/data-32768.txt", strategy.getAlgorithmsRuntimeData(SortedArray32768));
         FileManager.writeFile("sorted/results-32768.txt", strategy.getAlgorithmsRuntimeTable(SortedArray32768));
         // Testing the array with 16384 elements
         FileManager.createFile("sorted/data-16384.txt");
         FileManager.createFile("sorted/results-16384.txt");
-        final Integer []SortedArray16384 = DataGenerator.generateRandomData(16384);
+        final Integer []SortedArray16384 = DataGenerator.generateSortedData(16384);
         FileManager.writeFile("sorted/data-16384.txt", strategy.getAlgorithmsRuntimeData(SortedArray16384));
         FileManager.writeFile("sorted/results-16384.txt", strategy.getAlgorithmsRuntimeTable(SortedArray16384));
         // Testing the array with 8192 elements
         FileManager.createFile("sorted/data-8192.txt");
         FileManager.createFile("sorted/results-8192.txt");
-        final Integer []SortedArray8192 = DataGenerator.generateRandomData(8192);
+        final Integer []SortedArray8192 = DataGenerator.generateSortedData(8192);
         FileManager.writeFile("sorted/data-8192.txt", strategy.getAlgorithmsRuntimeData(SortedArray8192));
         FileManager.writeFile("sorted/results-8192.txt", strategy.getAlgorithmsRuntimeTable(SortedArray8192));
         // Testing the array with 4096 elements
         FileManager.createFile("sorted/data-4096.txt");
         FileManager.createFile("sorted/results-4096.txt");
-        final Integer []SortedArray4096 = DataGenerator.generateRandomData(4096);
+        final Integer []SortedArray4096 = DataGenerator.generateSortedData(4096);
         FileManager.writeFile("sorted/data-4096.txt", strategy.getAlgorithmsRuntimeData(SortedArray4096));
         FileManager.writeFile("sorted/results-4096.txt", strategy.getAlgorithmsRuntimeTable(SortedArray4096));
         // Testing the array with 2048 elements
         FileManager.createFile("sorted/data-2048.txt");
         FileManager.createFile("sorted/results-2048.txt");
-        final Integer []SortedArray2048 = DataGenerator.generateRandomData(2048);
+        final Integer []SortedArray2048 = DataGenerator.generateSortedData(2048);
         FileManager.writeFile("sorted/data-2048.txt", strategy.getAlgorithmsRuntimeData(SortedArray2048));
         FileManager.writeFile("sorted/results-2048.txt", strategy.getAlgorithmsRuntimeTable(SortedArray2048));
         // Testing the array with 2048 elements
         FileManager.createFile("sorted/data-1024.txt");
         FileManager.createFile("sorted/results-1024.txt");
-        final Integer []SortedArray1024 = DataGenerator.generateRandomData(1024);
+        final Integer []SortedArray1024 = DataGenerator.generateSortedData(1024);
         FileManager.writeFile("sorted/data-1024.txt", strategy.getAlgorithmsRuntimeData(SortedArray1024));
         FileManager.writeFile("sorted/results-1024.txt", strategy.getAlgorithmsRuntimeTable(SortedArray1024));
         /*
@@ -89,38 +89,77 @@ public class App {
         // Testing the array with 32768 elements
         FileManager.createFile("unsorted/data-32768.txt");
         FileManager.createFile("unsorted/results-32768.txt");
-        final Integer []UnsortedArray32768 = DataGenerator.generateRandomData(32768);
+        final Integer []UnsortedArray32768 = DataGenerator.generateUnsortedData(32768);
         FileManager.writeFile("unsorted/data-32768.txt", strategy.getAlgorithmsRuntimeData(UnsortedArray32768));
         FileManager.writeFile("unsorted/results-32768.txt", strategy.getAlgorithmsRuntimeTable(UnsortedArray32768));
         // Testing the array with 16384 elements
         FileManager.createFile("unsorted/data-16384.txt");
         FileManager.createFile("unsorted/results-16384.txt");
-        final Integer []UnsortedArray16384 = DataGenerator.generateRandomData(16384);
+        final Integer []UnsortedArray16384 = DataGenerator.generateUnsortedData(16384);
         FileManager.writeFile("unsorted/data-16384.txt", strategy.getAlgorithmsRuntimeData(UnsortedArray16384));
         FileManager.writeFile("unsorted/results-16384.txt", strategy.getAlgorithmsRuntimeTable(UnsortedArray16384));
         // Testing the array with 8192 elements
         FileManager.createFile("unsorted/data-8192.txt");
         FileManager.createFile("unsorted/results-8192.txt");
-        final Integer []UnsortedArray8192 = DataGenerator.generateRandomData(8192);
+        final Integer []UnsortedArray8192 = DataGenerator.generateUnsortedData(8192);
         FileManager.writeFile("unsorted/data-8192.txt", strategy.getAlgorithmsRuntimeData(UnsortedArray8192));
         FileManager.writeFile("unsorted/results-8192.txt", strategy.getAlgorithmsRuntimeTable(UnsortedArray8192));
         // Testing the array with 4096 elements
         FileManager.createFile("unsorted/data-4096.txt");
         FileManager.createFile("unsorted/results-4096.txt");
-        final Integer []UnsortedArray4096 = DataGenerator.generateRandomData(4096);
+        final Integer []UnsortedArray4096 = DataGenerator.generateUnsortedData(4096);
         FileManager.writeFile("unsorted/data-4096.txt", strategy.getAlgorithmsRuntimeData(UnsortedArray4096));
         FileManager.writeFile("unsorted/results-4096.txt", strategy.getAlgorithmsRuntimeTable(UnsortedArray4096));
         // Testing the array with 2048 elements
         FileManager.createFile("unsorted/data-2048.txt");
         FileManager.createFile("unsorted/results-2048.txt");
-        final Integer []UnsortedArray2048 = DataGenerator.generateRandomData(2048);
+        final Integer []UnsortedArray2048 = DataGenerator.generateUnsortedData(2048);
         FileManager.writeFile("unsorted/data-2048.txt", strategy.getAlgorithmsRuntimeData(UnsortedArray2048));
         FileManager.writeFile("unsorted/results-2048.txt", strategy.getAlgorithmsRuntimeTable(UnsortedArray2048));
         // Testing the array with 2048 elements
         FileManager.createFile("unsorted/data-1024.txt");
         FileManager.createFile("unsorted/results-1024.txt");
-        final Integer []UnsortedArray1024 = DataGenerator.generateRandomData(1024);
+        final Integer []UnsortedArray1024 = DataGenerator.generateUnsortedData(1024);
         FileManager.writeFile("unsorted/data-1024.txt", strategy.getAlgorithmsRuntimeData(UnsortedArray1024));
         FileManager.writeFile("unsorted/results-1024.txt", strategy.getAlgorithmsRuntimeTable(UnsortedArray1024));
+        /*
+            Same data
+         */
+        // Testing the array with 32768 elements
+        FileManager.createFile("same/data-32768.txt");
+        FileManager.createFile("same/results-32768.txt");
+        final Integer []SameArray32768 = DataGenerator.generateSameData(32768);
+        FileManager.writeFile("same/data-32768.txt", strategy.getAlgorithmsRuntimeData(SameArray32768));
+        FileManager.writeFile("same/results-32768.txt", strategy.getAlgorithmsRuntimeTable(SameArray32768));
+        // Testing the array with 16384 elements
+        FileManager.createFile("same/data-16384.txt");
+        FileManager.createFile("same/results-16384.txt");
+        final Integer []SameArray16384 = DataGenerator.generateSameData(16384);
+        FileManager.writeFile("same/data-16384.txt", strategy.getAlgorithmsRuntimeData(SameArray16384));
+        FileManager.writeFile("same/results-16384.txt", strategy.getAlgorithmsRuntimeTable(SameArray16384));
+        // Testing the array with 8192 elements
+        FileManager.createFile("same/data-8192.txt");
+        FileManager.createFile("same/results-8192.txt");
+        final Integer []SameArray8192 = DataGenerator.generateSameData(8192);
+        FileManager.writeFile("same/data-8192.txt", strategy.getAlgorithmsRuntimeData(SameArray8192));
+        FileManager.writeFile("same/results-8192.txt", strategy.getAlgorithmsRuntimeTable(SameArray8192));
+        // Testing the array with 4096 elements
+        FileManager.createFile("same/data-4096.txt");
+        FileManager.createFile("same/results-4096.txt");
+        final Integer []SameArray4096 = DataGenerator.generateSameData(4096);
+        FileManager.writeFile("same/data-4096.txt", strategy.getAlgorithmsRuntimeData(SameArray4096));
+        FileManager.writeFile("same/results-4096.txt", strategy.getAlgorithmsRuntimeTable(SameArray4096));
+        // Testing the array with 2048 elements
+        FileManager.createFile("same/data-2048.txt");
+        FileManager.createFile("same/results-2048.txt");
+        final Integer []SameArray2048 = DataGenerator.generateSameData(2048);
+        FileManager.writeFile("same/data-2048.txt", strategy.getAlgorithmsRuntimeData(SameArray2048));
+        FileManager.writeFile("same/results-2048.txt", strategy.getAlgorithmsRuntimeTable(SameArray2048));
+        // Testing the array with 2048 elements
+        FileManager.createFile("same/data-1024.txt");
+        FileManager.createFile("same/results-1024.txt");
+        final Integer []SameArray1024 = DataGenerator.generateSameData(1024);
+        FileManager.writeFile("same/data-1024.txt", strategy.getAlgorithmsRuntimeData(SameArray1024));
+        FileManager.writeFile("same/results-1024.txt", strategy.getAlgorithmsRuntimeTable(SameArray1024));
     }
 }

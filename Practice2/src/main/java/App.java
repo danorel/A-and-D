@@ -31,7 +31,7 @@ public class App {
         people[3] = new Person();
         people[3].setName("Olia").setAge(18).setSurname("Perch");
         Sorter<Person> personSorter = new Sorter<Person>();
-        personSorter.setComparator(new PersonSurnameComparator()).setArray(people).bubbleSort().showArray();
+        personSorter.setComparator(new PersonNameComparator()).setArray(people).bubbleSort().showArray();
 
         // Integer sorting example
         System.out.println();
