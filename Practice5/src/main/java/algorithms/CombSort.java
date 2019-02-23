@@ -13,7 +13,7 @@ public class CombSort implements SortAbility, BasicSortFunctionality {
         double distance = (int) (Array.length / coefficient);
         do{
             for(int innerIndex = 0; innerIndex + distance < Array.length; innerIndex++) {
-                if(isLess(Array[innerIndex + (int)distance], Array[innerIndex])){
+                if(isLess(Array[innerIndex], Array[innerIndex + (int)distance])){
                     exchange(Array, innerIndex, innerIndex + (int)distance);
                 }
             }

@@ -5,7 +5,10 @@ import java.util.Arrays;
 import java.util.List;
 
 import static java.util.Arrays.*;
-
+/*
+    A way to transform the file content (string numbers in the file)
+    into the array of integers
+*/
 public interface StringToIntegerConverter {
     static Integer[] convert(String content){
         List<String> strNumbers = Arrays.asList(content.split("\n"));

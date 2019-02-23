@@ -14,7 +14,7 @@ public class SelectionSort implements SortAbility, BasicSortFunctionality {
         int current_index = 0;
         for(int current = 0; current < Array.length; current++){
             for(int index = current; index < Array.length; index++){
-                if(isLess(Array[index], min)){
+                if(isLess(min, Array[index])){
                     min = Array[index];
                     current_index = index;
                     isChanged = true;

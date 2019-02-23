@@ -15,7 +15,7 @@ public class ShellSort implements SortAbility, BasicSortFunctionality {
             for(outerIndex = distance; outerIndex < Array.length; outerIndex++){
                 Comparable temp = Array[outerIndex];
                 for(innerIndex = outerIndex; innerIndex >= distance; innerIndex -= distance){
-                    if(isLess(temp, Array[innerIndex - distance])){
+                    if(isLess(Array[innerIndex - distance], temp)){
                         Array[innerIndex] = Array[innerIndex - distance];
                     } else {
                         break;

@@ -1,5 +1,9 @@
 package algorithms;
-
+/*
+    Basic sort functionality:
+    isLess - compares two Comparable variables and returns the result of their comparing as boolean
+    exchange - swaps two variables in the Array in positions first and second
+ */
 public interface BasicSortFunctionality {
     default boolean isLess(Comparable first, Comparable second){
         return first.compareTo(second) > 0;
