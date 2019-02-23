@@ -6,7 +6,8 @@ public class SelectionSort implements SortAbility, BasicSortFunctionality {
 
     private double time;
 
-    public void sort(Comparable[] Array) {
+    @Override
+    public Comparable[] sort(Comparable[] Array) {
         Stopwatch timer = new Stopwatch();
         Comparable min = Array[0];
         boolean isChanged = false;
@@ -28,6 +29,7 @@ public class SelectionSort implements SortAbility, BasicSortFunctionality {
             }
         }
         time = Stopwatch.evaluateTime();
+        return Array;
     }
 
     @Override

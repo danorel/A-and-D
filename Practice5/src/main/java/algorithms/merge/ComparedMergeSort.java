@@ -12,10 +12,11 @@ public class ComparedMergeSort implements SortAbility, MergeSortManager {
 
     private double time;
 
-    public void sort(Comparable[] Array) {
+    public Comparable[] sort(Comparable[] Array) {
         Stopwatch timer = new Stopwatch();
         mergeSort(Array, 0, Array.length - 1);
         time = Stopwatch.evaluateTime();
+        return Array;
     }
 
     @Override
@@ -64,6 +65,6 @@ public class ComparedMergeSort implements SortAbility, MergeSortManager {
 
     @Override
     public String toString() {
-        return "algorithms.merge.ComparedMergeSort |" + time + "|: ";
+        return "ComparedMergeSort |" + time + "|: ";
     }
 }

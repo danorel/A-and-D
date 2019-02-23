@@ -9,10 +9,11 @@ public class InsertionQuickSort implements SortAbility, QuickSortManager {
     private static final int CONSTANT = 500;
 
     @Override
-    public void sort(Comparable[] Array) {
+    public Comparable[] sort(Comparable[] Array) {
         Stopwatch timer = new Stopwatch();
         quickSort(Array, 0, Array.length - 1);
         time = Stopwatch.evaluateTime();
+        return Array;
     }
 
     public void quickSort(Comparable[] Array, int leftPosition, int rightPosition) {
@@ -83,6 +84,6 @@ public class InsertionQuickSort implements SortAbility, QuickSortManager {
 
     @Override
     public String toString() {
-        return "algorithms.quick.InsertionQuickSort |" + time + "|: ";
+        return "InsertionQuickSort |" + time + "|: ";
     }
 }

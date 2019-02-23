@@ -1,19 +1,21 @@
 import algorithms.BubbleSort;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import tools.FileManager;
+import tools.StringToIntegerConverter;
 
 public class BubbleSortStrategyUnitTester {
-    private Strategy strategy;
+    private static Strategy strategy;
 
     @BeforeClass
-    public void defineBubbleSortStrategy(){
+    public static void defineBubbleSortStrategy(){
         strategy = new Strategy();
         strategy.setSortStrategy(new BubbleSort());
     }
 
     @Test
-    public void sort(Comparable[] Array){
-        System.out.println(strategy.getAlgorithmsRuntimeTable(Array));
+    public void sort(){
+        Assert.assertEquals(StringToIntegerConverter.convert(FileManager.readFile("output.txt")), strategy.sort(StringToIntegerConverter.convert(FileManager.readFile("input.txt"))));
     }
-
 }

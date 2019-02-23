@@ -9,10 +9,11 @@ public class InsertionMergeSort implements SortAbility, MergeSortManager {
     private double time;
     private static final int CONSTANT = 500;
 
-    public void sort(Comparable[] Array) {
+    public Comparable[] sort(Comparable[] Array) {
         Stopwatch timer = new Stopwatch();
         mergeSort(Array, 0, Array.length - 1);
         time = Stopwatch.evaluateTime();
+        return Array;
     }
 
     @Override
@@ -68,6 +69,6 @@ public class InsertionMergeSort implements SortAbility, MergeSortManager {
 
     @Override
     public String toString() {
-        return "algorithms.merge.InsertionMergeSort |" + time + "|: ";
+        return "InsertionMergeSort |" + time + "|: ";
     }
 }

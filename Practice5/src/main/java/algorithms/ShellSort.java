@@ -6,7 +6,8 @@ public class ShellSort implements SortAbility, BasicSortFunctionality {
 
     private double time;
 
-    public void sort(Comparable[] Array) {
+    @Override
+    public Comparable[] sort(Comparable[] Array) {
         Stopwatch timer = new Stopwatch();
         int outerIndex, innerIndex;
         int distance = Array.length / 2;
@@ -25,6 +26,7 @@ public class ShellSort implements SortAbility, BasicSortFunctionality {
             distance = getShellSortCoefficient(distance);
         }
         time = Stopwatch.evaluateTime();
+        return Array;
     }
 
     private int getShellSortCoefficient(int coefficient){

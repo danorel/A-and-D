@@ -9,10 +9,11 @@ public class MixedQuickSort implements SortAbility, QuickSortManager {
     private double time;
 
     @Override
-    public void sort(Comparable[] Array) {
+    public Comparable[] sort(Comparable[] Array) {
         Stopwatch timer = new Stopwatch();
         quickSort(Array, 0, Array.length - 1);
         time = Stopwatch.evaluateTime();
+        return Array;
     }
 
     public void quickSort(Comparable[] Array, int lowest, int highest) {
@@ -76,6 +77,6 @@ public class MixedQuickSort implements SortAbility, QuickSortManager {
 
     @Override
     public String toString() {
-        return "algorithms.quick.MixedQuickSort |" + time + "|: ";
+        return "MixedQuickSort |" + time + "|: ";
     }
 }
