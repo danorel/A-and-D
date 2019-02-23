@@ -1,11 +1,28 @@
+import algorithms.BubbleSort;
 import tools.DataGenerator;
+import tools.FileManager;
+import tools.StringToIntegerConverter;
 
 import java.util.Arrays;
 
 public class App {
     public static void main(String[] args) {
-        Integer[] Array = DataGenerator.generateRandomData(20);
+        Integer[] Array = StringToIntegerConverter.convert(FileManager.readFile("input.txt"));
         Arrays.asList(Array)
                 .forEach(System.out::println);
+        Integer[] SortedArray = StringToIntegerConverter.convert(FileManager.readFile("output.txt"));
+        System.out.println();
+        Arrays.asList(SortedArray)
+                .forEach(System.out::println);
+        System.out.println();
+        Strategy<Integer> strategy = new Strategy<>();
+        strategy.setSortStrategy(new BubbleSort());
+        Array = strategy.sort(Array);
+        for(int index = 0; index < Array.length; index++){
+            if(!Array[index].equals(SortedArray[index])){
+                System.out.println("Failed!");
+                break;
+            }
+        }
     }
 }
