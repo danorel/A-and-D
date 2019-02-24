@@ -23,12 +23,14 @@ import static org.junit.Assert.*;
 
 public class StrategyUnitTester {
     private Book []books;
-    private Strategy<Book> strategy;
     private ArrayList<SortAbility> sortContainer;
     private ArrayList<Comparator> sortComparators;
 
     @Before
     public void setUp() throws Exception {
+        /*
+            The entire library of all the sorting algorithms
+         */
         sortContainer = new ArrayList<>();
         sortContainer.add(new BubbleSort());
         sortContainer.add(new CombSort());
@@ -45,15 +47,23 @@ public class StrategyUnitTester {
         sortContainer.add(new InsertionMergeSort());
         sortContainer.add(new MixedMergeSort());
 
+        /*
+            The entire library of all the Book comparators
+         */
         sortComparators = new ArrayList<>();
         sortComparators.add(new BookTitleComparator());
         sortComparators.add(new BookAuthorComparator());
         sortComparators.add(new BookPriceComparator());
         sortComparators.add(new BookPageComparator());
 
-        this.strategy = new Strategy();
-        strategy.setSortStrategy(new InsertionSort());
-
+        /*
+            The entire library of all the books, which we would
+            like to sort in 4 criterias:
+            - Title (using BookTitleComparator)
+            - Author (using BookAuthorComparator)
+            - Price (using BookPriceComparator)
+            - Page (using BookPageComparator)
+         */
         books = new Book[5];
         books[0] = new Book("E", "K", 7, 99.99);
         books[1] = new Book("A", "J", 17, 5.99);
@@ -64,16 +74,26 @@ public class StrategyUnitTester {
 
     @Test
     public void sort() {
+        /*
+            DefaultStrategy is an ETALON from the all sorting algorithms.
+            But before making it as ETALON, we should test it quite
+            rly GOOD to trust to such algorithm!
+            We compare the result of sorting the Insertion Merge sort
+            and if the result of testing sorting algo equals to the
+            result of ETALON, we believe the another algorithm.
+         */
+        Strategy defaultStrategy = new Strategy();
+        defaultStrategy.setSortStrategy(new InsertionMergeSort());
         for(SortAbility sort : sortContainer){
-            strategy.setSortStrategy(sort);
             for(Comparator comparator : sortComparators){
-                Assert.assertEquals(new Strategy<Book>().setSortStrategy(sort).sort(books, comparator), strategy.sort(books, comparator));
+                Assert.assertEquals(new Strategy<Book>().setSortStrategy(sort).sort(books, comparator), defaultStrategy.sort(books, comparator));
             }
         }
     }
 
     @Test
     public void setSortStrategy() {
+        Strategy strategy = new Strategy();
         for(SortAbility sort : sortContainer){
             strategy.setSortStrategy(sort);
         }

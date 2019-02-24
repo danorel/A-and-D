@@ -2,12 +2,12 @@ import algorithms.*;
 
 import java.util.*;
 
-public class Strategy<T extends Comparable>{
+public class Strategy{
     private ArrayList<SortAbility> sortContainer;
     private SortAbility sortStrategy;
 
-    public T[] sort(T []Array){
-        return (T[]) sortStrategy.sort(Array);
+    public Integer[] sort(Integer []Array){
+        return sortStrategy.sort(Array);
     }
 
     public Strategy setSortStrategy(SortAbility sortStrategy) {

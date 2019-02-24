@@ -10,7 +10,7 @@ public class CombSortStrategyUnitTester {
     private static Strategy strategy;
 
     @BeforeClass
-    public static void defineBubbleSortStrategy(){
+    public static void defineCombSortStrategy(){
         strategy = new Strategy();
         strategy.setSortStrategy(new CombSort());
     }

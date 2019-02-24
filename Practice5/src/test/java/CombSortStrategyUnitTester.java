@@ -10,13 +10,13 @@ public class CombSortStrategyUnitTester {
     private static Strategy strategy;
 
     @BeforeClass
-    public static void defineBubbleSortStrategy(){
+    public static void defineCombSortStrategy(){
         strategy = new Strategy();
         strategy.setSortStrategy(new CombSort());
     }
 
     @Test
     public void sort(){
-        Assert.assertEquals(StringToIntegerConverter.convert(FileManager.readFile("output.txt")), strategy.sort(StringToIntegerConverter.convert(FileManager.readFile("input.txt"))));
+        Assert.assertEquals(StringToIntegerConverter.convertAsIntegerArray(FileManager.readFile("output.txt")), strategy.sort(StringToIntegerConverter.convertAsIntegerArray(FileManager.readFile("input.txt"))));
     }
 }

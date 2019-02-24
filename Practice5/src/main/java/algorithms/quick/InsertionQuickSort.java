@@ -9,27 +9,27 @@ public class InsertionQuickSort implements SortAbility, QuickSortManager {
     private static final int CONSTANT = 500;
 
     @Override
-    public Comparable[] sort(Comparable[] Array) {
+    public Integer[] sort(Integer[] Array) {
         Stopwatch timer = new Stopwatch();
         quickSort(Array, 0, Array.length - 1);
         time = Stopwatch.evaluateTime();
         return Array;
     }
 
-    public void quickSort(Comparable[] Array, int leftPosition, int rightPosition) {
+    public void quickSort(Integer[] Array, int leftPosition, int rightPosition) {
         int size = rightPosition - leftPosition + 1;
         if (size < CONSTANT) // insertion sort if small
             insertionSort(Array, leftPosition, rightPosition);
         else // quickSort if large
         {
-            Comparable median = medianOf3(Array, leftPosition, rightPosition);
+            Integer median = medianOf3(Array, leftPosition, rightPosition);
             int partition = partitionIt(Array, leftPosition, rightPosition, median);
             quickSort(Array, leftPosition, partition - 1);
             quickSort(Array, partition + 1, rightPosition);
         }
     }
 
-    public Comparable medianOf3(Comparable[] Array, int leftPosition, int rightPosition) {
+    public Integer medianOf3(Integer[] Array, int leftPosition, int rightPosition) {
         int middlePosition = (leftPosition + rightPosition) / 2;
         // order left & center
         if (Array[leftPosition].compareTo( Array[middlePosition]) > 0)
@@ -44,13 +44,13 @@ public class InsertionQuickSort implements SortAbility, QuickSortManager {
         return Array[rightPosition - 1];
     }
 
-    public void swap(Comparable[] Array, int firstPosition, int secondPosition) {
-        Comparable temp = Array[firstPosition];
+    public void swap(Integer[] Array, int firstPosition, int secondPosition) {
+        Integer temp = Array[firstPosition];
         Array[firstPosition] = Array[secondPosition];
         Array[secondPosition] = temp;
     }
 
-    public int partitionIt(Comparable Array[], int leftPosition, int rightPosition, Comparable pivot) {
+    public int partitionIt(Integer Array[], int leftPosition, int rightPosition, Integer pivot) {
         int leftPtr = leftPosition; // right of first elem
         int rightPtr = rightPosition - 1; // left of pivot
         while (true) {
@@ -67,11 +67,11 @@ public class InsertionQuickSort implements SortAbility, QuickSortManager {
         return leftPtr; // return pivot location
     }
 
-    private void insertionSort(Comparable[] Array, int left, int right) {
+    private void insertionSort(Integer[] Array, int left, int right) {
         int in, out;
         //  sorted on left of out
         for (out = left + 1; out <= right; out++) {
-            Comparable temp = Array[out]; // remove marked item
+            Integer temp = Array[out]; // remove marked item
             in = out; // start shifts at out
             // until one is smaller,
             while (in > left && Array[in - 1].compareTo( temp) >= 0) {

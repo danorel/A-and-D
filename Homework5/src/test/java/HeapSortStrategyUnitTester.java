@@ -9,7 +9,7 @@ public class HeapSortStrategyUnitTester {
     private static Strategy strategy;
 
     @BeforeClass
-    public static void defineBubbleSortStrategy(){
+    public static void defineHeapSortStrategy(){
         strategy = new Strategy();
         strategy.setSortStrategy(new HeapSort());
     }

@@ -1,7 +1,7 @@
 package algorithms.merge;
 
 public interface MergeSortManager {
-    default void mergeSort(Comparable[] Array, int leftPosition, int rightPosition) {
+    default void mergeSort(Integer[] Array, int leftPosition, int rightPosition) {
         if(rightPosition > leftPosition){
             int middlePosition = ((leftPosition + rightPosition) / 2);
             mergeSort(Array, leftPosition, middlePosition);
@@ -10,9 +10,9 @@ public interface MergeSortManager {
         }
     }
 
-    default void merge(Comparable[] Array, int leftPosition, int middlePosition, int rightPosition){
-        Comparable []leftArray = new Comparable[(middlePosition + 1) - leftPosition];
-        Comparable []rightArray = new Comparable[rightPosition - middlePosition];
+    default void merge(Integer[] Array, int leftPosition, int middlePosition, int rightPosition){
+        Integer []leftArray = new Integer[(middlePosition + 1) - leftPosition];
+        Integer []rightArray = new Integer[rightPosition - middlePosition];
         for(int index = 0; index < (middlePosition + 1) - leftPosition; index++){
             leftArray[index] = Array[leftPosition + index];
         }
@@ -40,7 +40,7 @@ public interface MergeSortManager {
         }
     }
 
-    default boolean isLess(Comparable first, Comparable second){
+    default boolean isLess(Integer first, Integer second){
         return first.compareTo(second) < 0;
     }
 }

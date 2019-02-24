@@ -7,7 +7,7 @@ public class BubbleSort implements SortAbility, BasicSortFunctionality {
     private double time;
 
     @Override
-    public Comparable[] sort(Comparable[] Array) {
+    public Integer[] sort(Integer[] Array) {
         Stopwatch timer = new Stopwatch();
         for(int iIteration = 0; iIteration < Array.length; iIteration++){
             for(int jIteration = 0; jIteration < Array.length - 1; jIteration++){

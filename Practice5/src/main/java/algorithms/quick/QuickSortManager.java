@@ -2,7 +2,7 @@ package algorithms.quick;
 
 public interface QuickSortManager {
 
-    default void quickSort(Comparable[] Array, int leftPosition, int rightPosition){
+    default void quickSort(Integer[] Array, int leftPosition, int rightPosition){
         if(rightPosition > leftPosition){
             int pi = generatePartition(Array, leftPosition, rightPosition);
             quickSort(Array, leftPosition, pi - 1);
@@ -10,8 +10,8 @@ public interface QuickSortManager {
         }
     }
 
-    default int generatePartition(Comparable[] Array, int leftPosition, int rightPosition) {
-        Comparable pivot = Array[rightPosition];
+    default int generatePartition(Integer[] Array, int leftPosition, int rightPosition) {
+        Integer pivot = Array[rightPosition];
         int i = (leftPosition - 1);
         for(int j = leftPosition; j < rightPosition; j++){
             if(isLess(Array[j], pivot)){
@@ -23,12 +23,12 @@ public interface QuickSortManager {
         return i + 1;
     }
 
-    default boolean isLess(Comparable first, Comparable second){
+    default boolean isLess(Integer first, Integer second){
         return first.compareTo(second) < 0;
     }
 
-    default void exchange(Comparable[] Array, int firstPosition, int secondPosition){
-        Comparable temp = Array[firstPosition];
+    default void exchange(Integer[] Array, int firstPosition, int secondPosition){
+        Integer temp = Array[firstPosition];
         Array[firstPosition] = Array[secondPosition];
         Array[secondPosition] = temp;
     }

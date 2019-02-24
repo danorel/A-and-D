@@ -10,5 +10,5 @@ package algorithms;
     - Shell Sort
 */
 public interface SortAbility<T extends Comparable>{
-    T[] sort(T[] Array);
+    Integer[] sort(Integer[] Array);
 }

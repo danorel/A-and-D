@@ -7,7 +7,7 @@ public class CombSort implements SortAbility, BasicSortFunctionality {
     private double time;
 
     @Override
-    public Comparable[] sort(Comparable[] Array) {
+    public Integer[] sort(Integer[] Array) {
         Stopwatch timer = new Stopwatch();
         double coefficient = 1.247330950103979;
         double distance = (int) (Array.length / coefficient);

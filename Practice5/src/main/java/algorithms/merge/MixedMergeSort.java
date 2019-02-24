@@ -12,7 +12,7 @@ public class MixedMergeSort implements SortAbility, MergeSortManager {
     private double time;
     private final static int CONSTANT = 500;
 
-    public Comparable[] sort(Comparable[] Array) {
+    public Integer[] sort(Integer[] Array) {
         Stopwatch timer = new Stopwatch();
         mergeSort(Array, 0, Array.length - 1);
         time = Stopwatch.evaluateTime();
@@ -20,7 +20,7 @@ public class MixedMergeSort implements SortAbility, MergeSortManager {
     }
 
     @Override
-    public void mergeSort(Comparable []Array, int leftPosition, int rightPosition){
+    public void mergeSort(Integer []Array, int leftPosition, int rightPosition){
         if(rightPosition - leftPosition > CONSTANT){
             int middlePosition = ((leftPosition + rightPosition) / 2);
             mergeSort(Array, leftPosition, middlePosition);
@@ -32,12 +32,12 @@ public class MixedMergeSort implements SortAbility, MergeSortManager {
     }
 
     @Override
-    public void merge(Comparable[] Array, int leftPosition, int middlePosition, int rightPosition){
-        Comparable []leftArray = Arrays.copyOfRange(Array, leftPosition, middlePosition + 1);
-        Comparable []rightArray = Arrays.copyOfRange(Array, middlePosition + 1, rightPosition + 1);
+    public void merge(Integer[] Array, int leftPosition, int middlePosition, int rightPosition){
+        Integer []leftArray = Arrays.copyOfRange(Array, leftPosition, middlePosition + 1);
+        Integer []rightArray = Arrays.copyOfRange(Array, middlePosition + 1, rightPosition + 1);
 
         if(isLess(leftArray[leftArray.length - 1], rightArray[0])){
-            Array = new Comparable[leftArray.length + rightArray.length];
+            Array = new Integer[leftArray.length + rightArray.length];
             join(Array, leftArray);
             join(Array, rightArray);
         } else {
@@ -61,25 +61,25 @@ public class MixedMergeSort implements SortAbility, MergeSortManager {
         }
     }
 
-    private void join(Comparable []Array, Comparable []part){
+    private void join(Integer []Array, Integer []part){
         int amount = countNonNull(Array);
         for(int index = amount, pointer = 0; index < amount + part.length; index++, pointer++){
             Array[index] = part[pointer];
         }
     }
 
-    private int countNonNull(Comparable []Array){
-        List<Comparable> values = Objects.requireNonNull(Arrays.stream(Array))
+    private int countNonNull(Integer []Array){
+        List<Integer> values = Objects.requireNonNull(Arrays.stream(Array))
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
         return values.size();
     }
 
-    private void insertionSort(Comparable []Array, int leftPosition, int rightPosition)
+    private void insertionSort(Integer []Array, int leftPosition, int rightPosition)
     {
         for (int i = leftPosition + 1; i < rightPosition; ++i)
         {
-            Comparable key = Array[i];
+            Integer key = Array[i];
             int j = i - 1;
             while (j >= leftPosition && isLess(key, Array[j]))
             {

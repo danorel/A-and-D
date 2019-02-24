@@ -9,7 +9,7 @@ public class ShellSortStrategyUnitTester {
     private static Strategy strategy;
 
     @BeforeClass
-    public static void defineBubbleSortStrategy(){
+    public static void defineShellSortStrategy(){
         strategy = new Strategy();
         strategy.setSortStrategy(new ShellSort());
     }

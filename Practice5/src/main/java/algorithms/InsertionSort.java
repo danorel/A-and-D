@@ -6,7 +6,7 @@ public class InsertionSort implements SortAbility, BasicSortFunctionality {
 
     private double time;
 
-    public Comparable[] sort(Comparable[] Array) {
+    public Integer[] sort(Integer[] Array) {
         Stopwatch timer = new Stopwatch();
         for(int index = 1; index < Array.length; index++){
             int iteration = index;

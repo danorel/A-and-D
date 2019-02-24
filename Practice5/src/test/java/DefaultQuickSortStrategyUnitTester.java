@@ -9,13 +9,13 @@ public class DefaultQuickSortStrategyUnitTester {
     private static Strategy strategy;
 
     @BeforeClass
-    public static void defineBubbleSortStrategy(){
+    public static void defineDefaultQuickSortSortStrategy(){
         strategy = new Strategy();
         strategy.setSortStrategy(new DefaultQuickSort());
     }
 
     @Test
     public void sort(){
-        Assert.assertEquals(StringToIntegerConverter.convert(FileManager.readFile("output.txt")), strategy.sort(StringToIntegerConverter.convert(FileManager.readFile("input.txt"))));
+        Assert.assertEquals(StringToIntegerConverter.convertAsIntegerArray(FileManager.readFile("output.txt")), strategy.sort(StringToIntegerConverter.convertAsIntegerArray(FileManager.readFile("input.txt"))));
     }
 }

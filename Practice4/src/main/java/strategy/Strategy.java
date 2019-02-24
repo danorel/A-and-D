@@ -69,9 +69,8 @@ public class Strategy<T extends Comparable>{
     }
 
     private HashMap<String, Double> getSortedResults(ArrayList<String> sortResults){
-        sortResults.remove(sortResults.size() - 1);
         HashMap<String, Double> sortData = new HashMap<>();
-        for (int index = 0; index < sortResults.size(); index++) {
+        for (int index = 0; index < sortResults.size() - 1; index++) {
             String []tokens = sortResults.get(index).split("\\|");
             sortData.put(tokens[0], Double.valueOf(tokens[1]));
         }

@@ -9,7 +9,7 @@ public class MixedQuickSortStrategyUnitTester {
     private static Strategy strategy;
 
     @BeforeClass
-    public static void defineBubbleSortStrategy(){
+    public static void defineMixedQuickSortStrategy(){
         strategy = new Strategy();
         strategy.setSortStrategy(new MixedQuickSort());
     }

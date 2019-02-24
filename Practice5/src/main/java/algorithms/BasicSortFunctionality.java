@@ -5,12 +5,12 @@ package algorithms;
     exchange - swaps two variables in the Array in positions first and second
  */
 public interface BasicSortFunctionality {
-    default boolean isLess(Comparable first, Comparable second){
+    default boolean isLess(Integer first, Integer second){
         return first.compareTo(second) > 0;
     }
 
-    default void exchange(Comparable[] Array, int first, int second){
-        Comparable temporary = Array[first];
+    default void exchange(Integer[] Array, int first, int second){
+        Integer temporary = Array[first];
         Array[first] = Array[second];
         Array[second] = temporary;
     }

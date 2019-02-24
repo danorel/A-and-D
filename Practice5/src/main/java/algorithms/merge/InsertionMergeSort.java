@@ -9,7 +9,7 @@ public class InsertionMergeSort implements SortAbility, MergeSortManager {
     private double time;
     private static final int CONSTANT = 500;
 
-    public Comparable[] sort(Comparable[] Array) {
+    public Integer[] sort(Integer[] Array) {
         Stopwatch timer = new Stopwatch();
         mergeSort(Array, 0, Array.length - 1);
         time = Stopwatch.evaluateTime();
@@ -17,7 +17,7 @@ public class InsertionMergeSort implements SortAbility, MergeSortManager {
     }
 
     @Override
-    public void mergeSort(Comparable[] Array, int leftPosition, int rightPosition) {
+    public void mergeSort(Integer[] Array, int leftPosition, int rightPosition) {
         if(rightPosition - leftPosition > CONSTANT){
             int middlePosition = (leftPosition + rightPosition) / 2;
             mergeSort(Array, leftPosition, middlePosition);
@@ -29,9 +29,9 @@ public class InsertionMergeSort implements SortAbility, MergeSortManager {
     }
 
     @Override
-    public void merge(Comparable[] Array, int leftPosition, int middlePosition, int rightPosition){
-        Comparable []leftArray = Arrays.copyOfRange(Array, leftPosition, middlePosition + 1);
-        Comparable []rightArray = Arrays.copyOfRange(Array, middlePosition + 1, rightPosition + 1);
+    public void merge(Integer[] Array, int leftPosition, int middlePosition, int rightPosition){
+        Integer []leftArray = Arrays.copyOfRange(Array, leftPosition, middlePosition + 1);
+        Integer []rightArray = Arrays.copyOfRange(Array, middlePosition + 1, rightPosition + 1);
 
         int leftIndex = 0, rightIndex = 0;
         int index = leftPosition;
@@ -52,11 +52,11 @@ public class InsertionMergeSort implements SortAbility, MergeSortManager {
         }
     }
 
-    private void insertionSort(Comparable []Array, int leftPosition, int rightPosition)
+    private void insertionSort(Integer []Array, int leftPosition, int rightPosition)
     {
         for (int i = leftPosition + 1; i < rightPosition; ++i)
         {
-            Comparable key = Array[i];
+            Integer key = Array[i];
             int j = i - 1;
             while (j >= leftPosition && isLess(key, Array[j]))
             {

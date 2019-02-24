@@ -16,7 +16,8 @@ import org.junit.runners.Suite.SuiteClasses;
 				DefaultQuickSortStrategyUnitTester.class,
 				DijkstraQuickSortStrategyUnitTester.class,
 				InsertionQuickSortStrategyUnitTester.class,
-				MixedQuickSortStrategyUnitTester.class
+				MixedQuickSortStrategyUnitTester.class,
+				StrategyUnitTester.class
 			})
 
 public class AllUnitTests {

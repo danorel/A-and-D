@@ -7,7 +7,7 @@ public class DefaultQuickSort implements SortAbility, QuickSortManager {
 
     private double time;
 
-    public Comparable[] sort(Comparable[] Array) {
+    public Integer[] sort(Integer[] Array) {
         Stopwatch timer = new Stopwatch();
         quickSort(Array, 0, Array.length - 1);
         time = Stopwatch.evaluateTime();

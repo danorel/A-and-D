@@ -7,7 +7,7 @@ public class DefaultMergeSort implements SortAbility, MergeSortManager{
 
     private double time;
 
-    public Comparable[] sort(Comparable[] Array) {
+    public Integer[] sort(Integer[] Array) {
         Stopwatch timer = new Stopwatch();
         mergeSort(Array, 0, Array.length - 1);
         time = Stopwatch.evaluateTime();

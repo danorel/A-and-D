@@ -9,7 +9,7 @@ public class SelectionSortStrategyUnitTester {
     private static Strategy strategy;
 
     @BeforeClass
-    public static void defineBubbleSortStrategy(){
+    public static void defineSelectionSortStrategy(){
         strategy = new Strategy();
         strategy.setSortStrategy(new SelectionSort());
     }

@@ -7,7 +7,7 @@ public class HeapSort implements SortAbility, BasicSortFunctionality {
     private double time;
 
     @Override
-    public Comparable[] sort(Comparable[] Array) {
+    public Integer[] sort(Integer[] Array) {
         Stopwatch timer = new Stopwatch();
         for(int index = (Array.length / 2) - 1; index >= 0; index--){
             heapify(Array, Array.length, index);
@@ -20,7 +20,7 @@ public class HeapSort implements SortAbility, BasicSortFunctionality {
         return Array;
     }
 
-    private void heapify(Comparable []Array, int size, int root) {
+    private void heapify(Integer []Array, int size, int root) {
         int largest = root;
         int leftPosition = 2 * root + 1;
         int rightPosition = 2 * root + 2;

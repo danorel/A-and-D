@@ -7,13 +7,13 @@ public class ShellSort implements SortAbility, BasicSortFunctionality {
     private double time;
 
     @Override
-    public Comparable[] sort(Comparable[] Array) {
+    public Integer[] sort(Integer[] Array) {
         Stopwatch timer = new Stopwatch();
         int outerIndex, innerIndex;
         int distance = Array.length / 2;
         while(distance > 0){
             for(outerIndex = distance; outerIndex < Array.length; outerIndex++){
-                Comparable temp = Array[outerIndex];
+                Integer temp = Array[outerIndex];
                 for(innerIndex = outerIndex; innerIndex >= distance; innerIndex -= distance){
                     if(isLess(Array[innerIndex - distance], temp)){
                         Array[innerIndex] = Array[innerIndex - distance];
