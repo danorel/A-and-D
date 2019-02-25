@@ -8,7 +8,7 @@ import org.junit.runners.Suite.SuiteClasses;
 				InsertionSortStrategyUnitTester.class,
 				SelectionSortStrategyUnitTester.class,
 				ShellSortStrategyUnitTester.class,
-//				HeapSortStrategyUnitTester.class,
+				HeapSortStrategyUnitTester.class,
 				ComparedMergeSortStrategyUnitTester.class,
 				DefaultMergeSortStrategyUnitTester.class,
 				InsertionSortStrategyUnitTester.class,

@@ -16,6 +16,11 @@ import java.util.ArrayList;
 public class StrategyUnitTester {
     private Strategy strategy;
     private ArrayList<SortAbility> sortStrategy;
+    /*
+        Creating the two types of array:
+        - Array with 0 elements
+        - Filled Array with some values
+     */
     private Integer [] Array0 = {};
     private Integer [] Array6 = {
             6, 4, 0, -3, 11, 2
@@ -27,6 +32,9 @@ public class StrategyUnitTester {
 
     @Before
     public void setUp() throws Exception {
+        /*
+            The library of all the sorting algorithms
+         */
         sortStrategy = new ArrayList<>();
         sortStrategy.add(new BubbleSort());
         sortStrategy.add(new CombSort());

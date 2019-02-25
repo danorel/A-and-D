@@ -2,6 +2,8 @@ package algorithms;
 
 import timer.Stopwatch;
 
+import java.util.Comparator;
+
 public class HeapSort implements SortAbility, BasicSortFunctionality {
 
     private double time;
@@ -22,23 +24,21 @@ public class HeapSort implements SortAbility, BasicSortFunctionality {
 
     private void heapify(Integer []Array, int size, int root) {
         int largest = root;
-        int leftPosition = 2 * root + 1;
-        int rightPosition = 2 * root + 2;
+        int left = 2 * root + 1;
+        int right = 2 * root + 2;
 
-        if(leftPosition < size){
-            largest = leftPosition;
-        }
+        if (left < size && isLess(Array[left], Array[largest]))
+            largest = left;
 
-        if(rightPosition < size){
-            largest = rightPosition;
-        }
+        if (right < size && isLess(Array[right], Array[largest]))
+            largest = right;
 
-        if(largest != root){
-            exchange(Array, largest, root);
+        if (largest != root)
+        {
+            exchange(Array, root, largest);
             heapify(Array, size, largest);
         }
     }
-
     @Override
     public String toString() {
         return "HeapSort |" + time + "|: ";

@@ -7,6 +7,8 @@ import java.util.List;
 /*
     A way to transform the file content (string numbers in the file)
     into the array of integers
+    The content should be defined only with one of mentioned regex
+    (, or \n or 'space')
 */
 public interface StringToIntegerConverter {
     static Integer[] convert(String content){
