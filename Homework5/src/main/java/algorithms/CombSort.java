@@ -1,13 +1,8 @@
 package algorithms;
 
-import timer.Stopwatch;
-
 import java.util.Comparator;
 
-public class CombSort implements SortAbility, BasicSortFunctionality {
-
-    private double time;
-
+public class CombSort implements Sort, DefaultSortingManager {
     @Override
     public Comparable[] sort(Comparable[] Array) {
         return sort(Array, null);
@@ -15,23 +10,20 @@ public class CombSort implements SortAbility, BasicSortFunctionality {
 
     @Override
     public Comparable[] sort(Comparable[] Array, Comparator comparator) {
-        Stopwatch timer = new Stopwatch();
-        double coefficient = 1.247330950103979;
-        double distance = (int) (Array.length / coefficient);
-        do{
-            for(int innerIndex = 0; innerIndex + distance < Array.length; innerIndex++) {
-                if(isLess(comparator, Array[innerIndex], Array[innerIndex + (int)distance])){
-                    exchange(Array, innerIndex, innerIndex + (int)distance);
+        if(Array.length > 0){
+            double distance = 0;
+            double coeff = 1.247330950103979; //фактор зменшення дистанції
+            distance = (int)(Array.length / coeff);
+            do {
+                for (int index = 0; index + distance < Array.length; index++) {
+                    if (isLess(Array[index + (int) distance], Array[index], comparator)) {
+                        swap(Array, index, index + (int) distance);
+                    }
                 }
+                distance = (distance / coeff);
             }
-            distance = (distance / coefficient);
-        } while(distance > 1);
-        time = Stopwatch.evaluateTime();
+            while(distance > 1);
+        }
         return Array;
-    }
-
-    @Override
-    public String toString() {
-        return "CombSort |" + time + "|: ";
     }
 }

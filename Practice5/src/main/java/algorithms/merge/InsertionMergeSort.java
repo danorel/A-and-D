@@ -17,7 +17,7 @@ public class InsertionMergeSort implements SortAbility, MergeSortManager {
     }
 
     @Override
-    public void mergeSort(Integer[] Array, int leftPosition, int rightPosition) {
+    public Integer[] mergeSort(Integer[] Array, int leftPosition, int rightPosition) {
         if(rightPosition - leftPosition > CONSTANT){
             int middlePosition = (leftPosition + rightPosition) / 2;
             mergeSort(Array, leftPosition, middlePosition);
@@ -26,6 +26,7 @@ public class InsertionMergeSort implements SortAbility, MergeSortManager {
         } else {
             insertionSort(Array, leftPosition, rightPosition);
         }
+        return Array;
     }
 
     @Override

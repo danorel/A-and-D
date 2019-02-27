@@ -12,11 +12,12 @@ import org.junit.runners.Suite.SuiteClasses;
 				ComparedMergeSortStrategyUnitTester.class,
 				DefaultMergeSortStrategyUnitTester.class,
 				InsertionSortStrategyUnitTester.class,
-//				MixedMergeSortStrategyUnitTester.class,
+				MixedMergeSortStrategyUnitTester.class,
 				DefaultQuickSortStrategyUnitTester.class,
 				DijkstraQuickSortStrategyUnitTester.class,
 				InsertionQuickSortStrategyUnitTester.class,
 				MixedQuickSortStrategyUnitTester.class,
+
 				StrategyUnitTester.class
 			})
 

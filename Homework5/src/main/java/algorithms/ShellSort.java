@@ -1,13 +1,8 @@
 package algorithms;
 
-import timer.Stopwatch;
-
 import java.util.Comparator;
 
-public class ShellSort implements SortAbility, BasicSortFunctionality {
-
-    private double time;
-
+public class ShellSort implements Sort, DefaultSortingManager {
     @Override
     public Comparable[] sort(Comparable[] Array) {
         return sort(Array, null);
@@ -15,33 +10,27 @@ public class ShellSort implements SortAbility, BasicSortFunctionality {
 
     @Override
     public Comparable[] sort(Comparable[] Array, Comparator comparator) {
-        Stopwatch timer = new Stopwatch();
-        int outerIndex, innerIndex;
-        int distance = Array.length / 2;
-        while(distance > 0){
-            for(outerIndex = distance; outerIndex < Array.length; outerIndex++){
-                Comparable temp = Array[outerIndex];
-                for(innerIndex = outerIndex; innerIndex >= distance; innerIndex -= distance){
-                    if(isLess(comparator, Array[innerIndex - distance], temp)){
-                        Array[innerIndex] = Array[innerIndex - distance];
-                    } else {
-                        break;
+        if(Array.length > 0) {
+            int inIndex, outIndex;
+            int distance = Array.length / 2;
+            while (distance > 0){
+                for (outIndex = distance; outIndex < Array.length; outIndex++){
+                    Comparable temporary = Array[outIndex];
+                    for (inIndex = outIndex; inIndex >= distance; inIndex -= distance){
+                        if (isLess(temporary, Array[inIndex - distance], comparator)){
+                            Array[inIndex] = Array[inIndex - distance];
+                        } else {
+                            break;
+                        }
                     }
-                }
-                Array[innerIndex] = temp;
+                    Array[inIndex] = temporary;
+                } distance = shellSortCoefficient(distance);
             }
-            distance = getShellSortCoefficient(distance);
         }
-        time = Stopwatch.evaluateTime();
         return Array;
     }
 
-    private int getShellSortCoefficient(int coefficient){
+    private int shellSortCoefficient(int coefficient){
         return coefficient / 2;
-    }
-
-    @Override
-    public String toString() {
-        return "ShellSort |" + time + "|: ";
     }
 }

@@ -12,15 +12,16 @@ public class MixedMergeSort implements SortAbility, MergeSortManager {
     private double time;
     private final static int CONSTANT = 500;
 
+    @Override
     public Integer[] sort(Integer[] Array) {
         Stopwatch timer = new Stopwatch();
-        mergeSort(Array, 0, Array.length - 1);
+        Array = mergeSort(Array, 0, Array.length - 1);
         time = Stopwatch.evaluateTime();
         return Array;
     }
 
     @Override
-    public void mergeSort(Integer []Array, int leftPosition, int rightPosition){
+    public Integer[] mergeSort(Integer []Array, int leftPosition, int rightPosition){
         if(rightPosition - leftPosition > CONSTANT){
             int middlePosition = ((leftPosition + rightPosition) / 2);
             mergeSort(Array, leftPosition, middlePosition);
@@ -28,6 +29,21 @@ public class MixedMergeSort implements SortAbility, MergeSortManager {
             merge(Array, leftPosition, middlePosition, rightPosition);
         } else {
             insertionSort(Array, leftPosition, rightPosition);
+        }
+        return Array;
+    }
+
+    private void insertionSort(Integer[] Array, int leftPosition, int rightPosition) {
+        for(int index = 1; index < Array.length; index++){
+            int iteration = index;
+            for(int counter = index - 1; counter > -1; counter--){
+                if(isLess(Array[iteration], (Array[counter]))){
+                    exchange(Array, iteration, counter);
+                    iteration--;
+                } else {
+                    break;
+                }
+            }
         }
     }
 
@@ -75,23 +91,8 @@ public class MixedMergeSort implements SortAbility, MergeSortManager {
         return values.size();
     }
 
-    private void insertionSort(Integer []Array, int leftPosition, int rightPosition)
-    {
-        for (int i = leftPosition + 1; i < rightPosition; ++i)
-        {
-            Integer key = Array[i];
-            int j = i - 1;
-            while (j >= leftPosition && isLess(key, Array[j]))
-            {
-                Array[j + 1] = Array[j];
-                j = j - 1;
-            }
-            Array[j + 1] = key;
-        }
-    }
-
     @Override
     public String toString() {
-        return "MixedMergeSort |" + time + "|: ";
+        return getClass().getSimpleName() + " *" + time + "*: ";
     }
 }

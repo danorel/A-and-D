@@ -1,13 +1,8 @@
 package algorithms;
 
-import timer.Stopwatch;
-
 import java.util.Comparator;
 
-public class BubbleSort implements SortAbility, BasicSortFunctionality {
-
-    private double time;
-
+public class BubbleSort implements Sort, DefaultSortingManager {
     @Override
     public Comparable[] sort(Comparable[] Array) {
         return sort(Array, null);
@@ -15,20 +10,15 @@ public class BubbleSort implements SortAbility, BasicSortFunctionality {
 
     @Override
     public Comparable[] sort(Comparable[] Array, Comparator comparator) {
-        Stopwatch timer = new Stopwatch();
-        for(int iIteration = 0; iIteration < Array.length; iIteration++){
-            for(int jIteration = 0; jIteration < Array.length - 1; jIteration++){
-                if(isLess(comparator, Array[jIteration], Array[jIteration + 1])){
-                    exchange(Array, jIteration + 1, jIteration);
+        if(Array.length > 0){
+            for (int i = 0; i < Array.length; i++) { //проходимось до кінця масиву
+                for (int j = 0; j < Array.length - 1; j++) { //індекс елементів, які порівнюємо і замінюємо
+                    if (isLess(Array[j + 1], Array[j], comparator)) {
+                        swap(Array, j + 1, j);
+                    }
                 }
             }
         }
-        time = Stopwatch.evaluateTime();
         return Array;
-    }
-
-    @Override
-    public String toString() {
-        return "BubbleSort |" + time + "|: ";
     }
 }

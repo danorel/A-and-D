@@ -1,35 +1,27 @@
-import algorithms.SortAbility;
+import algorithms.Sort;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 
-public class Strategy<T extends Comparable>{
-    private Comparator comparator;
-    private SortAbility sortStrategy;
+public class Strategy<T extends Comparable> {
+    private Sort sortStrategy;
 
-    public T[] sort(T []Array){
+    /*
+        Звичайне сортування елементів масиву без використанням компаратора
+     */
+    public T[] sortArray(T []Array){
         return (T[]) sortStrategy.sort(Array);
     }
 
-    public T[] sort(T []Array, Comparator comparator) {
-        return (T []) sortStrategy.sort(Array, comparator);
-    }
+    /*
+        Сортування елементів масиву за певною властивістю з використанням компаратора
+     */
+    public T[] sortArray(T []Array, Comparator comparator) { return (T[]) sortStrategy.sort(Array, comparator);}
 
-    public Strategy setSortComparator(Comparator comparator){
-        this.comparator = comparator;
-        return this;
-    }
-
-    public Strategy setSortStrategy(SortAbility sortStrategy) {
+    /*
+        Встановлення стратегії сортування (бульбашкове, гребінцем, тощо)
+     */
+    public Strategy setSortStrategy(Sort sortStrategy) {
         this.sortStrategy = sortStrategy;
         return this;
-    }
-
-    public Comparator getComparator() {
-        return comparator;
-    }
-
-    public SortAbility getSortStrategy(){
-        return sortStrategy;
     }
 }

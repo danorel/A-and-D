@@ -1,11 +1,11 @@
 package algorithms.quick;
 
-import algorithms.SortAbility;
+import algorithms.Sort;
 import timer.Stopwatch;
 
 import java.util.Comparator;
 
-public class MixedQuickSort implements SortAbility, QuickSortManager {
+public class MixedQuickSort implements Sort, QuickSortContainer, InsertionQuickSortContainer {
 
     private static final int CONSTANT = 1000;
     private double time;
@@ -17,17 +17,29 @@ public class MixedQuickSort implements SortAbility, QuickSortManager {
 
     @Override
     public Comparable[] sort(Comparable[] Array, Comparator comparator) {
-        Stopwatch timer = new Stopwatch();
-        quickSort(Array, 0, Array.length - 1);
-        time = Stopwatch.evaluateTime();
+        if(Array.length > 0){
+            Stopwatch timer = new Stopwatch();
+            Array = quickSort(Array, 0, Array.length - 1, comparator);
+            time = Stopwatch.evaluateTime();
+        }
         return Array;
     }
 
-    public void quickSort(Comparable[] Array, int lowest, int highest) {
-        if (highest <= lowest) return;
+    @Override
+    public boolean isLess(Comparable first, Comparable second, Comparator comparator) {
+        if(comparator == null){
+            return first.compareTo(second) < 0;
+        } else {
+            return comparator.compare(first, second) < 0;
+        }
+    }
+
+    @Override
+    public Comparable[] quickSort(Comparable[] Array, int lowest, int highest, Comparator comparator) {
+        if (highest <= lowest) return null;
         int size = highest - lowest + 1;
         if (size < CONSTANT) // insertion quickSort if small
-            insertionSort(Array, lowest, highest);
+            insertionSort(Array, lowest, highest, comparator);
         else // quicksort if large
         {
             int lt = lowest, gt = highest;
@@ -35,55 +47,29 @@ public class MixedQuickSort implements SortAbility, QuickSortManager {
             int i = lowest + 1;
             while (i <= gt) {
                 int compareResult = Array[i].compareTo(v);
-                if      (compareResult < 0) exch(Array, lt++, i++);
-                else if (compareResult > 0) exch(Array, i, gt--);
-                else              i++;
+                if      (compareResult < 0) swap(Array, lt++, i++);
+                else if (compareResult > 0) swap(Array, i, gt--);
+                else i++;
             }
-            quickSort(Array, lowest, lt - 1);
-            quickSort(Array, gt + 1, highest);
-            assert isSorted(Array, lowest, highest);
+            quickSort(Array, lowest, lt - 1, comparator);
+            quickSort(Array, gt + 1, highest, comparator);
+            assert isSorted(Array, lowest, highest, comparator);
         }
+        return Array;
     }
 
-
-    public static void insertionSort(Comparable[] Array, int leftPosition, int rightPosition) {
-        int in, out;
-        //  sorted on left of out
-        for (out = leftPosition + 1; out <= rightPosition; out++) {
-            Comparable temp = Array[out]; // remove marked item
-            in = out; // start shifts at out
-            // until one is smaller,
-            while (in > leftPosition && Array[in - 1].compareTo( temp) >= 0) {
-                Array[in] = Array[in - 1]; // shift item to right
-                --in; // go left one position
-            }
-            Array[in] = temp; // insert marked item
-        }
+    private boolean isSorted(Comparable[] Array, Comparator comparator) {
+        return isSorted(Array, 0, Array.length - 1, comparator);
     }
 
-    private static boolean less(Comparable first, Comparable second) {
-        return first.compareTo(second) < 0;
-    }
-
-    // exchange a[i] and a[j]
-    private static void exch(Object[] Array, int firstPosition, int secondPosition) {
-        Object swap = Array[firstPosition];
-        Array[firstPosition] = Array[secondPosition];
-        Array[secondPosition] = swap;
-    }
-
-    private static boolean isSorted(Comparable[] Array) {
-        return isSorted(Array, 0, Array.length - 1);
-    }
-
-    private static boolean isSorted(Comparable[] Array, int lowest, int highest) {
+    private boolean isSorted(Comparable[] Array, int lowest, int highest, Comparator comparator) {
         for (int index = lowest + 1; index <= highest; index++)
-            if (less(Array[index], Array[index - 1])) return false;
+            if (isLess(Array[index], Array[index - 1], comparator)) return false;
         return true;
     }
 
     @Override
     public String toString() {
-        return "MixedQuickSort |" + time + "|: ";
+        return getClass().getSimpleName() + " *" + time + "*: ";
     }
 }

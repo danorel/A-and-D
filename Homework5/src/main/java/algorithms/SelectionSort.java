@@ -1,12 +1,8 @@
 package algorithms;
 
-import timer.Stopwatch;
-
 import java.util.Comparator;
 
-public class SelectionSort implements SortAbility, BasicSortFunctionality {
-
-    private double time;
+public class SelectionSort implements Sort, DefaultSortingManager {
 
     @Override
     public Comparable[] sort(Comparable[] Array) {
@@ -15,32 +11,28 @@ public class SelectionSort implements SortAbility, BasicSortFunctionality {
 
     @Override
     public Comparable[] sort(Comparable[] Array, Comparator comparator) {
-        Stopwatch timer = new Stopwatch();
-        Comparable min = Array[0];
-        boolean isChanged = false;
-        int current_index = 0;
-        for(int current = 0; current < Array.length; current++){
-            for(int index = current; index < Array.length; index++){
-                if(isLess(comparator, min, Array[index])){
-                    min = Array[index];
-                    current_index = index;
-                    isChanged = true;
+        if(Array.length > 0){
+            int currentIndex = 0;
+            Comparable min = Array[0]; //мінімальне число масиву
+            boolean isSwapped = false;
+            for (int currentNumber = 0; currentNumber < Array.length; currentNumber++) {
+                for (int index = currentNumber; index < Array.length; index++) {
+                    if (isLess(Array[index], min, comparator)) { //порівнюємо елемент під індексом index з мінімальним
+                        min = Array[index];
+                        currentIndex = index;
+                        isSwapped = true;
+                    }
+                }
+                if (isSwapped) {
+                    swap(Array, currentIndex, currentNumber);
+                    isSwapped = false;
+                }
+                if (currentNumber != Array.length - 1) {
+                    min = Array[currentNumber + 1];
                 }
             }
-            if(isChanged){
-                exchange(Array, current_index, current);
-                isChanged = false;
-            }
-            if(current != Array.length - 1){
-                min = Array[current + 1];
-            }
         }
-        time = Stopwatch.evaluateTime();
         return Array;
     }
-
-    @Override
-    public String toString() {
-        return "SelectionSort |" + time + "|: ";
-    }
 }
+

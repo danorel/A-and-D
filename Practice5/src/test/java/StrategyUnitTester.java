@@ -2,6 +2,7 @@ import algorithms.*;
 import algorithms.merge.ComparedMergeSort;
 import algorithms.merge.DefaultMergeSort;
 import algorithms.merge.InsertionMergeSort;
+import algorithms.merge.MixedMergeSort;
 import algorithms.quick.DefaultQuickSort;
 import algorithms.quick.DijkstraQuickSort;
 import algorithms.quick.InsertionQuickSort;
@@ -38,7 +39,7 @@ public class StrategyUnitTester {
         sortStrategy = new ArrayList<>();
         sortStrategy.add(new BubbleSort());
         sortStrategy.add(new CombSort());
-//        sortStrategy.add(new HeapSort());
+        sortStrategy.add(new HeapSort());
         sortStrategy.add(new InsertionSort());
         sortStrategy.add(new SelectionSort());
         sortStrategy.add(new ShellSort());
@@ -49,7 +50,7 @@ public class StrategyUnitTester {
         sortStrategy.add(new ComparedMergeSort());
         sortStrategy.add(new DefaultMergeSort());
         sortStrategy.add(new InsertionMergeSort());
-//        sortStrategy.add(new MixedMergeSort());
+        sortStrategy.add(new MixedMergeSort());
 
         strategy = new Strategy();
     }

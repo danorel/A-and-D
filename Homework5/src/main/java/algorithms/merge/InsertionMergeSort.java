@@ -1,12 +1,12 @@
 package algorithms.merge;
 
-import algorithms.SortAbility;
+import algorithms.Sort;
 import timer.Stopwatch;
 
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class InsertionMergeSort implements SortAbility, MergeSortManager {
+public class InsertionMergeSort implements Sort, InsertionMergeSortContainer, MergeSortContainer {
     private double time;
     private static final int CONSTANT = 500;
 
@@ -16,33 +16,36 @@ public class InsertionMergeSort implements SortAbility, MergeSortManager {
 
     @Override
     public Comparable[] sort(Comparable[] Array, Comparator comparator) {
-        Stopwatch timer = new Stopwatch();
-        mergeSort(Array, 0, Array.length - 1);
-        time = Stopwatch.evaluateTime();
+        if(Array.length > 0){
+            Stopwatch timer = new Stopwatch();
+            mergeSort(Array, 0, Array.length - 1, comparator);
+            time = Stopwatch.evaluateTime();
+        }
         return Array;
     }
 
     @Override
-    public void mergeSort(Comparable[] Array, int leftPosition, int rightPosition) {
+    public Comparable[] mergeSort(Comparable[] Array, int leftPosition, int rightPosition, Comparator comparator) {
         if(rightPosition - leftPosition > CONSTANT){
             int middlePosition = (leftPosition + rightPosition) / 2;
-            mergeSort(Array, leftPosition, middlePosition);
-            mergeSort(Array, middlePosition + 1, rightPosition);
-            merge(Array, leftPosition, ((leftPosition + rightPosition) / 2), rightPosition);
+            mergeSort(Array, leftPosition, middlePosition, comparator);
+            mergeSort(Array, middlePosition + 1, rightPosition, comparator);
+            merge(Array, leftPosition, ((leftPosition + rightPosition) / 2), rightPosition, comparator);
         } else {
-            insertionSort(Array, leftPosition, rightPosition);
+            insertionSort(Array, leftPosition, rightPosition, comparator);
         }
+        return Array;
     }
 
     @Override
-    public void merge(Comparable[] Array, int leftPosition, int middlePosition, int rightPosition){
+    public void merge(Comparable[] Array, int leftPosition, int middlePosition, int rightPosition, Comparator comparator){
         Comparable []leftArray = Arrays.copyOfRange(Array, leftPosition, middlePosition + 1);
         Comparable []rightArray = Arrays.copyOfRange(Array, middlePosition + 1, rightPosition + 1);
 
         int leftIndex = 0, rightIndex = 0;
         int index = leftPosition;
         while(leftIndex < (middlePosition + 1 - leftPosition) && rightIndex < (rightPosition - middlePosition)){
-            if(isLess(leftArray[leftIndex], rightArray[rightIndex])){
+            if(isLess(leftArray[leftIndex], rightArray[rightIndex], comparator)){
                 Array[index++] = leftArray[leftIndex++];
             } else {
                 Array[index++] = rightArray[rightIndex++];
@@ -55,21 +58,6 @@ public class InsertionMergeSort implements SortAbility, MergeSortManager {
 
         while(rightIndex < rightPosition - middlePosition){
             Array[index++] = rightArray[rightIndex++];
-        }
-    }
-
-    private void insertionSort(Comparable []Array, int leftPosition, int rightPosition)
-    {
-        for (int i = leftPosition + 1; i < rightPosition; ++i)
-        {
-            Comparable key = Array[i];
-            int j = i - 1;
-            while (j >= leftPosition && isLess(key, Array[j]))
-            {
-                Array[j + 1] = Array[j];
-                j = j - 1;
-            }
-            Array[j + 1] = key;
         }
     }
 

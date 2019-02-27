@@ -1,13 +1,14 @@
 package algorithms.merge;
 
 public interface MergeSortManager {
-    default void mergeSort(Integer[] Array, int leftPosition, int rightPosition) {
+    default Integer[] mergeSort(Integer[] Array, int leftPosition, int rightPosition) {
         if(rightPosition > leftPosition){
             int middlePosition = ((leftPosition + rightPosition) / 2);
             mergeSort(Array, leftPosition, middlePosition);
             mergeSort(Array,middlePosition + 1, rightPosition);
             merge(Array, leftPosition, middlePosition, rightPosition);
         }
+        return Array;
     }
 
     default void merge(Integer[] Array, int leftPosition, int middlePosition, int rightPosition){
@@ -42,5 +43,11 @@ public interface MergeSortManager {
 
     default boolean isLess(Integer first, Integer second){
         return first.compareTo(second) < 0;
+    }
+
+    default void exchange(Integer[] Array, int firstPos, int secondPos){
+        Integer temp = Array[firstPos];
+        Array[firstPos] = Array[secondPos];
+        Array[secondPos] = temp;
     }
 }
