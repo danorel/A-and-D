@@ -150,7 +150,7 @@ public class Date {
     @Override
     public String toString() {
         return StringFormatter.format(
-                "%s.%s.%s", getDay() < 10 ? "0" + getDay() : getDay(), getMonth() < 9 ? "0" + (getMonth() + 1) : (getMonth() + 1), getYear()
+                "%s.%s.%s", getDay() < 10 ? "0" + getDay() : getDay(), getMonth() < 9 ? "0" + (getMonth()) : (getMonth()), getYear()
         ).getValue();
     }
 }
