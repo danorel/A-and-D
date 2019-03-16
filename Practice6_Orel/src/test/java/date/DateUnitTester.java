@@ -19,20 +19,20 @@ public class DateUnitTester {
     @org.junit.Before
     public void setUp() throws Exception {
         dates = new ArrayList<>();
-        dates.add(new Date("03 01 1503"));
-        dates.add(new Date("06 10 2011"));
+        dates.add(new Date("03 January 1503"));
+        dates.add(new Date("06 October 2011"));
         dates.add(new Date("01 11 1961"));
         dates.add(new Date("05 15 1933"));
         dates.add(new Date("-01 10 2056"));
-        dates.add(new Date("bla bla bla bla"));
+        dates.add(new Date("04 12 2000"));
         dates.add(new Date("05 11 2095"));
-        dates.add(new Date("03 01 2301"));
-        dates.add(new Date("01 02 1921"));
+        dates.add(new Date("03 January 2301"));
+        dates.add(new Date("01 February 1921"));
         dates.add(new Date("-05 -02 1432"));
         dates.add(new Date("21 10 2000"));
         dates.add(new Date("04 12 2000"));
-        dates.add(new Date("bla bla bla"));
-        dates.add(new Date("bla 04 2020"));
+        dates.add(new Date("16 14 2043"));
+        dates.add(new Date("18 04 2020"));
 
         results = new ArrayList<>();
         results.add("Saturday");
@@ -40,15 +40,15 @@ public class DateUnitTester {
         results.add("Wednesday");
         results.add("Thursday");
         results.add("Sunday");
-        results.add("Thursday");
+        results.add("Monday");
         results.add("Saturday");
         results.add("Saturday");
         results.add("Tuesday");
         results.add("Thursday");
         results.add("Saturday");
         results.add("Monday");
-        results.add("Thursday");
-        results.add("Wednesday");
+        results.add("Friday");
+        results.add("Saturday");
     }
 
     @org.junit.Test

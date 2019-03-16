@@ -49,6 +49,9 @@ public class Date {
             }
             if(parts.get(1).matches("[0-9]+")){
                 this.month = validateMonth(Integer.valueOf(parts.get(parts.size() - 2)) - 1);
+            } else if(parts.get(1).matches("[a-z]+")){
+                Month monthGetter = new Month();
+                this.month = validateMonth(monthGetter.getMonth(parts.get(parts.size() - 2)));
             } else {
                 this.month = 0;
             }

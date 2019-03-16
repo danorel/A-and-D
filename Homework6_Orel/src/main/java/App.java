@@ -11,7 +11,7 @@ public class App {
                 .forEach(System.out::println);
         File output = new File("output.txt");
         FileManager.writeFile(output, (String[]) list.toArray());
-        System.out.println(FileManager.checkIfContains(output, "I love very muuuuuch Olia Perch."));
+        System.out.println(FileManager.checkIfContains(output, "But it's true!?"));
 
         Integer [][]pairs = FileManager.getPairsInFile(output, "love");
         for(int row = 0; row < pairs.length; row++){
@@ -21,6 +21,6 @@ public class App {
         FileManager.createSameDescSortedFile(output);
         FileManager.createSameAscSortedFile(output);
 
-        FileManager.substituteFileWith("output.txt", "love", "dear");
+        FileManager.substituteFileWith("output.txt", "lovesq", "dear");
     }
 }
