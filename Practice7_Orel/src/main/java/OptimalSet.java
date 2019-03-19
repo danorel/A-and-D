@@ -33,7 +33,6 @@ public class OptimalSet {
     }
 
     public void difference(OptimalSet A, OptimalSet B, OptimalSet C){
-
         for(int index = 0; index < A.getSet().length; index++){
             if(member(index, A) && !member(index, B)){
                 C.insert(index, C);
