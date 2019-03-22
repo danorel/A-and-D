@@ -64,32 +64,38 @@ public class Queue<T extends Comparable>{
     }
 
     public T peek() {
-        T value = (T) list.getTailValue();
+        T value = (T) list.getHeadValue();
         if(value == null) return null;
         return value;
     }
 
     public T poll() {
-        T value = (T) list.removeTAIL();
+        T value = (T) list.removeHEAD();
+        if(list.size() == 0){
+            isSmthAdded = false;
+        }
         if(value == null) return null;
         return value;
     }
 
     public T remove() throws NoSuchElementException, NoSuchMethodException {
-        T value = (T) list.removeTAIL();
+        T value = (T) list.removeHEAD();
+        if(list.size() == 0){
+            isSmthAdded = false;
+        }
         if(value == null) throw new NoSuchElementException(Queue.class.getMethod("remove"));
         return value;
     }
 
     public T element() throws NoSuchElementException, NoSuchMethodException {
-        T value = (T) list.getTailValue();
+        T value = (T) list.getHeadValue();
         if(value == null) throw new NoSuchElementException(Queue.class.getMethod("element"));
         return value;
     }
 
     public boolean empty(){
         if(!areNullElementsAllowed){
-            if(list.getTailValue() != null){
+            if(list.getHeadValue() != null){
                 return false;
             } else {
                 return true;
@@ -105,10 +111,6 @@ public class Queue<T extends Comparable>{
 
 
     public int search(T o) throws NoSuchElementException, NoSuchMethodException {
-        /*
-          int position = getList().getNodePosition(o);
-          return position >= 1 && position <= list.size() ? position : -1;
-        */
         if(getList().getHEAD().getNext().getValue() == null){
             System.out.println("-1");
             throw new NoSuchElementException(Queue.class.getMethod("search", Comparable.class));

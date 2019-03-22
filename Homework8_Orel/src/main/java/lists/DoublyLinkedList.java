@@ -57,14 +57,17 @@ public class DoublyLinkedList<T extends Comparable> {
         return value;
     }
 
-    public void removeHEAD(){
+    public Comparable removeHEAD(){
+        Comparable value = null;
         if(HEAD.next != null){
+            value = HEAD.value;
             HEAD = HEAD.next;
             HEAD.previous = null;
             counter--;
         } else {
             HEAD.value = null;
         }
+        return value;
     }
 
     public void removeDoublyLinkedList(){
@@ -135,6 +138,15 @@ public class DoublyLinkedList<T extends Comparable> {
         }
         return value;
     }
+
+    public Comparable getHeadValue() throws NullPointerException{
+        T value = null;
+        if(HEAD.value != null){
+            value = HEAD.value;
+        }
+        return value;
+    }
+
 
     public int size(){
         return counter;

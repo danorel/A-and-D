@@ -19,7 +19,10 @@ public class App {
             queue.add(4);
             queue.add(7);
             queue.add(8);
+            System.out.println(queue);
             System.out.println(queue.search(3));
+            queue.poll();
+            System.out.println(queue);
         } catch (NullPointerException | IllegalStateException | NoSuchMethodException | NoSuchElementException exception) {
             exception.printStackTrace();
         }

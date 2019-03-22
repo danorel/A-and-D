@@ -39,10 +39,6 @@ public class Stack<T extends Comparable>{
     }
 
     public int search(T o) throws EmptyStackException, NoSuchMethodException {
-        /*
-          int position = getList().getNodePosition(o);
-          return position >= 1 && position <= list.size() ? position : -1;
-        */
         if(getList().getHEAD().getValue() == null){
             System.out.println("-1");
             throw new EmptyStackException(Stack.class.getMethod("search", Comparable.class));

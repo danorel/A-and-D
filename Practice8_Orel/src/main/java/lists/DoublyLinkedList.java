@@ -2,10 +2,6 @@ package lists;
 
 import com.sun.javafx.binding.StringFormatter;
 
-import java.util.EmptyStackException;
-import java.util.Iterator;
-import java.util.Objects;
-
 public class DoublyLinkedList<T extends Comparable> {
     private Node HEAD;
     private Node TAIL;
