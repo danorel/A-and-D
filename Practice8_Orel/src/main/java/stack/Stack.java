@@ -43,7 +43,7 @@ public class Stack<T extends Comparable>{
             System.out.println("-1");
             throw new EmptyStackException(Stack.class.getMethod("search", Comparable.class));
         }
-        int counter = 1;
+        int counter = list.size();
         DoublyLinkedList.Node TEMP = getList().getHEAD();
         while (TEMP == getList().getTAIL() || hasNext(TEMP)){
             if(TEMP.getValue().equals(o)){
@@ -53,7 +53,7 @@ public class Stack<T extends Comparable>{
                     break;
                 }
                 TEMP = getList().moveToNext(TEMP);
-                counter++;
+                counter--;
             }
         }
         return -1;
