@@ -1,12 +1,11 @@
-package lists;
+package list;
 
 import com.sun.javafx.binding.StringFormatter;
 
-public class DoublyLinkedList<T extends Comparable> {
+public class DoublyLinkedList<T extends Comparable> implements Comparable {
     private Node HEAD;
     private Node TAIL;
     private int counter = 0;
-    private boolean areNullElementsAllowed = true;
 
     public DoublyLinkedList(){
         this(null);
@@ -18,20 +17,38 @@ public class DoublyLinkedList<T extends Comparable> {
         counter++;
     }
 
-    public void setNullPermission(boolean areNullElementsAllowed){
-        this.areNullElementsAllowed = areNullElementsAllowed;
-    }
-
     public void add(T value){
-        if(HEAD.getValue() == null){
-            HEAD.value = value;
-        } else {
+        if(HEAD.value != null){
             TAIL.next = new Node(value);
             Node TEMP = TAIL;
             TAIL = TAIL.next;
             TAIL.previous = TEMP;
             TAIL.next = null;
             counter++;
+        } else {
+            HEAD.value = value;
+        }
+    }
+
+    public Comparable get(int index){
+        if(index >= size()){
+            return null;
+        } else {
+            int counter = 0;
+            Node TEMP = HEAD;
+            while(TEMP != TAIL){
+                if (counter != index) {
+                    counter++;
+                    TEMP = TEMP.next;
+                } else {
+                    return TEMP.value;
+                }
+            }
+            if(TEMP == TAIL && index == counter){
+                return TAIL.value;
+            } else {
+                return null;
+            }
         }
     }
 
@@ -57,17 +74,14 @@ public class DoublyLinkedList<T extends Comparable> {
         return value;
     }
 
-    public Comparable removeHEAD(){
-        Comparable value = null;
+    public void removeHEAD(){
         if(HEAD.next != null){
-            value = HEAD.value;
             HEAD = HEAD.next;
             HEAD.previous = null;
             counter--;
         } else {
             HEAD.value = null;
         }
-        return value;
     }
 
     public void removeDoublyLinkedList(){
@@ -139,15 +153,6 @@ public class DoublyLinkedList<T extends Comparable> {
         return value;
     }
 
-    public Comparable getHeadValue() throws NullPointerException{
-        T value = null;
-        if(HEAD.value != null){
-            value = HEAD.value;
-        }
-        return value;
-    }
-
-
     public int size(){
         return counter;
     }
@@ -165,13 +170,18 @@ public class DoublyLinkedList<T extends Comparable> {
         StringBuilder builder = new StringBuilder();
         Node TEMP = HEAD;
         while(TEMP.next != null){
-            builder.append(TEMP.value).append("-");
+            builder.append(TEMP.value).append("- ");
             TEMP = TEMP.next;
         }
         builder.append(getTailValue());
         return StringFormatter.format(
             "%s", builder.toString()
         ).getValue();
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return HEAD.value.compareTo(o);
     }
 
     public class Node{
@@ -187,14 +197,6 @@ public class DoublyLinkedList<T extends Comparable> {
 
         public T getValue() {
             return value;
-        }
-
-        public Node getNext() {
-            return next;
-        }
-
-        public Node getPrevious() {
-            return previous;
         }
     }
 }

@@ -8,9 +8,7 @@ public class DoublyLinkedList<T extends Comparable> {
     private int counter = 0;
 
     public DoublyLinkedList(){
-        HEAD = new Node(null);
-        TAIL = HEAD;
-        counter++;
+        this(null);
     }
 
     public DoublyLinkedList(T value){
@@ -149,13 +147,11 @@ public class DoublyLinkedList<T extends Comparable> {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         Node TEMP = HEAD;
-        builder.append("null<->");
         while(TEMP.next != null){
-            builder.append(TEMP.value).append("<->");
+            builder.append(TEMP.value).append("~");
             TEMP = TEMP.next;
         }
-        builder.append(getTailValue()).append("<->");
-        builder.append("null");
+        builder.append(getTailValue());
         return StringFormatter.format(
             "%s", builder.toString()
         ).getValue();

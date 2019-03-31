@@ -17,7 +17,8 @@ public class Stack<T extends Comparable>{
 
     public T pop() throws EmptyStackException, NoSuchMethodException {
         T value = (T) list.removeTAIL();
-        if(value == null) throw new EmptyStackException(Stack.class.getMethod("pop"));
+        if(value == null)
+            throw new EmptyStackException(Stack.class.getMethod("pop"));
         return value;
     }
 
