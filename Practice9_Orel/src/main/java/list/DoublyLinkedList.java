@@ -170,7 +170,7 @@ public class DoublyLinkedList<T extends Comparable> implements Comparable {
         StringBuilder builder = new StringBuilder();
         Node TEMP = HEAD;
         while(TEMP.next != null){
-            builder.append(TEMP.value).append("- ");
+            builder.append(TEMP.value);
             TEMP = TEMP.next;
         }
         builder.append(getTailValue());
