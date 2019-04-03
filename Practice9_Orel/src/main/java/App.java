@@ -12,7 +12,7 @@ public class App {
                 {1, 1, 0, 0, 1, 0},
                 {1, 0, 1, 0, 1, 0},
                 {0, 1, 0, 1, 0, 0},
-                {1, 0, 1, 0, 1, 1},
+                {0, 0, 1, 0, 1, 1},
                 {1, 1, 0, 1, 0, 0},
                 {0, 0, 0, 1, 0, 0}
         };
@@ -71,7 +71,7 @@ public class App {
         /*
             Building the graph by the null matrix with help of Incidence matrix
          */
-        /*
+
         int [][] matrix = {
 
         };
@@ -84,6 +84,5 @@ public class App {
         } catch (GraphAdjacencyException | NoSuchMethodException | GraphInitException exception) {
             exception.printStackTrace();
         }
-        */
     }
 }

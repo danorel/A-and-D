@@ -44,7 +44,7 @@ public class DoublyLinkedList<T extends Comparable> implements Comparable {
                     return TEMP.value;
                 }
             }
-            if(TEMP == TAIL && index == counter){
+            if(index == counter){
                 return TAIL.value;
             } else {
                 return null;
