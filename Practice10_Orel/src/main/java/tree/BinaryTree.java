@@ -1,9 +1,9 @@
 package tree;
 
 import tree.exceptions.BTInitException;
+import tree.exceptions.IllegalArgumentException;
+import tree.exceptions.NoSuchElementException;
 import tree.exceptions.NullPointerException;
-
-import java.util.NoSuchElementException;
 
 public class BinaryTree<T> implements Cloneable {
 
@@ -49,61 +49,133 @@ public class BinaryTree<T> implements Cloneable {
     }
 
     public boolean search(T value) throws NullPointerException {
-        return search(ROOT, value);
+        boolean isFound = false;
+        return search(ROOT, value, isFound);
     }
 
-    private boolean search(Leaf leaf, T value) throws NullPointerException {
+    private boolean search(Leaf leaf, T value, boolean isFound) throws NullPointerException {
         if(leaf != null){
             if(leaf.value.equals(value)){
                 return true;
             }
             if(leaf.left != null) {
-                search(leaf.left, value);
+                isFound = search(leaf.left, value, isFound);
             }
             if(leaf.right != null) {
-                search(leaf.right, value);
+                isFound = search(leaf.right, value, isFound);
             }
         }
-        return false;
+        return isFound;
     }
 
-    public boolean delete(T value) throws NullPointerException {
-        return delete(ROOT, value);
+    public boolean delete(T value) throws NullPointerException, NoSuchElementException {
+        boolean isDeleted = false;
+        isDeleted = delete(ROOT.left, ROOT, value, isDeleted);
+        isDeleted = delete(ROOT.right, ROOT, value, isDeleted);
+        if(isDeleted){
+            return isDeleted;
+        } else {
+            throw new NoSuchElementException(value);
+        }
     }
 
-    public boolean delete(Leaf leaf, T value) throws NullPointerException {
+    public boolean delete(Leaf leaf, Leaf ancestor, T value, boolean isDeleted) throws NullPointerException {
         if(leaf != null){
             if(leaf.value.equals(value)){
                 if(leaf.value == null){
                     throw new NullPointerException();
                 } else {
                     if(leaf.right != null && leaf.left != null){
-                        Leaf left_temp = leaf.left;
                         Leaf right_temp = leaf.right;
-                        leaf = left_temp;
-                        Leaf temp = leaf;
-                        while(temp.left != null){
-                            temp = temp.left;
+                        leaf.value = null;
+                        leaf.right = null;
+                        leaf = leaf.left;
+                        Leaf move = leaf;
+                        while(move.left != null){
+                            move = move.left;
                         }
-                        temp.left = right_temp;
+                        move = right_temp;
+                        if(ancestor.left == leaf){
+                            ancestor.left.value = null;
+                            ancestor.left = null;
+                        } else if(ancestor.right == leaf){
+                            ancestor.right.value = null;
+                            ancestor.right = null;
+                        }
                     } else if(leaf.right == null && leaf.left != null){
                         leaf = leaf.left;
+                        if(ancestor.left == leaf){
+                            ancestor.left.value = null;
+                            ancestor.left = leaf;
+                        } else if(ancestor.right == leaf){
+                            ancestor.right.value = null;
+                            ancestor.left = leaf;
+                        }
                     } else if (leaf.right != null){
                         leaf = leaf.right;
+                        if(ancestor.left == leaf){
+                            ancestor.left.value = null;
+                            ancestor.left = leaf;
+                        } else if(ancestor.right == leaf){
+                            ancestor.right.value = null;
+                            ancestor.left = leaf;
+                        }
                     } else {
-                        leaf = null;
+                        if(ancestor.left == leaf){
+                            ancestor.left.value = null;
+                            leaf = null;
+                            ancestor.left = null;
+                        } else if(ancestor.right == leaf){
+                            ancestor.right.value = null;
+                            leaf = null;
+                            ancestor.left = null;
+                        }
                     }
                     return true;
                 }
             }
             if(leaf.left != null) {
-                return delete(leaf.left, value);
+                isDeleted = delete(leaf.left, leaf, value, isDeleted);
             }
             if(leaf.right != null) {
-                return delete(leaf.right, value);
+                isDeleted = delete(leaf.right, leaf, value, isDeleted);
             }
         }
-        return false;
+        return isDeleted;
+    }
+
+    public boolean addTo(T value, T element) throws NoSuchElementException, IllegalArgumentException {
+        if(!addTo(ROOT, value, element, false)){
+            throw new NoSuchElementException(value);
+        } else {
+            return true;
+        }
+    }
+
+    private boolean addTo(Leaf leaf, T value, T element, boolean isAdded) throws IllegalArgumentException {
+        if(leaf != null){
+            if(leaf.value.equals(value)){
+                if(leaf.left == null){
+                    leaf.left = new Leaf(element);
+                    isAdded = true;
+                }
+                if(leaf.right == null && !isAdded){
+                    leaf.right = new Leaf(element);
+                    isAdded = true;
+                }
+                if(!isAdded){
+                    throw new IllegalArgumentException();
+                }
+                return true;
+            }
+            if(leaf.left != null){
+                isAdded = addTo(leaf.left, value, element, isAdded);
+            }
+            if(leaf.right != null){
+                isAdded = addTo(leaf.right, value, element, isAdded);
+            }
+        }
+        return isAdded;
     }
 
     public boolean isEmpty(){
