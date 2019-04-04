@@ -1,9 +1,11 @@
 package tree;
 
 import tree.exceptions.BTInitException;
-import tree.exceptions.IllegalArgumentException;
 import tree.exceptions.NoSuchElementException;
 import tree.exceptions.NullPointerException;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class BinaryTree<T> implements Cloneable {
 
@@ -11,6 +13,10 @@ public class BinaryTree<T> implements Cloneable {
     private Leaf ROOT               = null;
     private int size                = 0;
     private int hashcode            = 0;
+
+    public BinaryTree(){
+        ROOT = null;
+    }
 
     public BinaryTree(T value) throws NullPointerException {
         if(value == null){
@@ -26,6 +32,18 @@ public class BinaryTree<T> implements Cloneable {
         } else {
             asBT(array);
         }
+    }
+
+    public void offer(T value) throws NullPointerException {
+        if(value == null){
+            throw new NullPointerException();
+        } else {
+            offer(ROOT, value);
+        }
+    }
+
+    private void offer(Leaf leaf, T value){
+        
     }
 
     public void asBT(T []array){
