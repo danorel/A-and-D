@@ -1,8 +1,8 @@
-package tree;
+package tree.node;
 
-import tree.exceptions.BTIllegalArgumentException;
-import tree.exceptions.BTNoSuchElementException;
-import tree.exceptions.BTNullPointerException;
+import tree.node.exceptions.BTIllegalArgumentException;
+import tree.node.exceptions.BTNoSuchElementException;
+import tree.node.exceptions.BTNullPointerException;
 
 public class BinaryTree<E extends Comparable> implements Cloneable {
     private Node ROOT;
@@ -30,7 +30,7 @@ public class BinaryTree<E extends Comparable> implements Cloneable {
         }
     }
 
-    private boolean addRecursive(Node node, E data, E to, boolean isAdded) throws BTIllegalArgumentException, BTNoSuchElementException {
+    private boolean addRecursive(Node node, E data, E to, boolean isAdded) throws BTIllegalArgumentException {
         if(node != null){
             if(node.data.equals(to)){
                 if(node.left != null && node.right != null){

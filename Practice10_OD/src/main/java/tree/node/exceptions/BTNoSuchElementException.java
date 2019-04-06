@@ -1,4 +1,4 @@
-package tree.exceptions;
+package tree.node.exceptions;
 
 public class BTNoSuchElementException extends Exception {
     private static final StringBuilder NO_ELEMENT =

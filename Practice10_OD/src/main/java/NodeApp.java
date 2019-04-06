@@ -1,9 +1,9 @@
-import tree.BinaryTree;
-import tree.exceptions.BTIllegalArgumentException;
-import tree.exceptions.BTNoSuchElementException;
-import tree.exceptions.BTNullPointerException;
+import tree.node.BinaryTree;
+import tree.node.exceptions.BTIllegalArgumentException;
+import tree.node.exceptions.BTNoSuchElementException;
+import tree.node.exceptions.BTNullPointerException;
 
-public class App {
+public class NodeApp {
     public static void main(String[] args) throws BTNullPointerException, BTIllegalArgumentException, BTNoSuchElementException, CloneNotSupportedException {
         BinaryTree<Integer> tree = new BinaryTree<>(3);
         System.out.println("-------");

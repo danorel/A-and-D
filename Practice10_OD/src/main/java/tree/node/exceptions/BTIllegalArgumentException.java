@@ -1,4 +1,4 @@
-package tree.exceptions;
+package tree.node.exceptions;
 
 public class BTIllegalArgumentException extends Exception {
     private static final StringBuilder ILLEGAL_ADDING =
