@@ -1,13 +1,13 @@
 import tree.BinaryTree;
-import tree.exceptions.IllegalArgumentException;
-import tree.exceptions.NoSuchElementException;
-import tree.exceptions.NullPointerException;
+import tree.exceptions.BTIllegalArgumentException;
+import tree.exceptions.BTNoSuchElementException;
+import tree.exceptions.BTNullPointerException;
 
 import java.util.Arrays;
 import java.util.Objects;
 
 public class App {
-    public static void main(String[] args) throws NullPointerException, CloneNotSupportedException, NoSuchElementException, IllegalArgumentException {
+    public static void main(String[] args) throws BTNullPointerException, CloneNotSupportedException, BTNoSuchElementException, BTIllegalArgumentException {
         Integer []array = new Integer[] { 1, 2, 3, 4, 5, 6, 7 };
         BinaryTree<Integer> tree = new BinaryTree<>(0);
         tree.asBT(array);

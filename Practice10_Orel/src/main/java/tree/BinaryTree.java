@@ -1,9 +1,9 @@
 package tree;
 
 import tree.exceptions.BTInitException;
-import tree.exceptions.IllegalArgumentException;
-import tree.exceptions.NoSuchElementException;
-import tree.exceptions.NullPointerException;
+import tree.exceptions.BTIllegalArgumentException;
+import tree.exceptions.BTNoSuchElementException;
+import tree.exceptions.BTNullPointerException;
 
 public class BinaryTree<T> implements Cloneable {
 
@@ -12,9 +12,9 @@ public class BinaryTree<T> implements Cloneable {
     private int size                = 0;
     private int hashcode            = 0;
 
-    public BinaryTree(T value) throws NullPointerException {
+    public BinaryTree(T value) throws BTNullPointerException {
         if(value == null){
-            throw new NullPointerException();
+            throw new BTNullPointerException();
         } else {
             ROOT = new Leaf(value);
         }
@@ -48,12 +48,12 @@ public class BinaryTree<T> implements Cloneable {
         }
     }
 
-    public boolean search(T value) throws NullPointerException {
+    public boolean search(T value) throws BTNullPointerException {
         boolean isFound = false;
         return search(ROOT, value, isFound);
     }
 
-    private boolean search(Leaf leaf, T value, boolean isFound) throws NullPointerException {
+    private boolean search(Leaf leaf, T value, boolean isFound) throws BTNullPointerException {
         if(leaf != null){
             if(leaf.value.equals(value)){
                 return true;
@@ -68,22 +68,22 @@ public class BinaryTree<T> implements Cloneable {
         return isFound;
     }
 
-    public boolean delete(T value) throws NullPointerException, NoSuchElementException {
+    public boolean delete(T value) throws BTNullPointerException, BTNoSuchElementException {
         boolean isDeleted = false;
         isDeleted = delete(ROOT.left, ROOT, value, isDeleted);
         isDeleted = delete(ROOT.right, ROOT, value, isDeleted);
         if(isDeleted){
             return isDeleted;
         } else {
-            throw new NoSuchElementException(value);
+            throw new BTNoSuchElementException(value);
         }
     }
 
-    private boolean delete(Leaf leaf, Leaf ancestor, T value, boolean isDeleted) throws NullPointerException {
+    private boolean delete(Leaf leaf, Leaf ancestor, T value, boolean isDeleted) throws BTNullPointerException {
         if(leaf != null){
             if(leaf.value.equals(value)){
                 if(leaf.value == null){
-                    throw new NullPointerException();
+                    throw new BTNullPointerException();
                 } else {
                     if(leaf.right != null && leaf.left != null){
                         Leaf right_temp = leaf.right;
@@ -144,15 +144,15 @@ public class BinaryTree<T> implements Cloneable {
         return isDeleted;
     }
 
-    public boolean addTo(T value, T element) throws NoSuchElementException, IllegalArgumentException {
+    public boolean addTo(T value, T element) throws BTNoSuchElementException, BTIllegalArgumentException {
         if(!addTo(ROOT, value, element, false)){
-            throw new NoSuchElementException(value);
+            throw new BTNoSuchElementException(value);
         } else {
             return true;
         }
     }
 
-    private boolean addTo(Leaf leaf, T value, T element, boolean isAdded) throws IllegalArgumentException {
+    private boolean addTo(Leaf leaf, T value, T element, boolean isAdded) throws BTIllegalArgumentException {
         if(leaf != null){
             if(leaf.value.equals(value)){
                 if(leaf.left == null){
@@ -164,7 +164,7 @@ public class BinaryTree<T> implements Cloneable {
                     isAdded = true;
                 }
                 if(!isAdded){
-                    throw new IllegalArgumentException();
+                    throw new BTIllegalArgumentException();
                 }
                 return true;
             }
@@ -200,14 +200,14 @@ public class BinaryTree<T> implements Cloneable {
         return size;
     }
 
-    public T[] asArray(Leaf leaf) throws NullPointerException {
+    public T[] asArray(Leaf leaf) throws BTNullPointerException {
         size = 0;
         int size = getLeafAmount(leaf);
         Object []array = new Object[size];
         if(array.length > 1){
             array[0] = leaf.value;
         } else {
-            throw new NullPointerException();
+            throw new BTNullPointerException();
         }
         return asArray(leaf, 1, array);
     }
