@@ -119,6 +119,50 @@ public class BinaryTree<E extends Comparable> implements Cloneable {
         return isRemoved;
     }
 
+    public void removeAll(){
+        if(!isEmpty()){
+            removeAllRecursive(ROOT.left, ROOT);
+            removeAllRecursive(ROOT.right, ROOT);
+            ROOT.data = null;
+            ROOT = null;
+        }
+    }
+
+    private void removeAllRecursive(Node node, Node ancestor){
+        if(node != null){
+            if(node.left != null){
+                removeAllRecursive(node.left, node);
+            }
+            if(node.right != null){
+                removeAllRecursive(node.right, node);
+            }
+            node.data = null;
+            if(node.left != null && node.right == null){
+                node = node.left;
+            }
+            if(node.left == null && node.right != null){
+                node = node.right;
+            }
+            if(node.left != null && node.right != null){
+                Node temp_right = node.right;
+                node = node.left;
+                Node temp = node;
+                while(temp.left != null){
+                    temp = temp.left;
+                }
+                temp = temp_right;
+            }
+            if(node.left == null && node.right == null){
+                if(ancestor.left == node){
+                    ancestor.left = null;
+                }
+                if(ancestor.right == node){
+                    ancestor.right = null;
+                }
+            }
+        }
+    }
+
     public boolean search(E data) throws BTNullPointerException {
         if(data == null){
             throw new BTNullPointerException();
@@ -215,6 +259,21 @@ public class BinaryTree<E extends Comparable> implements Cloneable {
             border.append("-");
         }
         return border.toString();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(!(obj instanceof BinaryTree)){
+            return false;
+        }
+        BinaryTree<E> binaryTree = (BinaryTree<E>) obj;
+        return (
+                binaryTree.hashCode() == this.hashCode()
+                &&
+                binaryTree.ROOT == this.ROOT
+                &&
+                binaryTree.toString().equals(this.toString())
+        );
     }
 
     private class Node<T>{

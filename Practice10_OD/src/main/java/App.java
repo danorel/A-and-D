@@ -4,7 +4,7 @@ import tree.exceptions.BTNoSuchElementException;
 import tree.exceptions.BTNullPointerException;
 
 public class App {
-    public static void main(String[] args) throws BTNullPointerException, BTIllegalArgumentException, BTNoSuchElementException {
+    public static void main(String[] args) throws BTNullPointerException, BTIllegalArgumentException, BTNoSuchElementException, CloneNotSupportedException {
         BinaryTree<Integer> tree = new BinaryTree<>(3);
         System.out.println("-------");
         tree.add(1, 3);
@@ -34,5 +34,17 @@ public class App {
         System.out.println("Is the binary tree empty? Answer: " + tree.isEmpty());
         System.out.println("---------------------------------------");
         System.out.println();
+        System.out.println("-----------------------------------------------");
+        System.out.println("Cloning all the elements from the tree to clone");
+        BinaryTree<Integer> tree_clone = tree.clone(tree);
+        System.out.println(tree_clone);
+        System.out.println("Are the trees equal? Answer: " + tree_clone.equals(tree));
+        System.out.println("-------------------------------------------");
+        System.out.println();
+        System.out.println("-------------------------------------------");
+        System.out.println("Removing all the elements from the clone...");
+        tree_clone.removeAll();
+        System.out.print(tree_clone);
+        System.out.println("-------------------------------------------");
     }
 }
