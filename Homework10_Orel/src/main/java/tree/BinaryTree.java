@@ -1,338 +1,108 @@
 package tree;
 
 import tree.exceptions.BTInitException;
-import tree.exceptions.NoSuchElementException;
-import tree.exceptions.NullPointerException;
+import tree.exceptions.BTNullPointerException;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
-public class BinaryTree<T> implements Cloneable {
+public class BinaryTree<E>{
+    private Object []array;
 
-    private StringBuilder tree      = new StringBuilder();
-    private Leaf ROOT               = null;
-    private int size                = 0;
-    private int hashcode            = 0;
-
-    public BinaryTree(){
-        ROOT = null;
+    public BinaryTree() throws BTInitException {
+        this(1);
     }
 
-    public BinaryTree(T value) throws NullPointerException {
-        if(value == null){
-            throw new NullPointerException();
-        } else {
-            ROOT = new Leaf(value);
-        }
+    public BinaryTree(int size) throws BTInitException {
+        this(null, size);
     }
 
-    public BinaryTree(T []array) throws BTInitException {
-        if(array.length == 0){
+    public BinaryTree(E data, int size) throws BTInitException {
+        if(size <= 0){
             throw new BTInitException();
-        } else {
-            asBT(array);
         }
+        this.array = new Object[size];
+        this.array[0] = data;
     }
 
-    public void offer(T value) throws NullPointerException {
-        if(value == null){
-            throw new NullPointerException();
-        } else {
-            offer(ROOT, value);
+    public void add(E data) throws BTInitException, BTNullPointerException {
+        if(data == null){
+            throw new BTNullPointerException();
         }
+        E []temp_array = (E[]) Arrays.copyOf(this.array, this.array.length + 1);
+        temp_array[temp_array.length - 1] = data;
+        asArray(temp_array);
     }
 
-    private void offer(Leaf leaf, T value){
-        
+    public E poll() throws BTInitException {
+        E value = (E) this.array[this.array.length - 1];
+        E []temp_array = (E[]) Arrays.copyOf(this.array, this.array.length - 1);
+        asArray(temp_array);
+        return value;
     }
 
-    public void asBT(T []array){
+    public int size(){
+        return this.array.length;
+    }
+
+    public void asArray(E []array) throws BTInitException {
+        this.array = new Object[array.length];
         if(array.length > 0){
-            ROOT = new Leaf(array[0]);
-            buildBT(ROOT, 1, array);
-        }
-    }
-
-    private void buildBT(Leaf leaf, int index, T []array){
-        if(leaf != null){
-            if(2*index - 1 < array.length) {
-                leaf.left = new Leaf(array[2*index - 1]);
-                buildBT(leaf.left, 2 * index, array);
-            }
-            if(2*index < array.length) {
-                leaf.right = new Leaf(array[2*index]);
-                buildBT(leaf.right, 2 * index + 1, array);
-            }
-        }
-    }
-
-    public boolean search(T value) throws NullPointerException {
-        boolean isFound = false;
-        return search(ROOT, value, isFound);
-    }
-
-    private boolean search(Leaf leaf, T value, boolean isFound) throws NullPointerException {
-        if(leaf != null){
-            if(leaf.value.equals(value)){
-                return true;
-            }
-            if(leaf.left != null) {
-                isFound = search(leaf.left, value, isFound);
-            }
-            if(leaf.right != null) {
-                isFound = search(leaf.right, value, isFound);
-            }
-        }
-        return isFound;
-    }
-
-    public boolean delete(T value) throws NullPointerException, NoSuchElementException {
-        boolean isDeleted = false;
-        isDeleted = delete(ROOT.left, ROOT, value, isDeleted);
-        isDeleted = delete(ROOT.right, ROOT, value, isDeleted);
-        if(isDeleted){
-            return isDeleted;
+            this.array[0] = array[0];
+            asArrayRecursive(array, 1);
         } else {
-            throw new NoSuchElementException(value);
+            throw new BTInitException();
         }
     }
 
-    private boolean delete(Leaf leaf, Leaf ancestor, T value, boolean isDeleted) throws NullPointerException {
-        if(leaf != null){
-            if(leaf.value.equals(value)){
-                if(leaf.value == null){
-                    throw new NullPointerException();
-                } else {
-                    if(leaf.right != null && leaf.left != null){
-                        Leaf right_temp = leaf.right;
-                        leaf.value = null;
-                        leaf.right = null;
-                        leaf = leaf.left;
-                        Leaf move = leaf;
-                        while(move.left != null){
-                            move = move.left;
-                        }
-                        move = right_temp;
-                        if(ancestor.left == leaf){
-                            ancestor.left.value = null;
-                            ancestor.left = null;
-                        } else if(ancestor.right == leaf){
-                            ancestor.right.value = null;
-                            ancestor.right = null;
-                        }
-                    } else if(leaf.right == null && leaf.left != null){
-                        leaf = leaf.left;
-                        if(ancestor.left == leaf){
-                            ancestor.left.value = null;
-                            ancestor.left = leaf;
-                        } else if(ancestor.right == leaf){
-                            ancestor.right.value = null;
-                            ancestor.left = leaf;
-                        }
-                    } else if (leaf.right != null){
-                        leaf = leaf.right;
-                        if(ancestor.left == leaf){
-                            ancestor.left.value = null;
-                            ancestor.left = leaf;
-                        } else if(ancestor.right == leaf){
-                            ancestor.right.value = null;
-                            ancestor.left = leaf;
-                        }
-                    } else {
-                        if(ancestor.left == leaf){
-                            ancestor.left.value = null;
-                            leaf = null;
-                            ancestor.left = null;
-                        } else if(ancestor.right == leaf){
-                            ancestor.right.value = null;
-                            leaf = null;
-                            ancestor.left = null;
-                        }
-                    }
-                    return true;
-                }
-            }
-            if(leaf.left != null) {
-                isDeleted = delete(leaf.left, leaf, value, isDeleted);
-            }
-            if(leaf.right != null) {
-                isDeleted = delete(leaf.right, leaf, value, isDeleted);
-            }
+    private void asArrayRecursive(E []array, int index){
+        if(2*index - 1 < array.length){
+            this.array[2*index - 1] = array[2*index - 1];
+            asArrayRecursive(array, 2*index);
         }
-        return isDeleted;
-    }
-
-    public boolean addTo(T value, T element) throws NoSuchElementException, IllegalArgumentException {
-        if(!addTo(ROOT, value, element, false)){
-            throw new NoSuchElementException(value);
-        } else {
-            return true;
+        if(2*index < array.length){
+            this.array[2*index] = array[2*index];
+            asArrayRecursive(array, 2*index + 1);
         }
-    }
-
-    private boolean addTo(Leaf leaf, T value, T element, boolean isAdded) throws IllegalArgumentException {
-        if(leaf != null){
-            if(leaf.value.equals(value)){
-                if(leaf.left == null){
-                    leaf.left = new Leaf(element);
-                    isAdded = true;
-                }
-                if(leaf.right == null && !isAdded){
-                    leaf.right = new Leaf(element);
-                    isAdded = true;
-                }
-                if(!isAdded){
-                    throw new IllegalArgumentException();
-                }
-                return true;
-            }
-            if(leaf.left != null){
-                isAdded = addTo(leaf.left, value, element, isAdded);
-            }
-            if(leaf.right != null){
-                isAdded = addTo(leaf.right, value, element, isAdded);
-            }
-        }
-        return isAdded;
-    }
-
-    public boolean isEmpty(){
-        return ROOT == null;
-    }
-
-    public int getLeafAmount(){
-        size = 0;
-        return getLeafAmount(ROOT);
-    }
-
-    private int getLeafAmount(Leaf leaf){
-        if(leaf != null){
-            size++;
-            if(leaf.left != null){
-                getLeafAmount(leaf.left);
-            }
-            if(leaf.right != null){
-                getLeafAmount(leaf.right);
-            }
-        }
-        return size;
-    }
-
-    public T[] asArray(Leaf leaf) throws NullPointerException {
-        size = 0;
-        int size = getLeafAmount(leaf);
-        Object []array = new Object[size];
-        if(array.length > 1){
-            array[0] = leaf.value;
-        } else {
-            throw new NullPointerException();
-        }
-        return asArray(leaf, 1, array);
-    }
-
-    private T[] asArray(Leaf leaf, int index, Object []array){
-        if(leaf != null){
-            if(2*index - 1 < array.length && leaf.left != null){
-                array[2*index - 1] = leaf.left.value;
-                asArray(leaf.left, 2*index, array);
-            }
-            if(2*index < array.length && leaf.right != null){
-                array[2*index] = leaf.right.value;
-                asArray(leaf.right, 2*index + 1, array);
-            }
-        }
-        return (T[]) array;
-    }
-
-    public void showBT(){
-        showBT(ROOT, 1);
-    }
-
-    private void showBT(Leaf leaf, int layer){
-        if(leaf != null){
-            for(int times = 0; times < layer; times++){
-                System.out.print("-");
-            }
-            System.out.println("(" + leaf.value + ")");
-            if(leaf.right != null || leaf.left != null){
-                if(leaf.left != null){
-                    showBT(leaf.left, layer + 1);
-                }
-                if(leaf.right != null){
-                    showBT(leaf.right, layer + 1);
-                }
-            }
-        }
-    }
-
-    @Override
-    public int hashCode() {
-        hashcode += tree.hashCode() + ROOT.hashCode();
-        return hashcode;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if(!(obj instanceof BinaryTree)){
-            return false;
-        }
-
-        BinaryTree tree = (BinaryTree) obj;
-
-        return (tree.tree.toString().equals(this.tree.toString())
-                &&
-               tree.ROOT == this.ROOT
-                &&
-               tree.size == this.size
-                &&
-               tree.hashCode() == this.hashCode()
-        );
-    }
-
-    public BinaryTree<T> clone(BinaryTree tree) throws CloneNotSupportedException {
-        return (BinaryTree<T>) tree.clone();
-    }
-
-    @Override
-    protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
     }
 
     @Override
     public String toString() {
-        tree = new StringBuilder();
-        generateView(ROOT, 1);
-        return tree.toString();
+        return visualise(1, 1, new StringBuilder());
     }
 
-    public Leaf getROOT() {
-        return ROOT;
-    }
-
-    private void generateView(Leaf leaf, int layer){
-        if(leaf != null){
-            for(int times = 0; times < layer; times++){
-                tree.append("-");
+    private String visualise(int index, int level, StringBuilder visualisation){
+        if(index - 1 < this.array.length){
+            visualisation
+                    .append(
+                         visualiseBorder(level)
+                    )
+                    .append(
+                            "("
+                    )
+                    .append(
+                            this.array[index - 1]
+                    )
+                    .append(
+                            ")"
+                    )
+                    .append(
+                            "\n"
+                    );
+            if(2*index - 1 < this.array.length){
+                visualise(2*index, level + 1, visualisation);
             }
-            tree.append("(").append(leaf.value).append(")").append("\n");
-            if(leaf.right != null || leaf.left != null){
-                if(leaf.left != null){
-                    generateView(leaf.left, layer + 1);
-                }
-                if(leaf.right != null){
-                    generateView(leaf.right, layer + 1);
-                }
+            if(2*index < this.array.length){
+                visualise(2*index + 1, level + 1, visualisation);
             }
         }
+        return visualisation.toString();
     }
 
-    private class Leaf {
-        private T value     = null;
-        private Leaf left   = null;
-        private Leaf right  = null;
-
-        public Leaf(T value){
-            this.value = value;
+    private String visualiseBorder(int level){
+        StringBuilder border = new StringBuilder();
+        for(int iteration = 0; iteration < level; iteration++){
+            border.append("-");
         }
+        return border.toString();
     }
 }

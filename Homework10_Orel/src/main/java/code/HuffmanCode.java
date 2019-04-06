@@ -1,25 +1,17 @@
 package code;
 
 import alphabet.Alphabet;
-import code.exception.AlphabetInitException;
-import code.exception.EncodeException;
+import code.exceptions.HCAlphabetInitException;
 import tree.BinaryTree;
-import tree.exceptions.NullPointerException;
-
-import java.util.*;
+import tree.exceptions.BTInitException;
+import tree.exceptions.BTNullPointerException;
 
 public class HuffmanCode {
-
-    private BinaryTree<HuffmanTree> tree;
-    private PriorityQueue<HuffmanTree> priorityQueue;
     private Alphabet alphabet;
-    private StringBuilder text;
-    private int[] frequencies;
+    private BinaryTree<HuffmanTree> tree;
 
-    public HuffmanCode(){
+    public HuffmanCode() throws BTInitException {
         tree = new BinaryTree<>();
-        priorityQueue = new PriorityQueue<>();
-        text = new StringBuilder();
     }
 
     public HuffmanCode define(Alphabet alphabet){
@@ -27,126 +19,47 @@ public class HuffmanCode {
         return this;
     }
 
-    public HuffmanCode defineByCase(String text){
-        this.text = new StringBuilder();
-        append(text);
-        this.frequencies = new int[256];
-        for (char ch : this.text.toString().toCharArray())
-            frequencies[ch]++;
-        return this;
-    }
-
-    public void build() throws AlphabetInitException, EncodeException, NullPointerException {
-        if(alphabet == null && this.frequencies == null){
-            throw new AlphabetInitException();
-        } else if(alphabet != null && this.frequencies == null){
-            /*
-            ArrayList<Integer> weights = new ArrayList<>(alphabet.getAlphabet().values());
-            Collections.sort(weights);
-
-            while(priorityQueue.size() > 1){
-                HuffmanTree first = priorityQueue.poll();
-                HuffmanTree second = priorityQueue.poll();
-
-                priorityQueue.offer(new HuffmanNode(first, second));
-            }
-            */
-            while(priorityQueue.size() > 1){
-                HuffmanTree first = tree.poll();
-                HuffmanTree second = tree.poll();
-
-                tree.offer(new HuffmanNode(first, second));
-            }
-        } else if(alphabet == null) {
-            /*
-            AtomicInteger counter = new AtomicInteger();
-            Integer summary = Arrays.asList(frequencies)
-                    .stream()
-                    .filter(frequency -> frequency > 0)
-                    .reduce(0, (storage, frequency) -> storage += frequency);
-            List<Integer> filled_frequencies = Arrays.asList(frequencies)
-                    .stream()
-                    .filter(frequency -> {
-                        if(frequency > 0){
-                            alphabet.getAlphabet().put(Character.getName(counter.get()), ((int)((double)((double)frequency / summary)) * 100));
-                        }
-                        counter.getAndIncrement();
-                        return frequency > 0;
-                    })
-                    .collect(Collectors.toList());
-            */
+    public HuffmanTree generateBT() throws HCAlphabetInitException, BTInitException, BTNullPointerException {
+        if(alphabet == null){
+            throw new HCAlphabetInitException();
         } else {
-            throw new EncodeException();
+            while(alphabet.getValueSet().size() > 0){
+                int min = alphabet
+                        .getValueSet()
+                        .stream()
+                        .max((first, second) -> (int) (first.longValue() - second.longValue()))
+                        .get();
+                tree.add(new HuffmanLeaf(min, alphabet.getKey(min)));
+                alphabet.getAlphabet().remove(alphabet.getKey(min), min);
+            }
+
         }
+        return generateBTRecursive();
     }
 
-    public HuffmanTree buildTree() {
-        PriorityQueue<HuffmanTree> trees = new PriorityQueue<>();
-        // initially, we have a forest of leaves
-        // one for each non-empty character
-        for (int i = 0; i < frequencies.length; i++)
-            if (frequencies[i] > 0)
-                trees.offer(new HuffmanLeaf(frequencies[i], (char)i));
+    private HuffmanTree generateBTRecursive() throws BTInitException, BTNullPointerException {
+        while(tree.size() > 2){
+            HuffmanTree last = tree.poll();
+            HuffmanTree prelast = tree.poll();
 
-        assert trees.size() > 0;
-        // loop until there is only one priorityQueue left
-        while (trees.size() > 1) {
-            // two trees with least frequency
-            HuffmanTree a = trees.poll();
-            HuffmanTree b = trees.poll();
-
-            // put into new node and re-insert into queue
-            trees.offer(new HuffmanNode(a, b));
+            tree.add(new HuffmanNode(last, prelast));
         }
-        return trees.poll();
+        return tree.poll();
     }
 
-    public void printCodes(HuffmanTree tree, StringBuffer prefix) {
-        assert tree != null;
-        if (tree instanceof HuffmanLeaf) {
-            HuffmanLeaf leaf = (HuffmanLeaf)tree;
+    public void print(HuffmanTree tree, StringBuilder prefix){
+        if(tree instanceof HuffmanLeaf){
+            HuffmanLeaf leaf = (HuffmanLeaf) tree;
+            System.out.println(leaf.getCharacter() + "\t" + leaf.getFrequency() + "\t" + prefix.toString());
+        } else {
+            HuffmanNode node = (HuffmanNode) tree;
+            prefix.append("0");
+            print(node.left, prefix);
+            prefix.deleteCharAt(prefix.length() - 1);
 
-            // print out character, frequency, and code for this leaf (which is just the prefix)
-            System.out.println(leaf.value + "\t" + leaf.frequency + "\t" + prefix);
-
-        } else if (tree instanceof HuffmanNode) {
-            HuffmanNode node = (HuffmanNode)tree;
-
-            // traverse left
-            prefix.append('0');
-            //prefix = prefix + "0";
-            printCodes(node.left, prefix);
-            prefix.deleteCharAt(prefix.length()-1);
-
-            // traverse right
-            prefix.append('1');
-            printCodes(node.right, prefix);
-            prefix.deleteCharAt(prefix.length()-1);
+            prefix.append("1");
+            print(node.right, prefix);
+            prefix.deleteCharAt(prefix.length() - 1);
         }
-    }
-
-    /*
-    public boolean decode(){
-        return false;
-    }
-
-    public String encode(){
-
-        return
-    }
-    */
-
-    public HuffmanCode append(String text){
-        this.text.append(text);
-        return this;
-    }
-
-    public void update(){
-        this.text.delete(0, this.text.toString().length());
-    }
-
-    @Override
-    public String toString() {
-        return text.toString();
     }
 }

@@ -1,14 +1,18 @@
 package code;
 
-public class HuffmanTree implements Comparable<HuffmanTree> {
-    public final int frequency; // the frequency of this tree
+public class HuffmanTree implements Comparable<HuffmanTree>{
+    private final int frequency;
 
-    public HuffmanTree(int freq) {
-        frequency = freq;
+    public HuffmanTree(final int frequency){
+        this.frequency = frequency;
     }
 
-    // compares on the frequency
+    public int getFrequency() {
+        return frequency;
+    }
+
+    @Override
     public int compareTo(HuffmanTree tree) {
-        return frequency - tree.frequency;
+        return tree.frequency - this.frequency;
     }
 }

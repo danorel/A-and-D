@@ -1,11 +1,14 @@
 package code;
 
 public class HuffmanLeaf extends HuffmanTree {
+    private char character;
 
-    public final char value; // the character this leaf represents
+    public HuffmanLeaf(int frequency, char character) {
+        super(frequency);
+        this.character = character;
+    }
 
-    public HuffmanLeaf(int freq, char val) {
-        super(freq);
-        value = val;
+    public char getCharacter() {
+        return character;
     }
 }

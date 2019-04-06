@@ -1,12 +1,12 @@
-package tree.exceptions;
+package code.exceptions;
 
-public class BTInitException extends Exception{
+public class HCAlphabetInitException extends Exception {
     private static final StringBuilder INIT_EXCEPTION =
             new StringBuilder(
-                "Failed to initialize the array! The input size equals or less than zero."
+                    "Error! Cannot make any acts without the alphabet defining."
             );
 
-    public BTInitException(){
+    public HCAlphabetInitException(){
         super(INIT_EXCEPTION.toString());
     }
 
