@@ -1,4 +1,3 @@
-import alphabet.Alphabet;
 import alphabet.exceptions.IllegalArgumentException;
 import code.huffman.HuffmanCode;
 import code.huffman.HuffmanTree;
@@ -24,19 +23,18 @@ public class App {
         */
 
         code.define("More than a thousand words...");
-        HuffmanTree tree = code.generateHT();
-        code.visualize(tree, new StringBuilder());
+        HuffmanTree tree = code.generateHuffmanTree();
+        code.visualizeHuffmanCode(tree, new StringBuilder());
 
-        /*
         HuffmanDecoder decoder = new HuffmanDecoder();
         decoder.setupLibrary(code.getLibrary());
         System.out.println();
-        System.out.println(decoder.decode("101001000100000"));
+        System.out.println("00000000000100000000001001: " + decoder.decode(
+                "00000000000100000000001001"
+        ));
 
         HuffmanEncoder encoder = new HuffmanEncoder();
         encoder.setupLibrary(code.getLibrary());
-        System.out.println();
-        System.out.println(encoder.encode("bee"));
-        */
+        System.out.println("Meet Me: " + encoder.encode("Meet Me"));
     }
 }

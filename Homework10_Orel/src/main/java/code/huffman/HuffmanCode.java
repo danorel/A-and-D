@@ -20,12 +20,11 @@ public class HuffmanCode {
         library = new HuffmanLibrary();
     }
 
-    public HuffmanCode define(Alphabet alphabet){
+    public void define(Alphabet alphabet){
         this.alphabet = alphabet;
-        return this;
     }
 
-    public HuffmanCode define(String msg) throws IllegalArgumentException {
+    public void define(String msg) throws IllegalArgumentException {
         int []frequencies = new int[256];
         char []characters = msg.toCharArray();
         for(int index = 0; index < characters.length; index++){
@@ -44,7 +43,6 @@ public class HuffmanCode {
                     );
         }
         this.alphabet = builder.generate();
-        return this;
     }
 
     private HashMap<Character, Double> receiveNotNullFrequencies(int []frequencies){
@@ -59,7 +57,7 @@ public class HuffmanCode {
         return notNullFrequencies;
     }
 
-    public HuffmanTree generateHT() throws HCAlphabetInitException, BTInitException, BTNullPointerException {
+    public HuffmanTree generateHuffmanTree() throws HCAlphabetInitException, BTInitException, BTNullPointerException {
         if(alphabet == null){
             throw new HCAlphabetInitException();
         } else {
@@ -74,10 +72,10 @@ public class HuffmanCode {
             }
 
         }
-        return generateBTRecursive();
+        return generateHuffmanTreeRecursive();
     }
 
-    private HuffmanTree generateBTRecursive() throws BTInitException, BTNullPointerException {
+    private HuffmanTree generateHuffmanTreeRecursive() throws BTInitException, BTNullPointerException {
         while(tree.size() > 2){
             HuffmanTree last = tree.poll();
             HuffmanTree prelast = tree.poll();
@@ -86,7 +84,7 @@ public class HuffmanCode {
         return tree.poll();
     }
 
-    public void visualize(HuffmanTree tree, StringBuilder prefix){
+    public void visualizeHuffmanCode(HuffmanTree tree, StringBuilder prefix){
         if(tree instanceof HuffmanLeaf){
             HuffmanLeaf leaf = (HuffmanLeaf) tree;
             System.out.println(leaf.getCharacter() + "\t" + leaf.getFrequency() + "\t" + prefix.toString());
@@ -94,11 +92,11 @@ public class HuffmanCode {
         } else {
             HuffmanNode node = (HuffmanNode) tree;
             prefix.append("0");
-            visualize(node.getLeft(), prefix);
+            visualizeHuffmanCode(node.getLeft(), prefix);
             prefix.deleteCharAt(prefix.length() - 1);
 
             prefix.append("1");
-            visualize(node.getRight(), prefix);
+            visualizeHuffmanCode(node.getRight(), prefix);
             prefix.deleteCharAt(prefix.length() - 1);
         }
     }
