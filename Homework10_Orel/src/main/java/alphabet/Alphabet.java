@@ -8,32 +8,31 @@ import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Alphabet {
-    private HashMap<Character, Integer> alphabet;
+    private HashMap<Character, Double> alphabet;
 
-    private Alphabet(HashMap<Character, Integer> alphabet){
+    private Alphabet(HashMap<Character, Double> alphabet){
         this.alphabet = alphabet;
     }
 
     public static class Builder{
 
-        private HashMap<Character, Integer> alphabet;
+        private HashMap<Character, Double> alphabet;
 
         public Builder(){
             alphabet = new HashMap<>();
         }
 
-        public Builder add(Character key, Integer percentage){
+        public Builder add(Character key, Double percentage){
             alphabet.put(key, percentage);
             return this;
         }
 
         public Alphabet generate() throws IllegalArgumentException {
-            AtomicInteger summary = new AtomicInteger();
-            Integer result = alphabet
+            Double result = alphabet
                     .values()
                     .stream()
-                    .reduce(0, (acc, value) -> acc += value);
-            if(result.equals(100)){
+                    .reduce(0.0, (acc, value) -> acc += value);
+            if(Math.round(result) == 100){
                 return new Alphabet(alphabet);
             } else {
                 throw new IllegalArgumentException();
@@ -41,7 +40,7 @@ public class Alphabet {
         }
     }
 
-    public Character getKey(int value){
+    public Character getKey(double value){
         char character = ' ';
         for(char ch : this.alphabet.keySet()){
             if(this.alphabet.get(ch) == value){
@@ -56,11 +55,11 @@ public class Alphabet {
         return getAlphabet().keySet();
     }
 
-    public Collection<Integer> getValueSet(){
+    public Collection<Double> getValueSet(){
         return getAlphabet().values();
     }
 
-    public HashMap<Character, Integer> getAlphabet() {
+    public HashMap<Character, Double> getAlphabet() {
         return alphabet;
     }
 

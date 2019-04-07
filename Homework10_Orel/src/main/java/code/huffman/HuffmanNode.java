@@ -1,11 +1,19 @@
-package code;
+package code.huffman;
 
 public class HuffmanNode extends HuffmanTree {
-    public final HuffmanTree left, right;
+    private final HuffmanTree left, right;
 
     public HuffmanNode(HuffmanTree left, HuffmanTree right){
         super(left.getFrequency() + right.getFrequency());
         this.left = left;
         this.right = right;
+    }
+
+    public HuffmanTree getLeft() {
+        return left;
+    }
+
+    public HuffmanTree getRight() {
+        return right;
     }
 }

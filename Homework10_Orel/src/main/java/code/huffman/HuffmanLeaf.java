@@ -1,9 +1,9 @@
-package code;
+package code.huffman;
 
 public class HuffmanLeaf extends HuffmanTree {
     private char character;
 
-    public HuffmanLeaf(int frequency, char character) {
+    public HuffmanLeaf(char character, double frequency){
         super(frequency);
         this.character = character;
     }
