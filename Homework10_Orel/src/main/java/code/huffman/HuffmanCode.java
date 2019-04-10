@@ -2,6 +2,10 @@ package code.huffman;
 
 import alphabet.Alphabet;
 import alphabet.exceptions.IllegalArgumentException;
+import code.huffman.exceptions.HCAlphabetInitException;
+import code.huffman.partitions.HuffmanLeaf;
+import code.huffman.partitions.HuffmanNode;
+import code.huffman.partitions.HuffmanTree;
 import tree.BinaryTree;
 import tree.exceptions.BTInitException;
 import tree.exceptions.BTNullPointerException;
@@ -17,14 +21,13 @@ public class HuffmanCode {
 
     public HuffmanCode() throws BTInitException {
         tree = new BinaryTree<>();
-        library = new HuffmanLibrary();
     }
 
-    public void define(Alphabet alphabet){
+    public void defineAlphabet(Alphabet alphabet){
         this.alphabet = alphabet;
     }
 
-    public void define(String msg) throws IllegalArgumentException {
+    public void defineAlphabetByCase(String msg) throws IllegalArgumentException {
         int []frequencies = new int[256];
         char []characters = msg.toCharArray();
         for(int index = 0; index < characters.length; index++){
@@ -32,11 +35,12 @@ public class HuffmanCode {
         }
         Alphabet.Builder builder = new Alphabet.Builder();
         int summary = 0;
-        Set<Map.Entry<Character, Double>> entrySet = receiveNotNullFrequencies(frequencies).entrySet();
-        for(Map.Entry<Character, Double> entry : entrySet){
+        Set<Map.Entry<Character, Double>> notNullFrequencies
+                = receiveNotNullFrequencies(frequencies).entrySet();
+        for(Map.Entry<Character, Double> entry : notNullFrequencies){
             summary += entry.getValue();
         }
-        for(Map.Entry<Character, Double> entry : entrySet){
+        for(Map.Entry<Character, Double> entry : notNullFrequencies){
             builder
                     .add(
                             entry.getKey(), (entry.getValue() / (double)summary) * 100
@@ -61,14 +65,16 @@ public class HuffmanCode {
         if(alphabet == null){
             throw new HCAlphabetInitException();
         } else {
-            while(alphabet.getValueSet().size() > 0){
+            while(alphabet.getDoubleValuesSet().size() > 0){
                 double min = alphabet
-                        .getValueSet()
+                        .getDoubleValuesSet()
                         .stream()
                         .max((first, second) -> (int) (first - second))
                         .get();
                 tree.add(new HuffmanLeaf(alphabet.getKey(min), min));
-                alphabet.getAlphabet().remove(alphabet.getKey(min), min);
+                alphabet
+                        .getAlphabet()
+                            .remove(alphabet.getKey(min), min);
             }
 
         }
@@ -84,11 +90,31 @@ public class HuffmanCode {
         return tree.poll();
     }
 
+    public void constructHuffmanCode(HuffmanTree tree, StringBuilder prefix){
+        this.library = new HuffmanLibrary();
+        constructHuffmanCodeRecursive(tree, prefix, this.library);
+    }
+
+    private void constructHuffmanCodeRecursive(HuffmanTree tree, StringBuilder prefix, HuffmanLibrary library){
+        if(tree instanceof HuffmanLeaf){
+            HuffmanLeaf leaf = (HuffmanLeaf) tree;
+            library.add(leaf.getCharacter(), prefix.toString());
+        } else {
+            HuffmanNode node = (HuffmanNode) tree;
+            prefix.append("0");
+            constructHuffmanCodeRecursive(node.getLeft(), prefix, library);
+            prefix.deleteCharAt(prefix.length() - 1);
+
+            prefix.append("1");
+            constructHuffmanCodeRecursive(node.getRight(), prefix, library);
+            prefix.deleteCharAt(prefix.length() - 1);
+        }
+    }
+
     public void visualizeHuffmanCode(HuffmanTree tree, StringBuilder prefix){
         if(tree instanceof HuffmanLeaf){
             HuffmanLeaf leaf = (HuffmanLeaf) tree;
             System.out.println(leaf.getCharacter() + "\t" + leaf.getFrequency() + "\t" + prefix.toString());
-            this.library.add(leaf.getCharacter(), prefix.toString());
         } else {
             HuffmanNode node = (HuffmanNode) tree;
             prefix.append("0");
@@ -102,6 +128,6 @@ public class HuffmanCode {
     }
 
     public HuffmanLibrary getLibrary() {
-        return library;
+        return this.library;
     }
 }

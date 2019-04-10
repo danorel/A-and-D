@@ -1,17 +1,19 @@
 import alphabet.exceptions.IllegalArgumentException;
+import code.decoder.exceptions.DecoderLibraryInitException;
+import code.encoder.exceptions.EncoderLibraryInitException;
 import code.huffman.HuffmanCode;
-import code.huffman.HuffmanTree;
+import code.huffman.partitions.HuffmanTree;
 import code.decoder.HuffmanDecoder;
 import code.encoder.HuffmanEncoder;
-import code.huffman.HCAlphabetInitException;
+import code.huffman.exceptions.HCAlphabetInitException;
 import tree.exceptions.BTInitException;
 import tree.exceptions.BTNullPointerException;
 
 public class App {
-    public static void main(String[] args) throws IllegalArgumentException, BTInitException, BTNullPointerException, HCAlphabetInitException {
+    public static void main(String[] args) throws IllegalArgumentException, BTInitException, BTNullPointerException, HCAlphabetInitException, DecoderLibraryInitException, EncoderLibraryInitException {
         HuffmanCode code = new HuffmanCode();
         /*
-        code.define(
+        code.defineAlphabetByCase(
                 new Alphabet.Builder()
                         .add('c', 15)
                         .add('d', 8)
@@ -22,9 +24,9 @@ public class App {
         );
         */
 
-        code.define("More than a thousand words...");
+        code.defineAlphabetByCase("More than a thousand words...");
         HuffmanTree tree = code.generateHuffmanTree();
-        code.visualizeHuffmanCode(tree, new StringBuilder());
+        code.constructHuffmanCode(tree, new StringBuilder());
 
         HuffmanDecoder decoder = new HuffmanDecoder();
         decoder.setupLibrary(code.getLibrary());

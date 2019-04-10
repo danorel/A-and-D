@@ -38,13 +38,18 @@ public class NodeApp {
         System.out.println("Cloning all the elements from the tree to clone");
         BinaryTree<Integer> tree_clone = tree.clone(tree);
         System.out.println(tree_clone);
-        System.out.println("Are the trees equal? Answer: " + tree_clone.equals(tree));
         System.out.println("-------------------------------------------");
         System.out.println();
-        System.out.println("-------------------------------------------");
-        System.out.println("Removing all the elements from the clone...");
-        tree_clone.removeAll();
+        System.out.println("---------------------------------");
+        System.out.println("Are the trees equal? Answer: " + tree_clone.equals(tree));
+        System.out.println("---------------------------------");
+
+        System.out.println("------------------------------------------");
+        System.out.println("Removing the data 1 from binary tree: " + tree_clone.remove(6));
+        System.out.println("------------------------------------------");
+        System.out.println();
+        System.out.println("-------");
         System.out.print(tree_clone);
-        System.out.println("-------------------------------------------");
+        System.out.println("-------");
     }
 }

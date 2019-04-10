@@ -41,21 +41,21 @@ public class Alphabet {
     }
 
     public Character getKey(double value){
-        char character = ' ';
-        for(char ch : this.alphabet.keySet()){
-            if(this.alphabet.get(ch) == value){
-                character = ch;
+        char key = ' ';
+        for(char character : this.alphabet.keySet()){
+            if(this.alphabet.get(character) == value){
+                key = character;
                 break;
             }
         }
-        return character;
+        return key;
     }
 
-    public Set<Character> getKeySet(){
+    public Set<Character> getCharacterSet(){
         return getAlphabet().keySet();
     }
 
-    public Collection<Double> getValueSet(){
+    public Collection<Double> getDoubleValuesSet(){
         return getAlphabet().values();
     }
 

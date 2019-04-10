@@ -1,12 +1,12 @@
-package code.decoder.exceptions;
+package code.encoder.exceptions;
 
-public class DecoderLibraryInitException extends Exception {
+public class EncoderLibraryInitException extends Exception {
     private static final StringBuilder LIBRARY_INIT =
             new StringBuilder(
                 "Fatal error! The working library was not defined. Setup the library firstly!"
             );
 
-    public DecoderLibraryInitException(){
+    public EncoderLibraryInitException(){
         super(LIBRARY_INIT.toString());
     }
 

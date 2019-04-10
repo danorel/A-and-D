@@ -22,19 +22,19 @@ public class HuffmanLibrary {
         this.lib.put(character, prefix);
     }
 
-    public boolean isValid(String prefix){
-        return getKeyByValue(prefix) != null;
+    public boolean isValidPrefix(String prefix){
+        return getCharacterByValue(prefix) != null;
     }
 
-    public Character getKeyByPrefix(String prefix){
-        return getKeyByValue(prefix);
+    public Character getCharacterByPrefix(String prefix){
+        return getCharacterByValue(prefix);
     }
 
-    public String getPrefix(Character character){
+    public String getPrefixByCharacter(Character character){
         return this.lib.get(character);
     }
 
-    private Character getKeyByValue(String prefix){
+    private Character getCharacterByValue(String prefix){
         for(char character : this.lib.keySet()){
             if(this.lib.get(character).equals(prefix)){
                 return character;

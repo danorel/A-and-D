@@ -1,4 +1,4 @@
-package code.huffman;
+package code.huffman.partitions;
 
 public class HuffmanTree implements Comparable<HuffmanTree>{
     private double frequency;

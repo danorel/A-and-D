@@ -4,6 +4,7 @@ import tree.array.exceptions.BTInitException;
 import tree.array.exceptions.BTNullPointerException;
 
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 
 public class BinaryTree<E>{
     private Object []array;
@@ -28,9 +29,59 @@ public class BinaryTree<E>{
         if(data == null){
             throw new BTNullPointerException();
         }
-        E []temp_array = (E[]) Arrays.copyOf(this.array, this.array.length + 1);
-        temp_array[temp_array.length - 1] = data;
-        asArray(temp_array);
+        if(this.array[0] == null){
+            this.array[0] = data;
+        } else {
+            E []temp_array = (E[]) Arrays.copyOf(this.array, this.array.length + 1);
+            temp_array[temp_array.length - 1] = data;
+            asArray(temp_array);
+        }
+    }
+
+    private E[] cut(final E[] array) {
+        E[] arr;
+        arr = (E[]) new  Object[array.length - 1];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = array[i];
+        }
+        return arr;
+    }
+
+    public void delete(final E data) {
+        if(isEmpty()==false) {
+            if(data != null) {
+                int index = getIndex(data);
+                array[index] = array[index*2+1];
+                array[index*2+1] = array[index*2+2];
+                int counter = 0;
+                while (index*2+2+counter+1 < this.array.length) {
+                    array[index*2+2+counter] = array[index*2+2+counter+1];
+                    counter++;
+                }
+                array = cut((E[]) array);
+            } else {
+                throw new NullPointerException();
+            }
+        } else {
+            throw new NoSuchElementException();
+        }
+    }
+
+    public int size(){
+        return array.length;
+    }
+
+    public boolean isEmpty(){
+        return array.length == 0;
+    }
+
+    public int getIndex(E data){
+        for(int index = 0; index < array.length; index++){
+            if(array[index].equals(data)){
+                return index;
+            }
+        }
+        return -1;
     }
 
     public void asArray(E []array) throws BTInitException {

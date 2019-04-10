@@ -86,19 +86,30 @@ public class BinaryTree<E extends Comparable> implements Cloneable {
             if(data.equals(node.data)){
                 node.data = null;
                 if(node.left != null && node.right == null){
+                    node.data = node.left.data;
                     node = node.left;
                 }
                 if(node.left == null && node.right != null){
+                    node.data = node.right.data;
                     node = node.right;
                 }
                 if(node.left != null && node.right != null){
                     Node temp_right = node.right;
-                    node = node.left;
-                    Node temp = node;
-                    while(temp.left != null){
-                        temp = temp.left;
+                    Node temp_left = node.left;
+                    node.data = node.left.data;
+                    node.right = null;
+                    node.left = null;
+                    node = temp_left;
+                    if(node.left == null){
+                        node.left = temp_right;
+                    } else {
+                        Node temp = node;
+                        while(temp.left != null){
+                            temp = temp.left;
+                        }
+                        temp.left = temp_right;
+                        node.left = temp.left;
                     }
-                    temp.left = temp_right;
                 } else {
                     if(ancestor.left == node){
                         ancestor.left = null;

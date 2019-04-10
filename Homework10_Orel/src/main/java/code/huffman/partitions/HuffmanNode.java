@@ -1,4 +1,4 @@
-package code.huffman;
+package code.huffman.partitions;
 
 public class HuffmanNode extends HuffmanTree {
     private final HuffmanTree left, right;

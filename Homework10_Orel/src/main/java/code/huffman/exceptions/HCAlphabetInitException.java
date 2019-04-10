@@ -1,4 +1,4 @@
-package code.huffman;
+package code.huffman.exceptions;
 
 public class HCAlphabetInitException extends Exception {
     private static final StringBuilder INIT_EXCEPTION =

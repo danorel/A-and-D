@@ -13,7 +13,14 @@ public class ArrayApp {
         System.out.println(tree);
         tree.add(9);
         System.out.println(tree);
-        tree.add(null);
+
+        System.out.println(tree.isEmpty());
+        System.out.println(tree.getIndex(-1));
+        System.out.println(tree.size());
+        System.out.println(tree.getIndex(11));
+
+        tree.delete(7);
         System.out.println(tree);
+
     }
 }

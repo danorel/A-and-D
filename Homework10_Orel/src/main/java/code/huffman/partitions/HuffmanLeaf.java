@@ -1,4 +1,4 @@
-package code.huffman;
+package code.huffman.partitions;
 
 public class HuffmanLeaf extends HuffmanTree {
     private char character;
