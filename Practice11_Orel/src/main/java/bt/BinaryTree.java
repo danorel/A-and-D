@@ -64,9 +64,7 @@ public class BinaryTree<T extends Comparable>{
             );
         }
         if(!containsRecursive(ROOT, data)){
-            throw new NoSuchElementException(
-                    "Error! There are no elements with value " + data.toString() + " in the binary tree."
-            );
+            return false;
         } else {
             return true;
         }
@@ -93,6 +91,20 @@ public class BinaryTree<T extends Comparable>{
                     "Error! Trying to remove the null data in the binary tree."
             );
         }
+        if(ROOT == null){
+            throw new NullPointerException(
+                    "Error! Could not delete the elements from the empty binary tree."
+            );
+        }
+        if(ROOT.left == null && ROOT.right == null){
+            if(data == ROOT.data){
+                ROOT = null;
+            } else {
+                throw new NoSuchElementException(
+                        "Error! Trying to remove non-existing elements in the binary tree."
+                );
+            }
+        }
         T leftValue = removeRecursive(ROOT.left, ROOT, data);
         T rightValue = removeRecursive(ROOT.right, ROOT, data);
         if(leftValue == null && rightValue == null){
@@ -108,10 +120,10 @@ public class BinaryTree<T extends Comparable>{
         if(node != null){
             if(data.compareTo(node.data) == 0){
                 if(node.left == null && node.right != null){
-                    node = node.right;
+                    ancestor.right = node.right;
                 }
                 if(node.left != null && node.right == null){
-                    node = node.left;
+                    ancestor.left = node.left;
                 }
                 if(node.left == null && node.right == null){
                     if(ancestor.left == node){

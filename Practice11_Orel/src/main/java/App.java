@@ -13,12 +13,19 @@ public class App {
         tree.add(-3);
         tree.add(7);
         System.out.println(tree);
-        System.out.println("Does the tree contain -3 as element? Answer: " + tree.contains(-3));
-        System.out.println(tree.remove(5));
+        System.out.println("Does the tree contain -4 as element? Answer: " + tree.contains(-4));
+        tree.remove(10);
+        System.out.println("Tree after deleting the element: ");
         System.out.println(tree);
-        ArrayList<Integer> list =
+        System.out.println("Data in the descending order: ");
+        ArrayList<Integer> dataInDescOrder =
                 (ArrayList<Integer>) tree.getDataInDescOrder();
-        list
+        dataInDescOrder
+                .forEach(System.out::println);
+        System.out.println("Data in the ascending order: ");
+        ArrayList<Integer> dataInAscOrder =
+                (ArrayList<Integer>) tree.getDataInAscOrder();
+        dataInAscOrder
                 .forEach(System.out::println);
     }
 }
