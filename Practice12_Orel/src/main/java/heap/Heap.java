@@ -36,8 +36,19 @@ public class Heap<T extends Comparable<T>> implements HeapManager<T>{
         if(isMinHeap){
 
         } else {
-
+H
         }
+    }
+
+    private void MaxHeapify(int position){
+
+    }
+
+    private void MinHeapify(int position){
+        int largest = position;
+        int left    = 2*position - 1;
+        int right   = 2*position;
+        if(this.tree.)
     }
 
     @Override

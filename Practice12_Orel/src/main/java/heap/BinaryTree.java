@@ -3,6 +3,7 @@ package heap;
 import heap.exceptions.BTInitException;
 
 import java.security.InvalidAlgorithmParameterException;
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 public class BinaryTree<E extends Comparable<E>>{
@@ -33,12 +34,29 @@ public class BinaryTree<E extends Comparable<E>>{
         if(this.source[0] == null){
             this.source[0] = data;
         } else {
-
+            addRecursive(data, 1);
         }
     }
 
-    private void addRecursive(E data){
-
+    private void addRecursive(E data, int index){
+        if(index < source.length){
+            if(data.compareTo((E) this.source[index]) < 0){
+                if(2*index - 1 >= this.source.length){
+                    source = Arrays.copyOf(source, 2*index);
+                    source[2*index - 1] = data;
+                } else {
+                    addRecursive(data, 2 * index);
+                }
+            }
+            if(data.compareTo((E) this.source[index]) > 0){
+                if(2*index >= this.source.length){
+                    source = Arrays.copyOf(source, 2*index + 1);
+                    source[2*index] = data;
+                } else {
+                    addRecursive(data, 2 * index + 1);
+                }
+            }
+        }
     }
 
     public int size(){
@@ -112,7 +130,7 @@ public class BinaryTree<E extends Comparable<E>>{
 
     public void createInDescOrder(E []source) throws BTInitException {
         /*
-            Sorting the input source in the ascending order
+            Sorting the input source in the descending order
          */
         HeapSort algorithm = new HeapSort();
         algorithm.sortDesc(source);
