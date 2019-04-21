@@ -6,32 +6,34 @@ public class BinaryHeap<T extends Comparable<T>> implements BinaryHeapManager<T>
         
     }
 
+    @Override
     public boolean isEmpty() {
         return false;
     }
 
+    @Override
     public int size() {
         return 0;
     }
 
+    @Override
     public boolean contains() {
         return false;
     }
 
+    @Override
     public void add(T data) {
 
     }
 
+    @Override
     public T peak() {
         return null;
     }
 
+    @Override
     public T remove() {
         return null;
-    }
-
-    public void add() {
-
     }
 
     @Override
