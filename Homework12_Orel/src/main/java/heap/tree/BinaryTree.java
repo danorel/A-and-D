@@ -1,6 +1,8 @@
 package heap.tree;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 public class BinaryTree<E> implements BinaryTreeManager<E> {
@@ -167,6 +169,36 @@ public class BinaryTree<E> implements BinaryTreeManager<E> {
     public int size() {
         return array.length;
     }
+
+    @Override
+    public List<E> obtainAsList() {
+        if(isEmpty()){
+            return new ArrayList<>();
+        } else {
+            ArrayList<E> list = new ArrayList<>();
+            list.add((E) this.array[0]);
+            obtainAsListRecursive(1, list);
+            return list;
+        }
+    }
+
+    @Override
+    public E[] obtainAsArray() {
+        return (E[]) this.array;
+    }
+
+    private void obtainAsListRecursive(int index, ArrayList<E> list){
+        if(index < this.array.length){
+            list.add((E) this.array[index]);
+            if(2*index - 1 < this.array.length){
+                obtainAsListRecursive(2*index, list);
+            }
+            if(2*index < this.array.length){
+                obtainAsListRecursive(2*index + 1, list);
+            }
+        }
+    }
+
 
     @Override
     public String toString() {

@@ -1,5 +1,7 @@
 import heap.tree.BinaryTree;
 
+import java.util.ArrayList;
+
 public class App {
     public static void main(String[] args) {
         BinaryTree<Integer> binaryTree = new BinaryTree<>();
@@ -19,5 +21,8 @@ public class App {
         binaryTree.delete(1);
         System.out.print(binaryTree);
         System.out.println("Index of the element 1 in the bt. Answer: " + binaryTree.indexOf(1));
+        ArrayList<Integer> list = (ArrayList<Integer>) binaryTree.obtainAsList();
+        list
+                .forEach(System.out::println);
     }
 }
