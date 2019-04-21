@@ -8,6 +8,8 @@ public interface BinaryTreeManager<E>{
     void delete(final E data);
     boolean isEmpty();
     int size();
+    E minimum();
+    E maximum();
     List<E> obtainAsList();
     E [] obtainAsArray();
 }

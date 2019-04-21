@@ -148,6 +148,13 @@
       </item>
     </group>
   </component>
+  <component name="ProjectDictionaryState">
+    <dictionary name="danorel">
+      <words>
+        <w>heapify</w>
+      </words>
+    </dictionary>
+  </component>
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Homework12_Orel.iml" filepath="$PROJECT_DIR$/Homework12_Orel.iml" />

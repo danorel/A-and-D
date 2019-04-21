@@ -1,12 +1,9 @@
 package heap.tree;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 
-public class BinaryTree<E> implements BinaryTreeManager<E> {
-    private Object[] array;
+public class BinaryTree<E extends Comparable> implements BinaryTreeManager<E> {
+    private Comparable[] source;
 
     public BinaryTree() {
         this(1);
@@ -18,10 +15,10 @@ public class BinaryTree<E> implements BinaryTreeManager<E> {
 
     public BinaryTree(final E data, final int size) {
         if (size <= 0) {
-            throw new NullPointerException("Failed to initialize the array! The input size equals or less than zero.");
+            throw new NullPointerException("Failed to initialize the binary tree! The size of the source equals or less than zero.");
         }
-        this.array = new Object[size];
-        this.array[0] = data;
+        this.source = new Comparable[size];
+        this.source[0] = data;
     }
 
     @Override
@@ -32,13 +29,13 @@ public class BinaryTree<E> implements BinaryTreeManager<E> {
         if (contains(data)) {
             throw new IllegalArgumentException("Error! Such an element with a data presents in the binary tree!");
         } else {
-            if (this.array[0] == null) {
-                this.array[0] = data;
+            if (this.source[0] == null) {
+                this.source[0] = data;
             } else {
-                E[] temp_array = (E[]) Arrays.copyOf(this.array, this.array.length + 1);
-                this.array = new Object[this.array.length + 1];
-                this.array = Arrays.copyOf(temp_array, temp_array.length);
-                this.array[this.array.length - 1] = data;
+                E[] temp_array = (E[]) Arrays.copyOf(this.source, this.source.length + 1);
+                this.source = new Comparable[this.source.length + 1];
+                this.source = Arrays.copyOf(temp_array, temp_array.length);
+                this.source[this.source.length - 1] = data;
             }
         }
     }
@@ -48,8 +45,8 @@ public class BinaryTree<E> implements BinaryTreeManager<E> {
         if (data == null) {
             throw new NullPointerException("Error! Trying to find the null data in the binary tree!");
         }
-        if (this.array.length > 0) {
-            if (this.array[0] == data) {
+        if (this.source.length > 0) {
+            if (this.source[0] == data) {
                 return true;
             } else {
                 return containsRecursive(1, data);
@@ -60,14 +57,14 @@ public class BinaryTree<E> implements BinaryTreeManager<E> {
     }
 
     private boolean containsRecursive(final int index, final E data) {
-        if (index < this.array.length) {
-            if (this.array[index] == data) {
+        if (index < this.source.length) {
+            if (this.source[index] == data) {
                 return true;
             } else {
-                if (2 * index - 1 < this.array.length) {
+                if (2 * index - 1 < this.source.length) {
                     return containsRecursive(2 * index, data);
                 }
-                if (2 * index < this.array.length) {
+                if (2 * index < this.source.length) {
                     return containsRecursive(2 * index + 1, data);
                 }
             }
@@ -85,18 +82,18 @@ public class BinaryTree<E> implements BinaryTreeManager<E> {
             if(index == -1){
                 throw new NoSuchElementException("Error! The element with data " + data.toString() + " is absent in the binary tree.");
             } else {
-                if(2*index + 1 < this.array.length){
-                    array[index] = array[2*index + 1];
+                if(2*index + 1 < this.source.length){
+                    source[index] = source[2*index + 1];
                 }
-                if(2*index + 2 < this.array.length){
-                    array[index * 2 + 1] = array[2*index + 2];
+                if(2*index + 2 < this.source.length){
+                    source[index * 2 + 1] = source[2*index + 2];
                 }
                 int counter = 0;
-                while (index * 2 + 2 + counter + 1 < this.array.length) {
-                    this.array[index * 2 + 2 + counter] = this.array[index * 2 + 2 + counter + 1];
+                while (index * 2 + 2 + counter + 1 < this.source.length) {
+                    this.source[index * 2 + 2 + counter] = this.source[index * 2 + 2 + counter + 1];
                     counter++;
                 }
-                array = cut((E[]) this.array);
+                source = cut((E[]) this.source);
             }
         }
     }
@@ -104,7 +101,7 @@ public class BinaryTree<E> implements BinaryTreeManager<E> {
 
     private E[] cut(final E[] array) {
         E[] arr;
-        arr = (E[]) new Object[this.array.length - 1];
+        arr = (E[]) new Comparable[this.source.length - 1];
         for (int i = 0; i < arr.length; i++) {
             arr[i] = array[i];
         }
@@ -113,14 +110,14 @@ public class BinaryTree<E> implements BinaryTreeManager<E> {
 
     @Override
     public boolean isEmpty() {
-        return this.array[0] == null;
+        return this.source[0] == null;
     }
 
     public int indexOf(E data) {
         if (!contains(data)) {
             return -1;
         } else {
-            if (this.array[0] == data) {
+            if (this.source[0] == data) {
                 return 0;
             } else {
                 return indexOfRecursive(1, data);
@@ -129,14 +126,14 @@ public class BinaryTree<E> implements BinaryTreeManager<E> {
     }
 
     private int indexOfRecursive(int index, E data) {
-        if (index < this.array.length) {
-            if (this.array[index] == data) {
+        if (index < this.source.length) {
+            if (this.source[index] == data) {
                 return index;
             } else {
-                if (2 * index - 1 < this.array.length) {
+                if (2 * index - 1 < this.source.length) {
                     return indexOfRecursive(2 * index, data);
                 }
-                if (2 * index < this.array.length) {
+                if (2 * index < this.source.length) {
                     return indexOfRecursive(2 * index + 1, data);
                 }
             }
@@ -144,30 +141,54 @@ public class BinaryTree<E> implements BinaryTreeManager<E> {
         return -1;
     }
 
-    public void asArray(E[] array) {
-        this.array = new Object[array.length];
-        if (array.length > 0) {
-            this.array[0] = array[0];
-            asArrayRecursive(array, 1);
+    public void asArray(E[] source) {
+        this.source = new Comparable[source.length];
+        if (source.length > 0) {
+            this.source[0] = source[0];
+            asArrayRecursive(source, 1);
         } else {
-            throw new NullPointerException("Failed to initialize the array! The input size equals or less than zero.");
+            throw new NullPointerException("Failed to initialize the binary tree! The the source size equals or less than zero.");
         }
     }
 
-    private void asArrayRecursive(E[] array, int index) {
-        if (2 * index - 1 < array.length) {
-            this.array[2 * index - 1] = array[2 * index - 1];
-            asArrayRecursive(array, 2 * index);
+    private void asArrayRecursive(E[] source, int index) {
+        if (2 * index - 1 < source.length) {
+            this.source[2 * index - 1] = source[2 * index - 1];
+            asArrayRecursive(source, 2 * index);
         }
-        if (2 * index < array.length) {
-            this.array[2 * index] = array[2 * index];
-            asArrayRecursive(array, 2 * index + 1);
+        if (2 * index < source.length) {
+            this.source[2 * index] = source[2 * index];
+            asArrayRecursive(source, 2 * index + 1);
         }
     }
 
     @Override
     public int size() {
-        return array.length;
+        return source.length;
+    }
+
+    @Override
+    public E minimum() {
+        if(!isEmpty()){
+            return obtainAsList()
+                    .stream()
+                    .max((first, second) -> 0)
+                    .get();
+        } else {
+            throw new NoSuchElementException("Error! There is no elements in the binary tree!");
+        }
+    }
+
+    @Override
+    public E maximum() {
+        if(!isEmpty()){
+            return obtainAsList()
+                    .stream()
+                    .max((second, first) -> 0)
+                    .get();
+        } else {
+            throw new NoSuchElementException("Error! There is no elements in the binary tree!");
+        }
     }
 
     @Override
@@ -176,7 +197,7 @@ public class BinaryTree<E> implements BinaryTreeManager<E> {
             return new ArrayList<>();
         } else {
             ArrayList<E> list = new ArrayList<>();
-            list.add((E) this.array[0]);
+            list.add((E) this.source[0]);
             obtainAsListRecursive(1, list);
             return list;
         }
@@ -184,16 +205,16 @@ public class BinaryTree<E> implements BinaryTreeManager<E> {
 
     @Override
     public E[] obtainAsArray() {
-        return (E[]) this.array;
+        return (E[]) this.source;
     }
 
     private void obtainAsListRecursive(int index, ArrayList<E> list){
-        if(index < this.array.length){
-            list.add((E) this.array[index]);
-            if(2*index - 1 < this.array.length){
+        if(index < this.source.length){
+            list.add((E) this.source[index]);
+            if(2*index - 1 < this.source.length){
                 obtainAsListRecursive(2*index, list);
             }
-            if(2*index < this.array.length){
+            if(2*index < this.source.length){
                 obtainAsListRecursive(2*index + 1, list);
             }
         }
@@ -206,7 +227,7 @@ public class BinaryTree<E> implements BinaryTreeManager<E> {
     }
 
     private String visualise(int index, int level, StringBuilder visualisation) {
-        if (index - 1 < this.array.length) {
+        if (index - 1 < this.source.length) {
             visualisation
                     .append(
                             visualiseBorder(level)
@@ -215,7 +236,7 @@ public class BinaryTree<E> implements BinaryTreeManager<E> {
                             "("
                     )
                     .append(
-                            this.array[index - 1]
+                            this.source[index - 1]
                     )
                     .append(
                             ")"
@@ -223,10 +244,10 @@ public class BinaryTree<E> implements BinaryTreeManager<E> {
                     .append(
                             "\n"
                     );
-            if (2 * index - 1 < this.array.length) {
+            if (2 * index - 1 < this.source.length) {
                 visualise(2 * index, level + 1, visualisation);
             }
-            if (2 * index < this.array.length) {
+            if (2 * index < this.source.length) {
                 visualise(2 * index + 1, level + 1, visualisation);
             }
         }

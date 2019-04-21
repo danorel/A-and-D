@@ -1,9 +1,11 @@
+import heap.BinaryHeap;
 import heap.tree.BinaryTree;
 
 import java.util.ArrayList;
 
 public class App {
     public static void main(String[] args) {
+
         BinaryTree<Integer> binaryTree = new BinaryTree<>();
         System.out.println("Is the bt empty? Answer: " + binaryTree.isEmpty());
         System.out.println("What is the size of the binary tree? Answer: " + binaryTree.size());
@@ -24,5 +26,15 @@ public class App {
         ArrayList<Integer> list = (ArrayList<Integer>) binaryTree.obtainAsList();
         list
                 .forEach(System.out::println);
+
+        System.out.println();
+
+        BinaryHeap<Integer> heap = new BinaryHeap<>();
+        System.out.println("Is the heap empty? Answer: " + heap.isEmpty());
+        heap.add(5);
+        heap.add(11);
+        heap.add(-3);
+        heap.add(0);
+        System.out.print(heap);
     }
 }
