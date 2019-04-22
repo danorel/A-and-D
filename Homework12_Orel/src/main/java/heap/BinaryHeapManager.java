@@ -7,6 +7,4 @@ interface BinaryHeapManager<T extends Comparable<T>>{
     void add(T data);
     T peak();
     T remove(T data);
-    void buildAsMinHeap();
-    void buildAsMaxHeap();
 }

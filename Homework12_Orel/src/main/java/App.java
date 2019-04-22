@@ -29,7 +29,7 @@ public class App {
 
         System.out.println();
 
-        BinaryHeap<Integer> heap = new BinaryHeap<>();
+        BinaryHeap<Integer> heap = new BinaryHeap<>(true);
         System.out.println("Is the heap empty? Answer: " + heap.isEmpty());
         heap.add(5);
         heap.add(11);
