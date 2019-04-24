@@ -1,4 +1,4 @@
-package bt.exceptions;
+package heap.bt.exceptions;
 
 public class BTDuplicateException extends Exception{
     private static final StringBuilder DUPLICATE =

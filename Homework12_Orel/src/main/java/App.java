@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 public class App {
     public static void main(String[] args) {
-
         BinaryTree<Integer> binaryTree = new BinaryTree<>();
         System.out.println("Is the bt empty? Answer: " + binaryTree.isEmpty());
         System.out.println("What is the size of the binary tree? Answer: " + binaryTree.size());
@@ -31,10 +30,14 @@ public class App {
 
         BinaryHeap<Integer> heap = new BinaryHeap<>(true);
         System.out.println("Is the heap empty? Answer: " + heap.isEmpty());
+        heap.add(4);
+        heap.add(10);
+        heap.add(3);
         heap.add(5);
-        heap.add(11);
-        heap.add(-3);
-        heap.add(0);
+        heap.add(1);
         System.out.print(heap);
+        System.out.println(heap.remove());
+        System.out.println(heap);
+        System.out.print(heap.peak());
     }
 }

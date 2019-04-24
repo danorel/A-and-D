@@ -172,7 +172,7 @@ public class BinaryTree<E extends Comparable> implements BinaryTreeManager<E> {
         if(!isEmpty()){
             return obtainAsList()
                     .stream()
-                    .max((first, second) -> 0)
+                    .min((first, second) -> 0)
                     .get();
         } else {
             throw new NoSuchElementException("Error! There is no elements in the binary tree!");
@@ -184,7 +184,7 @@ public class BinaryTree<E extends Comparable> implements BinaryTreeManager<E> {
         if(!isEmpty()){
             return obtainAsList()
                     .stream()
-                    .max((second, first) -> 0)
+                    .max((first, second) -> 0)
                     .get();
         } else {
             throw new NoSuchElementException("Error! There is no elements in the binary tree!");

@@ -1,6 +1,6 @@
-package bt;
+package heap.bt;
 
-import bt.exceptions.BTDuplicateException;
+import heap.bt.exceptions.BTDuplicateException;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -40,16 +40,17 @@ public class BinaryTree<T extends Comparable>{
     private void addRecursive(Node node, T data) throws BTDuplicateException {
         if(node != null){
             if(data.compareTo(node.data) < 0){
-                if(node.left == null){
-                    node.left = new Node(data);
-                } else {
+                if(node.left != null){
                     addRecursive(node.left, data);
-                }
-            } else if(data.compareTo(node.data) > 0){
-                if(node.right == null){
-                    node.right = new Node(data);
                 } else {
+                    node.left = new Node(data);
+                }
+
+            } else if(data.compareTo(node.data) > 0){
+                if(node.right != null){
                     addRecursive(node.right, data);
+                } else {
+                    node.right = new Node(data);
                 }
             } else {
                 throw new BTDuplicateException();
@@ -186,8 +187,56 @@ public class BinaryTree<T extends Comparable>{
         return list;
     }
 
+    public void asArray(T []source) throws BTDuplicateException {
+        if(source.length > 0){
+            buildByArray(source, 0, ROOT);
+        }
+    }
+
+    private void buildByArray(T[] source, int index, Node node){
+        if(index < source.length){
+            node = new Node(source[index]);
+            if(2*index < source.length){
+                buildByArray(source, 2*index + 1, node.left);
+            }
+            if(2*index + 1 < source.length){
+                buildByArray(source, 2*index + 2, node.right);
+            }
+        }
+    }
+
+    public T[] obtainAsArray(){
+        if(isEmpty()){
+            return null;
+        } else {
+            List<T> list = getDataInAscOrder();
+            T []source = (T[]) new Comparable[list.size()];
+            for(int index = 0; index < source.length; index++){
+                source[index] = list.get(index);
+            }
+            return source;
+        }
+    }
+
     public boolean isEmpty(){
-        return ROOT.data == null;
+        return ROOT == null;
+    }
+
+    public int size(){
+        return sizeRecursive(ROOT, 0);
+    }
+
+    private int sizeRecursive(Node node, int counter){
+        if(node != null){
+            counter++;
+            if(node.left != null){
+                counter = sizeRecursive(node.left, counter);
+            }
+            if(node.right != null){
+                counter = sizeRecursive(node.right, counter);
+            }
+        }
+        return counter;
     }
 
     private String visualisation(Node node, int level, StringBuilder content){

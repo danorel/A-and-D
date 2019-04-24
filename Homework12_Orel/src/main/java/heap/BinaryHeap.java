@@ -44,7 +44,7 @@ public class BinaryHeap<T extends Comparable<T>> implements BinaryHeapManager<T>
 
     private void buildAsMinHeap() {
         T[] source = tree.obtainAsArray();
-        for(int layer = (int) Math.floor(source.length / 2 - 1); layer >= 0; layer--){
+        for(int layer = source.length / 2; layer >= 0; layer--){
             heapifyMin(source, layer, source.length);
         }
         tree.asArray(source);
@@ -54,14 +54,14 @@ public class BinaryHeap<T extends Comparable<T>> implements BinaryHeapManager<T>
         int parent, left, right;
         while (layer < length){
             parent = layer;
-            left = 2*parent + 1;
-            right = 2*parent + 2;
+            left = 2*layer + 1;
+            right = 2*layer + 2;
 
             if(left < length && source[left].compareTo(source[parent]) < 0){
                 parent = left;
             }
 
-            if(right < left && source[right].compareTo(source[parent]) < 0){
+            if(right < length && source[right].compareTo(source[parent]) < 0){
                 parent = right;
             }
 
@@ -82,7 +82,7 @@ public class BinaryHeap<T extends Comparable<T>> implements BinaryHeapManager<T>
 
     private void buildAsMaxHeap() {
         T[] source = tree.obtainAsArray();
-        for(int layer = (int) Math.floor(source.length / 2 - 1); layer >= 0; layer--){
+        for(int layer = source.length / 2; layer >= 0; layer--){
             heapifyMax(source, layer, source.length);
         }
         tree.asArray(source);
@@ -92,14 +92,14 @@ public class BinaryHeap<T extends Comparable<T>> implements BinaryHeapManager<T>
         int parent, left, right;
         while (layer < length){
             parent = layer;
-            left = 2*parent + 1;
-            right = 2*parent + 2;
+            left = 2*layer + 1;
+            right = 2*layer + 2;
 
             if(left < length && source[left].compareTo(source[parent]) > 0){
                 parent = left;
             }
 
-            if(right < left && source[right].compareTo(source[parent]) > 0){
+            if(right < length && source[right].compareTo(source[parent]) > 0){
                 parent = right;
             }
 
@@ -116,23 +116,20 @@ public class BinaryHeap<T extends Comparable<T>> implements BinaryHeapManager<T>
     @Override
     public T peak() {
         if(asMinHeap){
-            T minimum = tree.minimum();
-            remove(minimum);
-            return minimum;
+            return tree.minimum();
         } else {
-            T maximum = tree.maximum();
-            remove(maximum);
-            return maximum;
+            return tree.minimum();
         }
     }
 
     @Override
-    public T remove(T data) {
+    public T remove() {
         if(isEmpty()){
             throw new NoSuchElementException("Error! Cannot remove the element with such data. The heap is empty!");
         } else {
-            tree.delete(data);
-            return tree.obtainAsArray()[tree.indexOf(data)];
+            T root = tree.obtainAsArray()[0];
+            tree.delete(root);
+            return root;
         }
     }
 

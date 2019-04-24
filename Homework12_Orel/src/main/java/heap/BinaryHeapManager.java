@@ -6,5 +6,5 @@ interface BinaryHeapManager<T extends Comparable<T>>{
     boolean contains(T data);
     void add(T data);
     T peak();
-    T remove(T data);
+    T remove();
 }
