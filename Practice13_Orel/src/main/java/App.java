@@ -7,5 +7,8 @@ public class App {
         System.out.println(container.digitsSummary(126));
         System.out.println(container.countSevenDigits(123));
         System.out.println(container.countEightDigits(88888));
+        System.out.println(container.power(3,3));
+        System.out.println(container.countXChars("xxhixx"));
+        System.out.println(container.countHiSubstrings("xhixhix"));
     }
 }

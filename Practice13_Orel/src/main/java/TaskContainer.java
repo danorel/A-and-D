@@ -64,5 +64,49 @@ public class TaskContainer {
     /*
         #7
     */
-    
+    public int power(int number, int exponent){
+        return (exponent == 1) ? number : number * power(number, exponent - 1);
+    }
+    /*
+        #8
+    */
+    public int countXChars(String input){
+        if(input.length() == 0){
+            return 0;
+        } else {
+            if(input.charAt(input.length() - 1) == 'x'){
+                return countXChars(input.substring(0, input.length() - 1)) + 1;
+            } else {
+                return countXChars(input.substring(0, input.length() - 1));
+            }
+        }
+    }
+    /*
+        #9
+    */
+    public int countHiSubstrings(String input){
+        if(input.length() == 1 || input.length() == 0){
+            return 0;
+        } else {
+            if(input.charAt(input.length() - 1) == 'i' && input.charAt(input.length() - 2) == 'h'){
+                return countHiSubstrings(input.substring(0, input.length() - 1)) + 1;
+            } else {
+                return countHiSubstrings(input.substring(0, input.length() - 1));
+            }
+        }
+    }
+    /*
+        #10
+    */
+    public int changeXtoY(String input){
+        if(input.length() == 0){
+            return 0;
+        } else {
+            if(input.charAt(input.length() - 1) == 'x'){
+                return countHiSubstrings(input.substring(0, input.length() - 2)) + 1;
+            } else {
+                return countHiSubstrings(input.substring(0, input.length() - 1));
+            }
+        }
+    }
 }
