@@ -17,5 +17,9 @@ public class App {
         System.out.println(container.getElevenAmount(new int[]{1, 2, 11}, 0));
         System.out.println(container.isUniqueSequence(new int[]{1, 2, 20}, 0));
         System.out.println(container.borderWithStars("hello"));
+        System.out.println(container.borderPairsWithStars("hello"));
+        System.out.println(container.appendAllX("xxre"));
+        System.out.println(container.getAmountOfPairs("axaxa"));
+        System.out.println(container.countABCSequences("abcxxabc"));
     }
 }

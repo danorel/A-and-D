@@ -236,5 +236,92 @@ public class TaskContainer {
             return source;
         }
     }
-    
+    /*
+        #17
+    */
+    public String borderPairsWithStars(String source){
+        return borderPairsWithStarsRecursive(source, 0);
+    }
+
+    private String borderPairsWithStarsRecursive(String source, int index){
+        if(index < source.length() - 1){
+            if(source.charAt(index) == source.charAt(index + 1)){
+                return borderPairsWithStarsRecursive(
+                        source
+                                .substring(0, index + 1)
+                                .concat("*")
+                                .concat(
+                                        source.substring(index + 1)
+                                )
+                        , index + 2);
+            } else {
+                return borderPairsWithStarsRecursive(
+                        source, index + 1);
+            }
+        } else {
+            return source;
+        }
+    }
+    /*
+        #18
+    */
+    public String appendAllX(String source){
+        return appendAllXRecursive(source, 0, 0);
+    }
+
+    private String appendAllXRecursive(String source, int index, int times){
+        if(times < source.length()){
+            if(source.charAt(index) == 'x'){
+                return appendAllXRecursive(
+                        source
+                                .substring(0, index)
+                                .concat(
+                                        source.substring(index + 1)
+                                )
+                                .concat("x")
+                        , index, times + 1
+                );
+            } else {
+                return appendAllXRecursive(source, index + 1, times + 1);
+            }
+        } else {
+            return source;
+        }
+    }
+    /*
+        #19
+    */
+    public int getAmountOfPairs(String source){
+        return getAmountOfPairsRecursive(source, 0);
+    }
+
+    private int getAmountOfPairsRecursive(String source, int index){
+        if(index < source.length() - 2){
+            if(source.charAt(index) == source.charAt(index + 2)){
+                return getAmountOfPairsRecursive(source, index + 1) + 1;
+            } else {
+                return getAmountOfPairsRecursive(source, index + 1);
+            }
+        } else {
+            return 0;
+        }
+    }
+    /*
+        #20
+    */
+    public int countABCSequences(String source){
+        return countABCSequencesRecursive(source, 0);
+    }
+
+    private int countABCSequencesRecursive(String source, int index){
+        if(index < source.length() - 2){
+            if(source.charAt(index) == 'a' && source.charAt(index + 1) == 'b' && (source.charAt(index + 2) == 'c' || source.charAt(index + 2) == 'a' )){
+                return countABCSequencesRecursive(source, index + 2) + 1;
+            } else {
+                return countABCSequencesRecursive(source, index + 1);
+            }
+        } else {
+            return 0;
+        }
+    }
 }
