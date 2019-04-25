@@ -8,13 +8,13 @@ public class TaskContainer {
     /*
         #2
      */
-    public int bunnyEars(int position){
-        if(position == 0){
+    public int bunnyEars(int index){
+        if(index == 0){
             return 0;
-        } else if(position % 2 == 0){
-            return bunnyEars(position - 1) + 3;
+        } else if(index % 2 == 0){
+            return bunnyEars(index - 1) + 3;
         } else {
-            return bunnyEars(position - 1) + 2;
+            return bunnyEars(index - 1) + 2;
         }
     }
     /*
@@ -70,43 +70,171 @@ public class TaskContainer {
     /*
         #8
     */
-    public int countXChars(String input){
-        if(input.length() == 0){
+    public int getXAmount(String source){
+        if(source.length() == 0){
             return 0;
         } else {
-            if(input.charAt(input.length() - 1) == 'x'){
-                return countXChars(input.substring(0, input.length() - 1)) + 1;
+            if(source.charAt(source.length() - 1) == 'x'){
+                return getXAmount(source.substring(0, source.length() - 1)) + 1;
             } else {
-                return countXChars(input.substring(0, input.length() - 1));
+                return getXAmount(source.substring(0, source.length() - 1));
             }
         }
     }
     /*
         #9
     */
-    public int countHiSubstrings(String input){
-        if(input.length() == 1 || input.length() == 0){
+    public int getHiFrequency(String source){
+        if(source.length() == 1 || source.length() == 0){
             return 0;
         } else {
-            if(input.charAt(input.length() - 1) == 'i' && input.charAt(input.length() - 2) == 'h'){
-                return countHiSubstrings(input.substring(0, input.length() - 1)) + 1;
+            if(source.charAt(source.length() - 1) == 'i' && source.charAt(source.length() - 2) == 'h'){
+                return getHiFrequency(source.substring(0, source.length() - 1)) + 1;
             } else {
-                return countHiSubstrings(input.substring(0, input.length() - 1));
+                return getHiFrequency(source.substring(0, source.length() - 1));
             }
         }
     }
     /*
         #10
     */
-    public int changeXtoY(String input){
-        if(input.length() == 0){
-            return 0;
-        } else {
-            if(input.charAt(input.length() - 1) == 'x'){
-                return countHiSubstrings(input.substring(0, input.length() - 2)) + 1;
+    public String substituteXtoY(String source){
+        return substituteXtoYRecursive(source, 0);
+    }
+
+    private String substituteXtoYRecursive(String source, int index){
+        if(index < source.length()){
+            if(source.charAt(index) == 'x'){
+                return substituteXtoYRecursive(
+                        source.substring(0, index).concat("y") + source.substring(index + 1)
+                        , index + 1);
             } else {
-                return countHiSubstrings(input.substring(0, input.length() - 1));
+                return substituteXtoYRecursive(source, index + 1);
             }
+        } else {
+            return source;
         }
     }
+    /*
+        #11
+    */
+    public String substitutePI(String source){
+        return substitutePIRecursive(source, 0);
+    }
+
+    private String substitutePIRecursive(String source, int index){
+        if(index < source.length() - 1){
+            if(source.charAt(index) == 'p' && source.charAt(index + 1) == 'i'){
+                return substitutePIRecursive(
+                        source.substring(0, index)
+                                .concat("3.14")
+                                .concat(source.substring(index + 2))
+                        , index + 2
+                );
+            } else {
+                return substitutePIRecursive(source, index + 1);
+            }
+        } else {
+            return source;
+        }
+    }
+    /*
+        #12
+    */
+    public String extractAllX(String source){
+        return extractAllXRecursive(source, 0);
+    }
+
+    private String extractAllXRecursive(String source, int index){
+        if(index < source.length()){
+            if(source.charAt(index) == 'x'){
+                return extractAllXRecursive(
+                        source
+                                .substring(0, index)
+                                .concat(
+                                        source.substring(index + 1)
+                                )
+                        , index);
+            } else {
+                return extractAllXRecursive(source, index + 1);
+            }
+        }
+        return source;
+    }
+    /*
+        #13
+    */
+    public boolean isSixExists(int []source, int from){
+        return isSixExistsRecursive(source, from);
+    }
+
+    private boolean isSixExistsRecursive(int []source, int index){
+        if(index < source.length){
+            if(source[index] == 6){
+                return true;
+            } else {
+                return isSixExistsRecursive(source, index + 1);
+            }
+        } else {
+            return false;
+        }
+    }
+    /*
+        #14
+    */
+    public int getElevenAmount(int []source, int from){
+        return getElevenAmountRecursive(source, from);
+    }
+
+    private int getElevenAmountRecursive(int []source, int index){
+        if(index < source.length){
+            if(source[index] == 11){
+                return getElevenAmountRecursive(source, index + 1) + 1;
+            } else {
+                return getElevenAmountRecursive(source, index + 1);
+            }
+        } else {
+            return 0;
+        }
+    }
+    /*
+        #15
+    */
+    public boolean isUniqueSequence(int []source, int from){
+        return isUniqueSequenceRecursive(source, from);
+    }
+
+    private boolean isUniqueSequenceRecursive(int []source, int index){
+        if(index < source.length - 1){
+            if(10 * source[index] == source[index + 1]){
+                return true;
+            } else {
+                return isUniqueSequenceRecursive(source, index + 1);
+            }
+        } else {
+            return false;
+        }
+    }
+    /*
+        #16
+    */
+    public String borderWithStars(String source){
+        return borderWithStarsRecursive(source, 0);
+    }
+
+    private String borderWithStarsRecursive(String source, int index){
+        if(index < source.length() - 1){
+            return borderWithStarsRecursive(
+                    source
+                            .substring(0, index + 1)
+                            .concat("*")
+                            .concat(
+                                    source.substring(index + 1)
+                            )
+                    , index + 2);
+        } else {
+            return source;
+        }
+    }
+    
 }
