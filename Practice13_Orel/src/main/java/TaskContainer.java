@@ -1,3 +1,5 @@
+import java.util.Stack;
+
 public class TaskContainer {
     /*
         #1
@@ -319,6 +321,127 @@ public class TaskContainer {
                 return countABCSequencesRecursive(source, index + 2) + 1;
             } else {
                 return countABCSequencesRecursive(source, index + 1);
+            }
+        } else {
+            return 0;
+        }
+    }
+    /*
+        #21
+    */
+    public int getAmountOfEleven(String source){
+        return getAmountOfElevenRecursive(source, 0);
+    }
+
+    private int getAmountOfElevenRecursive(String source, int index){
+        if(index < source.length() - 1){
+            if(source.charAt(index) == '1' && source.charAt(index + 1) == '1'){
+                return getAmountOfElevenRecursive(source, index + 2) + 1;
+            } else {
+                return getAmountOfElevenRecursive(source, index + 1);
+            }
+        } else {
+            return 0;
+        }
+    }
+    /*
+        #22
+    */
+    public String cleaner(String source){
+        return cleanerRecursive(source, 0);
+    }
+
+    private String cleanerRecursive(String source, int index){
+        if(index < source.length() - 1){
+            if(source.charAt(index) == source.charAt(index + 1)){
+                return cleanerRecursive(
+                        source
+                                .substring(0, index)
+                                .concat(
+                                        source.substring(index + 1)
+                                )
+                        , index);
+            } else {
+                return cleanerRecursive(source, index + 1);
+            }
+        } else {
+            return source;
+        }
+    }
+    /*
+        #23
+    */
+    public int getHiFrequencyModified(String source){
+        return getAmountOfHiModifiedRecursive(source, 0);
+    }
+
+    private int getAmountOfHiModifiedRecursive(String source, int index){
+        if(index < source.length() - 1){
+            if(index - 1 >= 0 && source.charAt(index - 1) == 'x'){
+                return getAmountOfHiModifiedRecursive(source, index + 1);
+            } else {
+                if(source.charAt(index) == 'h' && source.charAt(index + 1) == 'i'){
+                    return getAmountOfHiModifiedRecursive(source, index + 2) + 1;
+                } else {
+                    return getAmountOfHiModifiedRecursive(source, index + 1);
+                }
+            }
+        } else {
+            return 0;
+        }
+    }
+    /*
+        #24
+    */
+    public String getParenthesisContent(String source){
+        return getParenthesisContentRecursive(source, 0);
+    }
+
+    private String getParenthesisContentRecursive(String source, int index){
+        if(index < source.length()){
+            if(source.charAt(index) == '('){
+                return getParenthesisContentRecursive(source.substring(index), index + 1);
+            } else if(source.charAt(index) == ')'){
+                return getParenthesisContentRecursive(source.substring(0, index + 1), index + 1);
+            } else {
+                return getParenthesisContentRecursive(source, index + 1);
+            }
+        } else {
+            return source;
+        }
+    }
+    /*
+        #25
+    */
+    public boolean checkIfNestedParenthesis(String source){
+        return checkIfNestedParenthesisRecursive(source, 0, source.length() - 1);
+    }
+
+    private boolean checkIfNestedParenthesisRecursive(String source, int left, int right){
+        if(left <= right){
+            if(source.charAt(left) == '(' && source.charAt(right) == ')'){
+                return checkIfNestedParenthesisRecursive(source, left + 1, right - 1);
+            } else {
+                return false;
+            }
+        } else {
+            return true;
+        }
+    }
+    /*
+        #26
+    */
+    public int substringCounter(String source, String substring){
+        return substringCounterRecursive(source, 0, substring, 0);
+    }
+
+    private int substringCounterRecursive(String source, int index, String substring, int start){
+        if(index < source.length()){
+
+            if(source.charAt(index) == substring.charAt(start)){
+                return substringCounterRecursive(source, index + 1, substring, start + 1) + 1;
+            } else {
+                return substringCounterRecursive(source, index + 1, substring, start + 1);
             }
         } else {
             return 0;

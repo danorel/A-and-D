@@ -21,5 +21,12 @@ public class App {
         System.out.println(container.appendAllX("xxre"));
         System.out.println(container.getAmountOfPairs("axaxa"));
         System.out.println(container.countABCSequences("abcxxabc"));
+        System.out.println(container.getAmountOfEleven("abc11x11x11"));
+        System.out.println(container.cleaner("yyzzzza"));
+        System.out.println(container.getHiFrequencyModified("hixhhi"));
+        System.out.println(container.getParenthesisContent("xyz(abc)123"));
+        System.out.println(container.checkIfNestedParenthesis("()))))"));
+
     }
+
 }

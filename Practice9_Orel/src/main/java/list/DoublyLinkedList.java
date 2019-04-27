@@ -30,28 +30,6 @@ public class DoublyLinkedList<T extends Comparable> implements Comparable {
         }
     }
 
-    public Comparable get(int index){
-        if(index >= size()){
-            return null;
-        } else {
-            int counter = 0;
-            Node TEMP = HEAD;
-            while(TEMP != TAIL){
-                if (counter != index) {
-                    counter++;
-                    TEMP = TEMP.next;
-                } else {
-                    return TEMP.value;
-                }
-            }
-            if(index == counter){
-                return TAIL.value;
-            } else {
-                return null;
-            }
-        }
-    }
-
     public void addHEAD(T value){
         Node TEMP = new Node(value);
         Node CURRENT = HEAD;
@@ -84,7 +62,7 @@ public class DoublyLinkedList<T extends Comparable> implements Comparable {
         }
     }
 
-    public void removeDoublyLinkedList(){
+    public void removeAll(){
         while(HEAD.next != null){
             TAIL = TAIL.previous;
             TAIL.next = null;
@@ -93,7 +71,7 @@ public class DoublyLinkedList<T extends Comparable> implements Comparable {
         HEAD.value = null;
     }
 
-    public void removeNodeWithKey(T value){
+    public void remove(T value){
         boolean isNotOperatedLastNode = true;
         Node TEMP = TAIL;
         Node FIX;
@@ -116,33 +94,11 @@ public class DoublyLinkedList<T extends Comparable> implements Comparable {
         } while(isNotOperatedLastNode);
     }
 
-    public Node moveToNext(Node node){
-        return node = node.next;
-    }
-
-    public void appendArrayToList(T[] Array){
-        for(int index = 0; index < Array.length; index++){
-            add(Array[index]);
+    public void asDLL(T[] source){
+        removeAll();
+        for (T data : source) {
+            add(data);
         }
-    }
-
-    public int getNodePosition(T value){
-        int counter = 1;
-        boolean isFound = false;
-        Node TEMP = HEAD;
-        while(TEMP == TAIL || TEMP.next != null){
-            if(TEMP.value == value){
-                isFound = true;
-                break;
-            } else {
-                if(TEMP == TAIL){
-                    break;
-                }
-                counter++;
-                TEMP = TEMP.next;
-            }
-        }
-        return isFound ? counter : -1;
     }
 
     public Comparable getTailValue() throws NullPointerException{
@@ -155,14 +111,6 @@ public class DoublyLinkedList<T extends Comparable> implements Comparable {
 
     public int size(){
         return counter;
-    }
-
-    public Node getHEAD(){
-        return HEAD;
-    }
-
-    public Node getTAIL(){
-        return TAIL;
     }
 
     @Override

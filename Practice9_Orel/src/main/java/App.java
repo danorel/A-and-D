@@ -1,6 +1,7 @@
 import graph.Graph;
 import graph.exceptions.GraphAdjacencyException;
 import graph.exceptions.GraphInitException;
+import list.DoublyLinkedList;
 
 public class App {
     public static void main(String[] args) {
@@ -72,6 +73,8 @@ public class App {
             Building the graph by the null matrix with help of Incidence matrix
          */
 
+
+        /*
         int [][] matrix = {
 
         };
@@ -84,5 +87,11 @@ public class App {
         } catch (GraphAdjacencyException | NoSuchMethodException | GraphInitException exception) {
             exception.printStackTrace();
         }
+        */
+
+        DoublyLinkedList<Integer> list = new DoublyLinkedList<>();
+        list.add(5);
+        list.add(6);
+        System.out.println(list);
     }
 }
